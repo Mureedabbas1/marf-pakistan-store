@@ -95,7 +95,8 @@
     if(!cart.size){message('Please add at least one in-stock product first.');return;}
     const form=event.currentTarget;
     const fd=new FormData(form);
-    const items=[...cart.entries()].map(([product_id,item])=>({product_id,quantity:item.quantity}));\n    const customerName=String(fd.get('name')||'');
+    const items=[...cart.entries()].map(([product_id,item])=>({product_id,quantity:item.quantity}));
+    const customerName=String(fd.get('name')||'');\n    const customerName=String(fd.get('name')||'');
     const submit=form.querySelector('button[type="submit"]'); submit.disabled=true; submit.textContent='Placing request…';
     message('Submitting your order securely…');
     try{
