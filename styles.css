@@ -340,7 +340,7 @@ h1{font-size:clamp(60px,6.1vw,88px);line-height:.91;letter-spacing:-.045em}
 /* MARF Pakistan brand logo */
 .brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:176px;max-width:34vw}.brand-logo{display:block;width:100%;height:auto;max-height:48px;object-fit:contain}.footer-brand-link{width:158px}.footer-brand-logo{max-height:42px}@media(max-width:760px){.brand-logo-link{width:142px;max-width:38vw}.brand-logo{max-height:40px}.footer-brand-link{width:148px}}
 
-.brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:176px;max-width:34vw}.brand-logo-svg{display:block;width:100%;height:auto;max-height:48px;overflow:visible}.footer-brand-link{width:158px}.footer-brand-link .brand-logo-svg{max-height:42px}@media(max-width:760px){.brand-logo-link{width:142px;max-width:38vw}.brand-logo-svg{max-height:40px}.footer-brand-link{width:148px}}
+.brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:208px;max-width:36vw;min-width:0}.brand-logo-svg{display:block;width:100%;height:auto;max-height:58px;object-fit:contain;overflow:visible}.footer-brand-link{width:190px}.footer-brand-link .brand-logo-svg{max-height:52px}@media(max-width:760px){.brand-logo-link{width:164px;max-width:40vw}.brand-logo-svg{max-height:46px}.footer-brand-link{width:156px}}
 
 
 /* Header shopping bag icon */
