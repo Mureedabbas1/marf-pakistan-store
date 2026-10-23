@@ -108,9 +108,56 @@
   function closeSearch() { searchPanel.classList.remove('open'); }
   document.querySelector('.search-toggle').addEventListener('click', openSearch);
   document.getElementById('search-close').addEventListener('click', closeSearch);
+  const searchResults = document.getElementById('search-results');
+  const categoryCards = [...document.querySelectorAll('.shop-category-card')];
+  function renderSearchResults() {
+    const term = searchInput.value.trim().toLowerCase();
+    searchResults.replaceChildren();
+    if (!term) { searchResults.hidden = true; return; }
+    const matches = categoryCards.filter(card =>
+      (card.dataset.shopCategory + ' ' + card.textContent).toLowerCase().includes(term)
+    ).slice(0, 8);
+    if (!matches.length) { searchResults.hidden = true; return; }
+    const heading = document.createElement('p');
+    heading.className = 'search-results-heading';
+    heading.textContent = 'CATEGORIES';
+    searchResults.append(heading);
+    matches.forEach(card => {
+      const result = document.createElement('button');
+      result.type = 'button';
+      result.className = 'search-result-item';
+      const name = document.createElement('span');
+      name.textContent = card.querySelector('.shop-category-name').textContent;
+      const urdu = document.createElement('small');
+      urdu.textContent = card.querySelector('.shop-category-urdu').textContent;
+      const arrow = document.createElement('span');
+      arrow.className = 'search-result-arrow';
+      arrow.textContent = '↗';
+      result.append(name, urdu, arrow);
+      result.addEventListener('click', () => {
+        closeSearch();
+        card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+        card.classList.add('search-category-highlight');
+        setTimeout(() => card.classList.remove('search-category-highlight'), 1600);
+      });
+      searchResults.append(result);
+    });
+    searchResults.hidden = false;
+  }
+  searchInput.addEventListener('input', renderSearchResults);
   document.getElementById('search-form').addEventListener('submit', event => {
     event.preventDefault();
     const term = searchInput.value.trim().toLowerCase();
+    const categoryMatch = categoryCards.find(card =>
+      (card.dataset.shopCategory + ' ' + card.textContent).toLowerCase().includes(term) && term
+    );
+    if (categoryMatch) {
+      closeSearch();
+      categoryMatch.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      categoryMatch.classList.add('search-category-highlight');
+      setTimeout(() => categoryMatch.classList.remove('search-category-highlight'), 1600);
+      return;
+    }
     let shown = 0;
     document.querySelectorAll('.product-card').forEach(card => {
       const match = !term || card.textContent.toLowerCase().includes(term) || card.dataset.category.toLowerCase().includes(term);
