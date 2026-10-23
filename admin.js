@@ -88,21 +88,31 @@
     const id=String(fd.get('id')||'');
     const sku=id?String(fd.get('sku')||'').trim():(await nextProductSku());
     if(!sku){btn.disabled=false;return;}
-    const imageFile=fd.get('image_file');
-    const payload={name,slug:slugify(name),sku,category:String(fd.get('category')),price_pkr:Number(fd.get('price')),compare_at_price_pkr:fd.get('compare')===''?null:Number(fd.get('compare')),stock_quantity:Number(fd.get('stock')),image_url:String(fd.get('image')||'').trim()||null,description:String(fd.get('description')||'').trim()||null,is_active:fd.get('active')==='true',updated_at:new Date().toISOString()};
+    const imageFiles=Array.from(form.elements.image_files.files||[]);
+    let imageUrls=[];
+    try { imageUrls=JSON.parse(String(fd.get('image_urls')||'[]')); } catch { imageUrls=[]; }
+    if(!Array.isArray(imageUrls)) imageUrls=[];
+    const manualImage=String(fd.get('image')||'').trim();
+    const payload={name,slug:slugify(name),sku,category:String(fd.get('category')),price_pkr:Number(fd.get('price')),compare_at_price_pkr:fd.get('compare')===''?null:Number(fd.get('compare')),stock_quantity:Number(fd.get('stock')),image_url:manualImage||imageUrls[0]||null,image_urls:imageUrls,description:String(fd.get('description')||'').trim()||null,is_active:fd.get('active')==='true',updated_at:new Date().toISOString()};
     if(id)payload.id=id;
     try{
-      if(imageFile instanceof File && imageFile.size>0){
+      if(imageFiles.length>10) throw new Error('Choose up to 10 images at a time.');
+      if(imageFiles.length){
         const allowed=['image/jpeg','image/png','image/webp','image/gif','image/avif'];
-        if(!allowed.includes(imageFile.type))throw new Error('Choose a JPG, PNG, WebP, GIF or AVIF image.');
-        if(imageFile.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
-        status($('product-message'),'Uploading product image…');
-        const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif'})[imageFile.type];
-        const base=slugify(imageFile.name.split('.').slice(0,-1).join('.'))||'product-image';
-        const path=sku+'/'+Date.now()+'-'+base.slice(0,100)+'.'+ext;
-        const uploaded=await client.storage.from('product-images').upload(path,imageFile,{contentType:imageFile.type,cacheControl:'3600',upsert:false});
-        if(uploaded.error)throw new Error('Image upload failed: '+uploaded.error.message);
-        payload.image_url=client.storage.from('product-images').getPublicUrl(uploaded.data.path).data.publicUrl;
+        status($('product-message'),'Uploading '+imageFiles.length+' product image(s)…');
+        for(let index=0;index<imageFiles.length;index++){
+          const imageFile=imageFiles[index];
+          if(!allowed.includes(imageFile.type))throw new Error('Every file must be JPG, PNG, WebP, GIF or AVIF.');
+          if(imageFile.size>5*1024*1024)throw new Error('Each image must be 5 MB or smaller.');
+          const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif'})[imageFile.type];
+          const base=slugify(imageFile.name.split('.').slice(0,-1).join('.'))||'product-image';
+          const path=sku+'/'+Date.now()+'-'+index+'-'+base.slice(0,100)+'.'+ext;
+          const uploaded=await client.storage.from('product-images').upload(path,imageFile,{contentType:imageFile.type,cacheControl:'3600',upsert:false});
+          if(uploaded.error)throw new Error('Image upload failed: '+uploaded.error.message);
+          imageUrls.push(client.storage.from('product-images').getPublicUrl(uploaded.data.path).data.publicUrl);
+        }
+        payload.image_urls=[...new Set(imageUrls)];
+        payload.image_url=payload.image_urls[0]||payload.image_url;
       }
       if(!payload.slug||!Number.isFinite(payload.price_pkr)||payload.price_pkr<0||!Number.isInteger(payload.stock_quantity)||payload.stock_quantity<0)throw new Error('Check the product name, price and stock.');
       const result=id?await client.from('products').update(payload).eq('id',id).select().single():await client.from('products').insert(payload).select().single();
@@ -120,7 +130,7 @@
     body.innerHTML=data.map(p=>'<tr><td><strong>'+safe(p.name)+'</strong><br><small>'+safe(p.sku||p.slug)+'</small></td><td>'+money(p.price_pkr)+'</td><td>'+Number(p.stock_quantity)+'</td><td>'+(p.is_active?'Published':'Hidden')+'</td><td><button class="product-edit-btn" data-edit="'+safe(p.id)+'">Edit</button></td></tr>').join('');
     body.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>editProduct(data.find(p=>p.id===btn.dataset.edit))));
   }
-  function editProduct(p){if(!p)return;const f=$('product-form').elements;f.id.value=p.id;f.name.value=p.name;f.sku.value=p.sku||'';f.category.value=p.category;f.price.value=p.price_pkr;f.compare.value=p.compare_at_price_pkr??'';f.stock.value=p.stock_quantity;f.image.value=p.image_url||'';f.image_file.value='';f.description.value=p.description||'';f.active.value=String(p.is_active);$('product-form-heading').textContent='Edit product';$('product-form').scrollIntoView({behavior:'smooth',block:'start'});}
+  function editProduct(p){if(!p)return;const f=$('product-form').elements;f.id.value=p.id;f.name.value=p.name;f.sku.value=p.sku||'';f.category.value=p.category;f.price.value=p.price_pkr;f.compare.value=p.compare_at_price_pkr??'';f.stock.value=p.stock_quantity;f.image.value=p.image_url||'';f.image_files.value='';f.image_urls.value=JSON.stringify(p.image_urls|| (p.image_url?[p.image_url]:[]));f.description.value=p.description||'';f.active.value=String(p.is_active);$('product-form-heading').textContent='Edit product';$('product-form').scrollIntoView({behavior:'smooth',block:'start'});}
   $('settings-form').addEventListener('submit',async e=>{
     e.preventDefault();const raw=new FormData(e.currentTarget).get('shipping_fee');const fee=raw===''?null:Number(raw);
     if(fee!==null&&(!Number.isFinite(fee)||fee<0)){status($('settings-message'),'Enter a valid non-negative delivery fee.');return;}
