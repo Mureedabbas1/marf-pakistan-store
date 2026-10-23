@@ -341,3 +341,11 @@ h1{font-size:clamp(60px,6.1vw,88px);line-height:.91;letter-spacing:-.045em}
 .brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:176px;max-width:34vw}.brand-logo{display:block;width:100%;height:auto;max-height:48px;object-fit:contain}.footer-brand-link{width:158px}.footer-brand-logo{max-height:42px}@media(max-width:760px){.brand-logo-link{width:142px;max-width:38vw}.brand-logo{max-height:40px}.footer-brand-link{width:148px}}
 
 .brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:176px;max-width:34vw}.brand-logo-svg{display:block;width:100%;height:auto;max-height:48px;overflow:visible}.footer-brand-link{width:158px}.footer-brand-link .brand-logo-svg{max-height:42px}@media(max-width:760px){.brand-logo-link{width:142px;max-width:38vw}.brand-logo-svg{max-height:40px}.footer-brand-link{width:148px}}
+
+
+/* Header shopping bag icon */
+.cart-button{gap:7px}
+.bag-icon{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--gold-light);stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s ease}
+.cart-button:hover .bag-icon{transform:translateY(-2px)}
+.bag-label{display:inline}
+@media(max-width:390px){.cart-button{gap:4px}.bag-icon{width:16px;height:16px;flex-basis:16px}}
