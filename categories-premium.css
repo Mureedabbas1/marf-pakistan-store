@@ -1,0 +1,108 @@
+/* MARF Pakistan — premium rounded 20-category cards */
+.shop-categories-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 12% 18%,rgba(201,169,106,.085),transparent 38%),
+    radial-gradient(ellipse at 90% 82%,rgba(201,169,106,.045),transparent 34%),
+    #11110f;
+}
+.shop-categories-section .section-heading{position:relative;z-index:1}
+.shop-categories-section .section-heading .eyebrow{letter-spacing:.22em}
+.shop-categories-section .section-intro{max-width:360px}
+.shop-category-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.shop-category-card{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap:9px;
+  min-width:0;
+  min-height:176px;
+  padding:21px 20px 19px;
+  overflow:hidden;
+  border:1px solid rgba(220,202,160,.2);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(201,169,106,.15),transparent 45%),
+    linear-gradient(145deg,rgba(34,31,24,.97),rgba(17,17,15,.98) 72%);
+  box-shadow:0 10px 26px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.035);
+  transition:transform .35s cubic-bezier(.2,.75,.25,1),border-color .35s,background .35s,box-shadow .35s;
+}
+.shop-category-card::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:116px;height:116px;
+  top:-48px;right:-35px;
+  border:1px solid rgba(201,169,106,.17);
+  border-radius:50%;
+  box-shadow:0 0 0 15px rgba(201,169,106,.025),0 0 0 31px rgba(201,169,106,.018);
+  transition:transform .5s ease,border-color .35s;
+}
+.shop-category-card::after{
+  content:"";
+  position:absolute;
+  left:20px;right:20px;bottom:0;
+  height:2px;
+  border-radius:99px 99px 0 0;
+  background:linear-gradient(90deg,var(--gold),rgba(201,169,106,0));
+  transform:scaleX(.24);
+  transform-origin:left;
+  transition:transform .35s ease;
+}
+.shop-category-card:hover,.shop-category-card:focus-visible{
+  transform:translateY(-5px);
+  border-color:rgba(220,202,160,.58);
+  background:radial-gradient(circle at 100% 0%,rgba(201,169,106,.2),transparent 48%),linear-gradient(145deg,#262218,#151410 75%);
+  box-shadow:0 18px 34px rgba(0,0,0,.28),0 0 0 1px rgba(201,169,106,.06);
+}
+.shop-category-card:hover::before,.shop-category-card:focus-visible::before{transform:scale(1.12);border-color:rgba(201,169,106,.32)}
+.shop-category-card:hover::after,.shop-category-card:focus-visible::after{transform:scaleX(1)}
+.shop-category-number{font-size:8px;letter-spacing:.19em;color:#c5a56a;font-weight:700}
+.shop-category-icon{
+  position:absolute;
+  top:17px;right:18px;
+  display:grid;place-items:center;
+  width:42px;height:42px;
+  border:1px solid rgba(201,169,106,.24);
+  border-radius:15px;
+  background:rgba(201,169,106,.07);
+  color:#e9d9b5;
+  font-size:23px;
+  line-height:1;
+  transition:transform .35s,background .35s;
+}
+.shop-category-card:hover .shop-category-icon{transform:rotate(-7deg) translateY(-2px);background:rgba(201,169,106,.14)}
+.shop-category-name{max-width:90%;font:500 clamp(19px,1.7vw,25px)/1.05 "Cormorant Garamond",Georgia,serif;letter-spacing:-.015em;color:#f7f3eb;overflow-wrap:anywhere}
+.shop-category-urdu{font:10px/1.5 "Manrope",Arial,sans-serif;color:#aaa397}
+.shop-category-arrow{position:absolute;right:19px;bottom:19px;display:grid;place-items:center;width:29px;height:29px;border:1px solid rgba(201,169,106,.28);border-radius:50%;color:#e9d9b5;font-size:13px;transition:transform .3s,background .3s,color .3s}
+.shop-category-card:hover .shop-category-arrow{transform:translate(2px,-2px);background:#c5a56a;color:#111;border-color:#c5a56a}
+@media(max-width:1000px){.shop-category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.shop-category-card{min-height:160px}}
+@media(max-width:620px){
+ .shop-categories-section{padding-top:58px;padding-bottom:60px}
+ .shop-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .shop-category-card{min-height:148px;padding:16px 13px 17px;border-radius:19px;gap:8px}
+ .shop-category-card::after{left:13px;right:13px}
+ .shop-category-icon{top:12px;right:12px;width:34px;height:34px;border-radius:12px;font-size:19px}
+ .shop-category-number{font-size:7px}
+ .shop-category-name{max-width:94%;font-size:clamp(17px,4.5vw,22px);line-height:1.04}
+ .shop-category-urdu{font-size:9px;max-width:92%}
+ .shop-category-arrow{right:12px;bottom:13px;width:25px;height:25px;font-size:12px}
+}
+@media(max-width:360px){
+ .shop-category-grid{gap:8px}
+ .shop-category-card{min-height:140px;padding:14px 10px;border-radius:17px}
+ .shop-category-name{font-size:16px}
+ .shop-category-icon{width:30px;height:30px;right:9px;top:9px}
+ .shop-category-arrow{right:9px;bottom:10px}
+}
+@media(prefers-reduced-motion:reduce){.shop-category-card,.shop-category-card::before,.shop-category-card::after,.shop-category-icon,.shop-category-arrow{transition:none}}
