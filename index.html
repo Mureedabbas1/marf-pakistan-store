@@ -131,7 +131,7 @@
             const p=document.createElement('p'); p.className='section-intro'; p.textContent='New products are being prepared. Please check back soon.'; grid.append(p); return;
           }
           data.forEach((p,i) => {
-            const card=document.createElement('article'); card.className='product-card reveal';
+            const card=document.createElement('article'); card.className='product-card visible';
             const imageBox=document.createElement('div'); imageBox.className='product-image';
             const tag=document.createElement('span'); tag.className='product-tag'; tag.textContent='AVAILABLE NOW'; imageBox.append(tag);
             if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';imageBox.append(img);}
