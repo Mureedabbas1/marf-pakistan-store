@@ -5,6 +5,42 @@
   const slugify = s => String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,160);
   const safe = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(el,text,ok=false){if(!el)return;el.textContent=text;el.className='admin-message'+(ok?' ok':'');}
+  function enhanceDashboard(){
+    if($('admin-quick-style')) return;
+    const style=document.createElement('style');style.id='admin-quick-style';style.textContent=`
+      .admin-welcome{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0}
+      .admin-welcome h2{font:500 27px "Cormorant Garamond",Georgia,serif;margin:0}
+      .admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+      .admin-stat{padding:17px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,rgba(201,169,106,.10),rgba(255,255,255,.025))}
+      .admin-stat span{display:block;color:var(--muted);font-size:11px;margin-bottom:8px}
+      .admin-stat strong{font-size:24px;font-weight:600;color:var(--gold)}
+      .admin-helper{font-size:12px;color:var(--muted);margin:8px 0 14px;line-height:1.6}
+      .admin-filter{width:100%;box-sizing:border-box;margin:10px 0 14px;padding:12px;border:1px solid var(--line);border-radius:7px;background:#111;color:#f5f0e7;font:inherit}
+      .admin-table tbody tr:hover{background:rgba(201,169,106,.045)}
+      .admin-table select{max-width:145px}
+      @media(max-width:760px){.admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-stat{padding:13px}.admin-stat strong{font-size:21px}.admin-welcome h2{font-size:24px}}
+    `;document.head.appendChild(style);
+    const dashboard=$('dashboard');
+    const welcome=document.createElement('div');welcome.className='admin-welcome';welcome.innerHTML='<div><h2>Welcome to your store</h2><p class="admin-helper">Manage products, stock and COD orders from one place.</p></div><button type="button" class="admin-button primary" id="admin-refresh-all">Refresh all</button>';
+    const stats=document.createElement('div');stats.className='admin-stats';stats.innerHTML='<div class="admin-stat"><span>Total products</span><strong id="stat-products">—</strong></div><div class="admin-stat"><span>Published</span><strong id="stat-published">—</strong></div><div class="admin-stat"><span>Low stock (5 or less)</span><strong id="stat-low-stock">—</strong></div><div class="admin-stat"><span>Open orders</span><strong id="stat-open-orders">—</strong></div>';
+    dashboard.prepend(stats);dashboard.prepend(welcome);
+    $('admin-refresh-all').addEventListener('click',()=>Promise.all([loadProducts(),loadOrders(),loadSettings()]));
+    const inventory=$('products-table')?.closest('.admin-card');
+    if(inventory&&!$('filter-products')){const input=document.createElement('input');input.id='filter-products';input.className='admin-filter';input.placeholder='Search products by name or SKU…';input.setAttribute('aria-label','Search inventory');inventory.querySelector('.admin-table-wrap').before(input);input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();$('products-table').querySelectorAll('tr').forEach(tr=>tr.hidden=!tr.textContent.toLowerCase().includes(q));});}
+    const orders=$('orders-table')?.closest('.admin-card');
+    if(orders&&!$('filter-orders')){const input=document.createElement('input');input.id='filter-orders';input.className='admin-filter';input.placeholder='Search orders by order number, customer, phone or city…';input.setAttribute('aria-label','Search customer orders');orders.querySelector('.admin-table-wrap').before(input);input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();$('orders-table').querySelectorAll('tr').forEach(tr=>tr.hidden=!tr.textContent.toLowerCase().includes(q));});}
+    document.querySelectorAll('#dashboard .admin-card').forEach(card=>{const h=card.querySelector('h2');if(h&&!card.querySelector('.admin-helper')){const helper=document.createElement('p');helper.className='admin-helper';helper.textContent=({'Delivery settings':'Set one standard delivery charge for COD orders.','Order workflow':'Change an order status from the list below; use View to see the full address and items.','Add a product':'Fill in the basics, then choose whether the product should appear in the store.','Edit product':'Change product details, price or stock and save.','Inventory':'Search products below, then choose Edit to update them.','Customer orders':'Search orders, update their status, or select View for details.'})[h.textContent]||'';if(helper.textContent)h.after(helper);}});
+  }
+  const statsCache={products:[],orders:[]};
+  function updateStats(products,orders){
+    if(products.length||!statsCache.products.length)statsCache.products=products;
+    if(orders.length||!statsCache.orders.length)statsCache.orders=orders;
+    const ps=statsCache.products,os=statsCache.orders;
+    if($('stat-products'))$('stat-products').textContent=ps.length;
+    if($('stat-published'))$('stat-published').textContent=ps.filter(p=>p.is_active).length;
+    if($('stat-low-stock'))$('stat-low-stock').textContent=ps.filter(p=>Number(p.stock_quantity)<=5).length;
+    if($('stat-open-orders'))$('stat-open-orders').textContent=os.filter(o=>!['delivered','cancelled'].includes(String(o.status).toLowerCase())).length;
+  }
   function showSetup(user){
     $('login-card').classList.add('admin-hide');$('dashboard').classList.add('admin-hide');$('setup-card').classList.remove('admin-hide');
     $('admin-sql').textContent="insert into public.admin_users (user_id) values ('"+user.id+"') on conflict (user_id) do nothing;";
@@ -14,7 +50,7 @@
     const {data,error}=await client.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
     if(error || !data){showSetup(user);return;}
     $('login-card').classList.add('admin-hide');$('setup-card').classList.add('admin-hide');$('dashboard').classList.remove('admin-hide');
-    await Promise.all([loadProducts(),loadOrders(),loadSettings()]);
+    enhanceDashboard();await Promise.all([loadProducts(),loadOrders(),loadSettings()]);
   }
   async function checkAccess(){
     const {data:{user}}=await client.auth.getUser();
@@ -52,7 +88,8 @@
     const body=$('products-table');body.innerHTML='<tr><td colspan="5">Loading…</td></tr>';
     const {data,error}=await client.from('products').select('*').order('created_at',{ascending:false});
     if(error){body.innerHTML='<tr><td colspan="5">Could not load inventory: '+safe(error.message)+'</td></tr>';return;}
-    if(!data?.length){body.innerHTML='<tr><td colspan="5">No products yet. Add a product above with a verified price and stock quantity.</td></tr>';return;}
+    if(!data?.length){body.innerHTML='<tr><td colspan="5">No products yet. Add a product above with a verified price and stock quantity.</td></tr>';updateStats([],[]);return;}
+    updateStats(data,[]);
     body.innerHTML=data.map(p=>'<tr><td><strong>'+safe(p.name)+'</strong><br><small>'+safe(p.sku||p.slug)+'</small></td><td>'+money(p.price_pkr)+'</td><td>'+Number(p.stock_quantity)+'</td><td>'+(p.is_active?'Published':'Hidden')+'</td><td><button class="product-edit-btn" data-edit="'+safe(p.id)+'">Edit</button></td></tr>').join('');
     body.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>editProduct(data.find(p=>p.id===btn.dataset.edit))));
   }
@@ -74,7 +111,8 @@
     const body=$('orders-table');body.innerHTML='<tr><td colspan="5">Loading…</td></tr>';
     const {data,error}=await client.from('orders').select('id,order_number,customer_name,phone,email,shipping_address,notes,city,subtotal_pkr,shipping_pkr,total_pkr,status,created_at').order('created_at',{ascending:false}).limit(100);
     if(error){body.innerHTML='<tr><td colspan="5">Could not load orders: '+safe(error.message)+'</td></tr>';return;}
-    if(!data?.length){body.innerHTML='<tr><td colspan="5">No orders received yet.</td></tr>';return;}
+    if(!data?.length){body.innerHTML='<tr><td colspan="5">No orders received yet.</td></tr>';updateStats([],[]);return;}
+    updateStats([],data);
     body.innerHTML=data.map(o=>'<tr><td><strong>#'+safe(o.order_number)+'</strong><br><small>'+safe(new Date(o.created_at).toLocaleString())+'</small></td><td>'+safe(o.customer_name)+'<br>'+safe(o.phone)+'<br>'+safe(o.city)+'</td><td>'+money(o.total_pkr)+'<br><small>Items '+money(o.subtotal_pkr)+' · Delivery '+(o.shipping_pkr==null?'TBD':money(o.shipping_pkr))+'</small></td><td><select data-status="'+safe(o.id)+'">'+states.map(s=>'<option value="'+s+'" '+(s===o.status?'selected':'')+'>'+s.charAt(0).toUpperCase()+s.slice(1)+'</option>').join('')+'</select></td><td><button class="product-edit-btn" data-order="'+safe(o.id)+'">View</button></td></tr>').join('');
     body.querySelectorAll('[data-status]').forEach(sel=>sel.addEventListener('change',async()=>{
       sel.disabled=true;const {error}=await client.from('orders').update({status:sel.value}).eq('id',sel.dataset.status);
