@@ -70,6 +70,9 @@
     .catalogue-note{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;max-width:680px;margin:26px auto 0}
     @media(max-width:760px){.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalogue-card{min-height:120px;padding:17px}.catalogue-card h2{font-size:23px}}
     @media(max-width:480px){.live-product-grid{gap:10px}.live-product-info{padding:12px}.live-product-info h3{font-size:21px}.cod-checkout-form{grid-template-columns:1fr}.cod-checkout-form .full-width{grid-column:auto}.checkout-line{align-items:flex-start;flex-direction:column}.qty-controls{align-self:flex-end}}\n    @media(max-width:380px){.catalogue-grid{grid-template-columns:1fr}.live-product-grid{grid-template-columns:1fr}}
+
+    /* Keep catalogue cards compact; full product description remains in the detail view. */
+    .live-product-info>p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:1.6;max-height:3.2em;min-height:3.2em;overflow-wrap:anywhere}
   </style>
 <link rel="stylesheet" href="cookie-consent.css?v=20261023"><script src="cookie-consent.js?v=20261023" defer></script>
 </head>
