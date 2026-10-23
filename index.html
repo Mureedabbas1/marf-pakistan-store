@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261024-livehome2">
+<link rel="stylesheet" href="styles.css?v=20261024-livehome3">
 
   <link rel="stylesheet" href="cookie-consent.css?v=20261023"><script src="cookie-consent.js?v=20261023" defer></script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261023">
@@ -156,7 +156,7 @@
             const card=document.createElement('article'); card.className='product-card visible'; card.style.cursor='pointer'; card.tabIndex=0; card.setAttribute('role','link'); card.setAttribute('aria-label','View details for '+p.name); card.addEventListener('click',e=>{if(!e.target.closest('a,button'))showHomeProduct(p)}); card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();showHomeProduct(p)}});
             const imageBox=document.createElement('div'); imageBox.className='product-image';
             const tag=document.createElement('span'); tag.className='product-tag'; tag.textContent='AVAILABLE NOW'; imageBox.append(tag);
-            if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';imageBox.append(img);}
+            if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';img.style.cursor='pointer';img.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();showHomeProduct(p)});imageBox.append(img);}
             const button=document.createElement('a');button.className='quick-add';button.href='products.html#product-'+encodeURIComponent(p.id);button.textContent='＋ View details & order';imageBox.append(button);
             const index=document.createElement('span');index.className='product-index';index.textContent=String(i+1).padStart(2,'0');imageBox.append(index);
             const info=document.createElement('div');info.className='product-info';
@@ -170,6 +170,6 @@
       loadLiveProducts();
     })();
   </script>
-\n  <script src="app.js?v=20261024-livehome1" defer></script>
+\n  <script src="app.js?v=20261024-livehome3" defer></script>
 </body>
 </html>
