@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#090909">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="styles.css?v=20261023-admin">
+<title>Store Admin | MARF Pakistan</title>
+<style>
+.admin-wrap{max-width:1180px;margin:0 auto;padding:42px 5% 80px}.admin-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.admin-heading h1{font:500 clamp(36px,5vw,56px)/1 "Cormorant Garamond",Georgia,serif;margin:0}.admin-heading em{color:var(--gold)}.admin-muted{color:var(--muted);font-size:12px;line-height:1.7}.admin-card{border:1px solid var(--line);border-radius:12px;padding:clamp(18px,3vw,28px);background:rgba(255,255,255,.025);margin:22px 0}.admin-card h2{font:500 30px "Cormorant Garamond",Georgia,serif;margin:0 0 18px}.admin-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.admin-form label{display:grid;gap:7px;font-size:11px;color:var(--muted)}.admin-form input,.admin-form textarea,.admin-form select{width:100%;box-sizing:border-box;padding:11px;border:1px solid var(--line);border-radius:5px;background:#111;color:#f5f0e7;font:inherit;font-size:13px}.admin-form textarea{min-height:70px}.admin-span{grid-column:1/-1}.admin-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.admin-actions button,.admin-button{border:1px solid var(--line);border-radius:4px;padding:11px 15px;background:#161616;color:#f5f0e7;cursor:pointer}.admin-actions .primary,.admin-button.primary{background:var(--gold);color:#111;border-color:var(--gold);font-weight:700}.admin-button:disabled{opacity:.5;cursor:wait}.admin-message{white-space:pre-wrap;font-size:12px;line-height:1.7;color:#f0c7a5}.admin-message.ok{color:#b8d7ad}.admin-table-wrap{overflow:auto}.admin-table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px}.admin-table th,.admin-table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}.admin-table th{color:var(--gold);font-weight:600}.admin-table select{background:#111;color:#eee;border:1px solid var(--line);padding:7px;border-radius:4px}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.admin-hide{display:none!important}.setup-code{display:block;white-space:pre-wrap;word-break:break-word;background:#080808;border:1px solid var(--line);padding:14px;border-radius:6px;color:#e7d2aa;font:12px/1.7 monospace}.product-edit-btn{padding:6px 9px;border:1px solid var(--line);background:#171717;color:#eee;border-radius:4px;cursor:pointer}
+@media(max-width:760px){.admin-form,.admin-grid{grid-template-columns:1fr}.admin-span{grid-column:auto}.admin-wrap{padding-top:28px}}
+</style>
+</head>
+<body>
+<div class="announcement"><span>MARF PAKISTAN</span><span>PRIVATE STORE ADMIN</span><span>INVENTORY · ORDERS</span></div>
+<header class="site-header"><a class="brand-logo-link" href="index.html"><img class="brand-logo-svg" src="marf-logo.svg" alt="MARF Pakistan"></a><nav class="main-nav"><a href="index.html">View store</a><a href="products.html">Catalogue</a></nav><div class="header-actions"><button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button></div></header>
+<main class="admin-wrap">
+<div class="admin-heading"><h1>Store <em>control.</em></h1><span class="admin-muted">Private access · Cash on Delivery</span></div>
+<section class="admin-card" id="login-card">
+<h2>Admin sign in</h2><p class="admin-muted">Sign in with your Supabase admin account. Do not share your password or service keys.</p>
+<form id="login-form" class="admin-form" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+<label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+<div class="admin-actions admin-span"><button class="primary" type="submit">Sign in securely</button></div></form><p class="admin-message" id="login-message" role="status"></p>
+</section>
+<section class="admin-card admin-hide" id="setup-card">
+<h2>One-time admin approval</h2><p class="admin-muted">This signed-in account is not yet on the store admin allowlist. In Supabase Dashboard → SQL Editor, run the one-line SQL below, then click Check access. This only grants admin rights to the currently signed-in user ID.</p>
+<code class="setup-code" id="admin-sql"></code><div class="admin-actions"><button class="primary" id="copy-admin-sql" type="button">Copy SQL</button><button id="check-admin" type="button">Check access again</button><a class="admin-button" href="https://supabase.com/dashboard/project/bufgifgroghgjmbarnwn/sql/new" target="_blank" rel="noopener noreferrer">Open Supabase SQL Editor ↗</a></div><p class="admin-message" id="setup-message"></p>
+</section>
+<div id="dashboard" class="admin-hide">
+<div class="admin-grid">
+<section class="admin-card"><h2>Delivery settings</h2><p class="admin-muted">Set the delivery charge that will be added to every COD order. Leave blank if each delivery must be quoted manually.</p><form id="settings-form" class="admin-form" style="grid-template-columns:1fr"><label>Delivery fee (PKR)<input name="shipping_fee" type="number" min="0" step="1" placeholder="Leave blank to confirm manually"></label><div class="admin-actions"><button class="primary" type="submit">Save delivery setting</button></div></form><p id="settings-message" class="admin-message"></p></section>
+<section class="admin-card"><h2>Order workflow</h2><p class="admin-muted">New orders start as Pending. Update each order as it is confirmed, prepared, shipped, delivered or cancelled. Stock is deducted automatically when the order is submitted; cancelled orders do not automatically restock.</p><div class="admin-actions"><button id="refresh-orders" class="primary" type="button">Refresh orders</button><button id="sign-out" type="button">Sign out</button></div><p id="dashboard-message" class="admin-message"></p></section>
+</div>
+<section class="admin-card"><h2 id="product-form-heading">Add a product</h2><p class="admin-muted">Only activate products after confirming the selling price and physical stock.</p>
+<form id="product-form" class="admin-form">
+<input type="hidden" name="id">
+<label>Product name<input name="name" required maxlength="180"></label><label>SKU (optional)<input name="sku" maxlength="80"></label><label>Category<select name="category" required><option value="bags">Bags</option><option value="beauty">Beauty</option><option value="wallets">Wallets</option><option value="lifestyle">Lifestyle</option><option value="electronics">Electronics</option><option value="clothing-fashion">Clothing & Fashion</option><option value="shoes-handbags">Shoes & Handbags</option><option value="beauty-personal-care">Beauty & Personal Care</option><option value="home-kitchen">Home & Kitchen</option><option value="computers-accessories">Computers & Accessories</option><option value="cell-phones-accessories">Cell Phones & Accessories</option><option value="watches-jewelry">Watches & Jewelry</option><option value="sports-outdoors">Sports & Outdoors</option><option value="toys-games">Toys & Games</option><option value="baby-products">Baby Products</option><option value="health-household">Health & Household</option><option value="automotive">Automotive</option><option value="books">Books</option><option value="office-products">Office Products</option><option value="pet-supplies">Pet Supplies</option><option value="grocery-gourmet-food">Grocery & Gourmet Food</option><option value="tools-home-improvement">Tools & Home Improvement</option><option value="arts-crafts-sewing">Arts, Crafts & Sewing</option><option value="musical-instruments">Musical Instruments</option></select></label>
+<label>Selling price (PKR)<input name="price" type="number" min="0" step=".01" required></label><label>Compare-at price (optional)<input name="compare" type="number" min="0" step=".01"></label><label>Stock quantity<input name="stock" type="number" min="0" step="1" required value="0"></label>
+<label class="admin-span">Image URL (optional)<input name="image" type="url" placeholder="https://…"></label><label class="admin-span">Description<textarea name="description" maxlength="2000"></textarea></label>
+<label><span>Visible in store</span><select name="active"><option value="false">No — hidden</option><option value="true">Yes — publish</option></select></label>
+<div class="admin-actions admin-span"><button class="primary" type="submit" id="save-product">Save product</button><button type="button" id="reset-product">Clear form</button></div></form><p id="product-message" class="admin-message"></p>
+</section>
+<section class="admin-card"><h2>Inventory</h2><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Visibility</th><th>Edit</th></tr></thead><tbody id="products-table"><tr><td colspan="5">Loading…</td></tr></tbody></table></div></section>
+<section class="admin-card"><h2>Customer orders</h2><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Details</th></tr></thead><tbody id="orders-table"><tr><td colspan="5">Loading…</td></tr></tbody></table></div><div id="order-detail" class="admin-muted" style="margin-top:18px"></div></section>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script><script src="admin.js?v=20261023-admin1" defer></script>
+</body></html>
