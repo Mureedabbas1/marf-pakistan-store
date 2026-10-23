@@ -114,7 +114,7 @@
       ]);
       if(productsRes.error) throw productsRes.error;
       if(settingsRes.data) shippingFee = settingsRes.data.shipping_fee_pkr == null ? null : Number(settingsRes.data.shipping_fee_pkr);
-      renderProducts(productsRes.data||[]); renderCart();
+      renderProducts(productsRes.data||[]); renderCart(); const match=location.hash.match(/^#product-(.+)$/); if(match){const productId=decodeURIComponent(match[1]);const selected=(productsRes.data||[]).find(p=>String(p.id)===productId);if(selected)openProductDetails(selected);}
     } catch(e) {
       renderProducts([]);
       message('We could not load the live catalogue right now. Please refresh or contact MARF.');
