@@ -7,4 +7,11 @@
   <url><loc>https://marfpakistan.site/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://marfpakistan.site/shipping.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://marfpakistan.site/returns.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://marfpakistan.site/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://marfpakistan.site/choose-everyday-bag.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://marfpakistan.site/wallet-care-guide.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://marfpakistan.site/beauty-essentials-guide.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://marfpakistan.site/everyday-carry-guide.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://marfpakistan.site/faq.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://marfpakistan.site/gift-guide.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
