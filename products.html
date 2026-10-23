@@ -28,9 +28,48 @@
     .catalogue-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:38px}
     .catalogue-actions a{display:inline-flex;justify-content:center;align-items:center;min-height:46px;padding:0 20px;border:1px solid var(--line);border-radius:3px}
     .catalogue-actions .primary{background:var(--gold);color:#111;border-color:var(--gold);font-weight:700}
+    .live-catalogue{margin:0 auto 60px;max-width:1180px}
+    .live-catalogue h2,.checkout-panel h2{font:500 clamp(32px,5vw,48px)/1.05 "Cormorant Garamond",Georgia,serif;text-align:center;margin:0 0 14px}
+    .live-catalogue>p{color:var(--muted);text-align:center;line-height:1.7;margin:0 auto 26px;max-width:700px}
+    .live-product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .live-product-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025);display:flex;flex-direction:column}
+    .live-product-image{aspect-ratio:4/3;background:#151515;display:flex;align-items:center;justify-content:center;color:var(--gold);font:500 22px "Cormorant Garamond",serif}
+    .live-product-image img{width:100%;height:100%;object-fit:cover}
+    .live-product-info{padding:18px;display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:9px}
+    .live-product-info>small:first-child{font-size:9px;letter-spacing:.12em;color:var(--gold)}
+    .live-product-info h3{font:500 25px/1.1 "Cormorant Garamond",Georgia,serif;margin:0}
+    .live-product-info p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+    .live-product-info>strong{font-size:15px;color:var(--gold-light)}
+    .live-product-info del{font-size:11px;color:var(--muted);font-weight:400}
+    .stock-label{font-size:10px;color:#b8d7ad}
+    .live-product-info .button{margin-top:auto;width:100%;min-height:42px;cursor:pointer}
+    .checkout-panel{max-width:900px;margin:0 auto 70px;padding:clamp(22px,5vw,42px);border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.012))}
+    .checkout-intro{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;max-width:650px;margin:0 auto 25px}
+    .checkout-summary{margin:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .checkout-line{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+    .checkout-line:last-child{border-bottom:0}
+    .checkout-line strong{display:block;font-size:13px;font-weight:600}
+    .checkout-line small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+    .qty-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .qty-controls button{min-width:28px;min-height:28px;border:1px solid var(--line);background:#151515;color:var(--gold-light);border-radius:5px;cursor:pointer}
+    .qty-controls button:disabled{opacity:.4}
+    .qty-controls .remove-line{font-size:10px;padding:0 7px;width:auto}
+    .checkout-totals{display:grid;gap:10px;margin:18px 0}
+    .checkout-total-row{display:flex;justify-content:space-between;gap:15px;font-size:13px;color:var(--muted)}
+    .checkout-total-row strong{color:var(--ivory,#f5f0e7)}
+    .cod-checkout-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .cod-checkout-form label{display:grid;gap:7px;color:var(--muted);font-size:11px}
+    .cod-checkout-form input,.cod-checkout-form textarea,.cod-checkout-form select{width:100%;box-sizing:border-box;border:1px solid var(--line);background:#101010;color:#f5f0e7;border-radius:6px;padding:12px;font:inherit;font-size:13px}
+    .cod-checkout-form textarea{min-height:90px;resize:vertical}
+    .cod-checkout-form .full-width{grid-column:1/-1}
+    .cod-checkout-form button{grid-column:1/-1;min-height:48px;cursor:pointer}
+    .cod-checkout-form button:disabled{opacity:.55;cursor:wait}
+    .checkout-message{margin:14px 0;color:#f0c7a5;font-size:13px;line-height:1.7}
+    .checkout-message.success{color:#b8d7ad}
+    .order-followup{display:inline-block;color:var(--gold-light);margin-top:8px;font-size:12px}
     .catalogue-note{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;max-width:680px;margin:26px auto 0}
-    @media(max-width:760px){.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalogue-card{min-height:120px;padding:17px}.catalogue-card h2{font-size:23px}}
-    @media(max-width:380px){.catalogue-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalogue-card{min-height:120px;padding:17px}.catalogue-card h2{font-size:23px}}
+    @media(max-width:480px){.live-product-grid{gap:10px}.live-product-info{padding:12px}.live-product-info h3{font-size:21px}.cod-checkout-form{grid-template-columns:1fr}.cod-checkout-form .full-width{grid-column:auto}.checkout-line{align-items:flex-start;flex-direction:column}.qty-controls{align-self:flex-end}}\n    @media(max-width:380px){.catalogue-grid{grid-template-columns:1fr}.live-product-grid{grid-template-columns:1fr}}
   </style>
 <link rel="stylesheet" href="cookie-consent.css?v=20261023"><script src="cookie-consent.js?v=20261023" defer></script>
 </head>
@@ -38,7 +77,7 @@
   <div class="announcement"><span>THE MARF EDIT</span><span>Thoughtful essentials. Elevated everyday.</span><span>PAKISTAN · EST. 2026</span></div>
   <header class="site-header">
     <a class="brand-logo-link" href="index.html" aria-label="MARF Pakistan home"><img class="brand-logo-svg" src="marf-logo.svg?v=20261023-white1" alt="MARF Pakistan"></a>
-    <nav class="main-nav" aria-label="Main navigation"><a href="index.html#collections">Collections</a><a href="index.html#featured">The edit</a><a href="about.html">Our philosophy</a><a href="blog.html">The Journal</a></nav>
+    <nav class="main-nav" aria-label="Main navigation"><a href="products.html" aria-current="page">Shop All</a><a href="index.html#collections">Collections</a><a href="index.html#featured">The edit</a><a href="about.html">Our philosophy</a><a href="blog.html">The Journal</a></nav>
     <div class="header-actions"><a class="text-link" href="index.html">Home ↗</a><button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button></div>
   </header>
   <main class="catalogue-page">
@@ -47,6 +86,31 @@
       <h1>Explore the <em>MARF edit.</em></h1>
       <p>We’re preparing a considered selection of everyday essentials for MARF Pakistan. These are planned categories, not live product listings. Confirmed products, prices, availability and delivery options will be published before ordering opens.</p>
     </div>
+    <section class="live-catalogue" aria-labelledby="available-products-heading">
+      <h2 id="available-products-heading">Available <em>right now.</em></h2>
+      <p>Only products with an entered price and available stock appear here. Prices are calculated from MARF’s product records at checkout.</p>
+      <div class="live-product-grid" id="live-products" aria-live="polite"><p class="catalogue-note">Loading live products…</p></div>
+    </section>
+    <section class="checkout-panel" id="checkout-panel" aria-labelledby="checkout-heading">
+      <h2 id="checkout-heading">Cash on <em>Delivery.</em> <span id="checkout-count">(0)</span></h2>
+      <p class="checkout-intro">Place a COD order request. The system checks stock and records your order securely. If delivery charges have not been configured, MARF will confirm them before dispatch.</p>
+      <div class="checkout-summary" id="checkout-items"><p class="empty-cart">Your bag is empty. Add an available product above.</p></div>
+      <div class="checkout-totals">
+        <div class="checkout-total-row"><span>Items subtotal</span><strong id="checkout-subtotal">PKR 0</strong></div>
+        <div class="checkout-total-row"><span>Delivery</span><strong id="checkout-delivery">To be confirmed</strong></div>
+      </div>
+      <form id="cod-checkout-form" class="cod-checkout-form">
+        <label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="120" placeholder="Your full name"></label>
+        <label>Mobile number<input name="phone" type="tel" autocomplete="tel" required minlength="7" maxlength="30" placeholder="03xx xxxxxxx"></label>
+        <label>Email (optional)<input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"></label>
+        <label>City<input name="city" autocomplete="address-level2" required minlength="2" maxlength="100" placeholder="Your city"></label>
+        <label class="full-width">Delivery address<textarea name="address" autocomplete="street-address" required minlength="8" maxlength="500" placeholder="House, street, area"></textarea></label>
+        <label class="full-width">Order notes (optional)<textarea name="notes" maxlength="1000" placeholder="Any delivery instructions"></textarea></label>
+        <button class="button button-gold" type="submit">Place COD order request</button>
+      </form>
+      <p id="checkout-message" class="checkout-message" role="status" aria-live="polite"></p>
+      <a id="order-whatsapp-followup" class="order-followup" href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" hidden>Contact MARF on WhatsApp ↗</a>
+    </section>
     <section class="catalogue-grid" aria-label="Planned product categories">
       <article class="catalogue-card"><span>01 / TECH</span><h2>Electronics</h2><p>Useful everyday technology</p></article>
       <article class="catalogue-card"><span>02 / STYLE</span><h2>Clothing & Fashion</h2><p>Everyday wardrobe essentials</p></article>
@@ -60,7 +124,7 @@
       <article class="catalogue-card"><span>10 / LIVING</span><h2>Lifestyle</h2><p>Everyday objects and gifts</p></article>
     </section>
     <div class="catalogue-actions"><a class="primary" href="https://wa.me/923404612368?text=Hello%20MARF%20Pakistan%2C%20please%20let%20me%20know%20when%20products%20are%20available." target="_blank" rel="noopener noreferrer">Ask about launch on WhatsApp ↗</a><a href="index.html">Back to homepage</a></div>
-    <p class="catalogue-note">No online orders or payments are being accepted on this preview page. Cash on Delivery and delivery terms are not yet confirmed; please wait for an official launch announcement.</p>
+    <p class="catalogue-note">Planned categories are shown for browsing. Only products entered into the live inventory with a confirmed price and available stock can be ordered. Card payments are not enabled; this checkout is Cash on Delivery request only.</p>
   </main>
   <footer class="site-footer"><div><a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="shipping.html">Shipping</a> · <a href="returns.html">Returns</a> · <a href="contact.html">Contact</a></div><p>© 2026 MARF Pakistan. Everyday, elevated.</p></footer>
   <script>
