@@ -98,7 +98,7 @@
         if(imageFile.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
         status($('product-message'),'Uploading product image…');
         const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif'})[imageFile.type];
-        const base=slugify(imageFile.name.replace(/\\.[^.]+$/,''))||'product-image';
+        const base=slugify(imageFile.name.split('.').slice(0,-1).join('.'))||'product-image';
         const path=sku+'/'+Date.now()+'-'+base.slice(0,100)+'.'+ext;
         const uploaded=await client.storage.from('product-images').upload(path,imageFile,{contentType:imageFile.type,cacheControl:'3600',upsert:false});
         if(uploaded.error)throw new Error('Image upload failed: '+uploaded.error.message);
