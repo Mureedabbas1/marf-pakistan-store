@@ -336,3 +336,6 @@ h1{font-size:clamp(60px,6.1vw,88px);line-height:.91;letter-spacing:-.045em}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* MARF Pakistan brand logo */
+.brand-logo-link{display:inline-flex;align-items:center;flex:0 0 auto;width:176px;max-width:34vw}.brand-logo{display:block;width:100%;height:auto;max-height:48px;object-fit:contain}.footer-brand-link{width:158px}.footer-brand-logo{max-height:42px}@media(max-width:760px){.brand-logo-link{width:142px;max-width:38vw}.brand-logo{max-height:40px}.footer-brand-link{width:148px}}
