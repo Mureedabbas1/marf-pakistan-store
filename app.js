@@ -104,7 +104,7 @@
 
   const searchPanel = document.getElementById('search-panel');
   const searchInput = document.getElementById('search-input');
-  function openSearch() { searchPanel.classList.add('open'); setTimeout(() => searchInput.focus(), 180); }
+  function openSearch() { searchPanel.classList.add('open'); renderSearchResults(); setTimeout(() => searchInput.focus(), 180); }
   function closeSearch() { searchPanel.classList.remove('open'); }
   document.querySelector('.search-toggle').addEventListener('click', openSearch);
   document.getElementById('search-close').addEventListener('click', closeSearch);
@@ -113,10 +113,9 @@
   function renderSearchResults() {
     const term = searchInput.value.trim().toLowerCase();
     searchResults.replaceChildren();
-    if (!term) { searchResults.hidden = true; return; }
     const matches = categoryCards.filter(card =>
-      (card.dataset.shopCategory + ' ' + card.textContent).toLowerCase().includes(term)
-    ).slice(0, 8);
+      !term || (card.dataset.shopCategory + ' ' + card.textContent).toLowerCase().includes(term)
+    );
     if (!matches.length) { searchResults.hidden = true; return; }
     const heading = document.createElement('p');
     heading.className = 'search-results-heading';
