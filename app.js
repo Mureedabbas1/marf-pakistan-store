@@ -82,6 +82,20 @@
       card.hidden = category !== 'All' && card.dataset.category !== category;
     });
   }));
+  document.querySelectorAll('.shop-category-card').forEach(card => card.addEventListener('click', event => {
+    event.preventDefault();
+    const category = card.dataset.shopCategory;
+    const matchingFilter = [...document.querySelectorAll('.filter')].find(filter =>
+      filter.dataset.filter.toLowerCase() === category.toLowerCase()
+    );
+    document.getElementById('featured').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (matchingFilter) {
+      matchingFilter.click();
+    } else {
+      showToast(category + ' category added — products will appear when the collection is stocked.');
+    }
+  }));
+
   document.querySelectorAll('.collection-card').forEach(card => card.addEventListener('click', () => {
     const category = card.dataset.category;
     const filter = document.querySelector('.filter[data-filter="' + category + '"]');
