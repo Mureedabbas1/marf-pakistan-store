@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" role="img" aria-labelledby="title desc">
-  <title id="title">MARF Pakistan</title>
-  <desc id="desc">A refined gold M monogram beside the MARF Pakistan wordmark.</desc>
-  <g fill="none" stroke="#D4AF67" stroke-linecap="square" stroke-linejoin="miter">
-    <path d="M8 72V18h11l25 31 25-31h11v54H67V39L44 67 21 39v33z" stroke-width="1.2"/>
-    <path d="M6 82H83" stroke="#8D7447" stroke-width="1"/>
-  </g>
-  <text x="105" y="54" fill="#F2EEE5" font-family="Georgia, 'Times New Roman', serif" font-size="43" letter-spacing="8">MARF</text>
-  <text x="108" y="78" fill="#D4AF67" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="7">PAKISTAN</text>
-  <circle cx="329" cy="21" r="2" fill="#D4AF67"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 150" role="img" aria-labelledby="title desc"><title id="title">MARF Pakistan</title><desc id="desc">Gold interlocking MR monogram and black MARF wordmark with gold Pakistan lettering.</desc><g fill="none" stroke="#C3A052" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"><path d="M30 128V22L88 83V22H126C151 22 168 39 168 61S151 99 126 99H91"/><path d="M88 22V128M88 83L148 128M126 99L168 128"/></g><text x="205" y="88" fill="#171717" font-family="Didot, Bodoni 72, Georgia, serif" font-size="75" letter-spacing="10">MARF</text><text x="211" y="122" fill="#C3A052" font-family="Arial, Helvetica, sans-serif" font-size="17" letter-spacing="13">PAKISTAN</text></svg>
