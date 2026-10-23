@@ -22,3 +22,8 @@
 .shop-category-card:hover .shop-category-arrow{transform:translate(2px,-2px)}
 @media(max-width:900px){.shop-category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.shop-category-card{min-height:145px}}
 @media(max-width:620px){.shop-categories-section{padding-top:65px;padding-bottom:65px}.shop-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.shop-category-card{padding:14px 12px;min-height:140px}.shop-category-name{font-size:19px}.shop-category-urdu{font-size:9px}.shop-category-icon{right:12px;top:10px;font-size:23px}}
+
+/* Clock icon beside live time */
+.marf-time-display{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.marf-clock-icon{display:block;width:19px;height:19px;flex:0 0 19px;fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(201,169,106,.2))}
+@media(max-width:620px){.marf-time-display{gap:6px}.marf-clock-icon{width:17px;height:17px;flex-basis:17px}}
