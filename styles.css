@@ -27,3 +27,14 @@
 .marf-time-display{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .marf-clock-icon{display:block;width:19px;height:19px;flex:0 0 19px;fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(201,169,106,.2))}
 @media(max-width:620px){.marf-time-display{gap:6px}.marf-clock-icon{width:17px;height:17px;flex-basis:17px}}
+
+/* Search suggestions for all MARF categories */
+.search-results{max-height:min(55vh,440px);overflow:auto;margin-top:15px;border-top:1px solid var(--line)}
+.search-results[hidden]{display:none}
+.search-results-heading{margin:15px 0 8px;color:var(--gold);font-size:8px;font-weight:700;letter-spacing:.18em}
+.search-result-item{position:relative;width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px 42px 12px 12px;border:0;border-bottom:1px solid rgba(201,169,106,.12);background:transparent;text-align:left;cursor:pointer;color:var(--ivory)}
+.search-result-item:hover,.search-result-item:focus-visible{background:rgba(201,169,106,.09);outline:none}
+.search-result-item>span:first-child{font:20px var(--serif)}
+.search-result-item small{font:10px var(--sans);color:#aaa397}
+.search-result-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gold)}
+.search-category-highlight{outline:1px solid var(--gold)!important;outline-offset:3px;box-shadow:0 0 28px rgba(201,169,106,.18)}
