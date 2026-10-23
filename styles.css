@@ -40,3 +40,129 @@
 .search-category-highlight{outline:1px solid var(--gold)!important;outline-offset:3px;box-shadow:0 0 28px rgba(201,169,106,.18)}
 
 .search-result-item[hidden]{display:none!important}
+
+
+/* Mobile usability refinement — MARF Pakistan */
+img,svg{max-width:100%}
+html,body{width:100%;max-width:100%;overflow-x:clip}
+button,a,input{touch-action:manipulation}
+button,a{ -webkit-tap-highlight-color:transparent }
+:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.site-header{gap:12px}
+.main-nav a,.footer-links a{min-height:36px;display:inline-flex;align-items:center}
+.menu-toggle,.icon-button,.cart-button{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+@media(max-width:620px){
+  .site-header{height:68px;padding-inline:16px;gap:8px}
+  .wordmark{font-size:27px;flex:0 0 auto}
+  .wordmark small{top:23px;letter-spacing:.25em}
+  .header-actions{gap:4px;flex:0 0 auto}
+  .icon-button{font-size:25px}
+  .cart-button{padding:0 4px;white-space:nowrap}
+  .menu-toggle{padding:0;width:44px}
+  .main-nav{top:67px;z-index:30;padding:12px 18px 18px;gap:0;box-shadow:0 18px 28px rgba(0,0,0,.32)}
+  .main-nav a{width:100%;min-height:48px;padding:12px 2px;border-bottom:1px solid var(--line);font-size:13px}
+  .marf-timebar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:10px 16px}
+  .marf-timebar-label{grid-column:1/-1;width:auto;margin:0;font-size:8px}
+  .marf-time-display{grid-column:1;grid-row:2}
+  .marf-live-clock{font-size:19px}
+  .marf-live-date{grid-column:2;grid-row:2;margin:0;text-align:right;font-size:10px}
+  .marf-timezone{grid-column:1/-1;border:0;border-top:1px solid var(--line);padding:6px 0 0;font-size:8px}
+  .hero{padding:46px 20px 55px;gap:0}
+  .hero .eyebrow{font-size:8px;letter-spacing:.13em;line-height:1.6;margin-bottom:19px}
+  .hero h1{font-size:clamp(48px,12.8vw,72px);line-height:.94;overflow-wrap:normal}
+  .hero-description{font-size:13px;line-height:1.8;max-width:34ch}
+  .hero-actions{gap:14px}
+  .hero-actions .button{min-height:48px;padding-inline:15px;gap:10px}
+  .hero-note{line-height:1.8;max-width:32ch}
+  .hero-art{min-height:0;height:clamp(300px,92vw,410px);margin-top:24px}
+  .hero-image-wrap{height:86%;width:min(72%,300px)}
+  .orbit{width:min(82vw,320px);height:min(82vw,320px)}
+  .orbit-two{width:min(94vw,360px);height:min(94vw,360px)}
+  .floating-label{max-width:38%;line-height:1.6;overflow-wrap:anywhere}
+  .vertical-type{right:0;font-size:7px}
+  .hero-bottom{bottom:16px;font-size:7px;gap:9px}
+  .scroll-line{width:34px}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:20px;padding-right:20px}
+  .shop-categories-section{padding-top:58px;padding-bottom:58px}
+  .section-heading h2{font-size:clamp(38px,10vw,47px)}
+  .section-intro{font-size:12px;line-height:1.8}
+  .shop-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .shop-category-card{min-width:0;min-height:138px;padding:14px 11px 15px}
+  .shop-category-name{font-size:clamp(16px,4.4vw,20px);line-height:1.08;overflow-wrap:anywhere}
+  .shop-category-urdu{max-width:100%;font-size:10px}
+  .shop-category-icon{right:9px;top:9px;font-size:21px}
+  .shop-category-arrow{right:10px;bottom:10px}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .collection-card,.collection-large{min-width:0;height:clamp(230px,66vw,310px)}
+  .collection-large{grid-column:1/-1;height:clamp(285px,82vw,360px)}
+  .collection-title{left:13px;right:10px;bottom:15px}
+  .collection-title h3{font-size:clamp(24px,6.8vw,33px);line-height:1}
+  .collection-meta{left:10px;right:10px;top:10px}
+  .round-arrow{flex:0 0 27px}
+  .featured-section{padding-top:58px;padding-bottom:60px}
+  .filter-row{gap:18px;scrollbar-width:thin;padding-top:2px}
+  .filter{min-height:40px;padding-bottom:10px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px}
+  .product-image{height:auto;aspect-ratio:3/4}
+  .product-info{min-width:0}
+  .product-info h3{font-size:clamp(17px,4.8vw,21px);line-height:1.1;overflow-wrap:anywhere}
+  .product-info p{font-size:10px;line-height:1.5}
+  .price{font-size:10px;white-space:normal;line-height:1.5}
+  .quick-add{min-height:38px;opacity:1;transform:none}
+  .manifesto{gap:28px;padding-top:60px;padding-bottom:60px}
+  .manifesto-image{height:auto;aspect-ratio:4/5}
+  .manifesto-copy h2{font-size:clamp(44px,12vw,60px)}
+  .manifesto-copy>p:not(.eyebrow){font-size:13px;line-height:1.9}
+  .newsletter{gap:20px;padding-top:44px;padding-bottom:44px}
+  .newsletter h2{font-size:clamp(34px,9vw,44px);line-height:1}
+  .newsletter-copy>p:last-child{font-size:12px;line-height:1.8}
+  .button-outline{white-space:normal}
+  .site-footer{padding:30px 20px;grid-template-columns:1fr;gap:22px}
+  .site-footer>p{display:block;text-align:left;font-size:16px}
+  .footer-links{grid-column:auto;gap:8px 14px;justify-content:flex-start}
+  .footer-links a{font-size:11px;min-height:40px}
+  .copyright{font-size:8px;line-height:1.8}
+  .search-panel{max-height:90dvh;overflow-y:auto;padding:18px 16px}
+  .search-panel form{gap:8px;flex-wrap:wrap}
+  .search-panel input{flex:1 1 100%;width:100%;font-size:18px;padding:12px 0}
+  .search-panel form>button[type=submit]{min-height:44px}
+  #search-close{min-height:44px;min-width:44px}
+  .search-results{max-height:55dvh}
+  .drawer-panel{width:100%;padding:20px 18px}
+  .drawer-heading button{min-width:44px;min-height:44px}
+  .toast{width:calc(100% - 32px);max-width:420px;text-align:center;line-height:1.5;bottom:14px}
+}
+@media(max-width:390px){
+  .announcement{font-size:7px;letter-spacing:.08em}
+  .site-header{padding-inline:12px}
+  .wordmark{font-size:24px}
+  .wordmark small{font-size:6px;top:21px}
+  .header-actions{gap:1px}
+  .cart-button{font-size:9px;min-width:40px}
+  .icon-button{min-width:38px}
+  .menu-toggle{min-width:40px;width:40px}
+  .hero{padding-inline:16px}
+  .hero h1{font-size:clamp(43px,12vw,52px)}
+  .hero-actions{align-items:flex-start;flex-direction:column}
+  .hero-actions .button{width:100%;justify-content:space-between}
+  .hero-art{height:300px}
+  .floating-label{font-size:7px}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:16px;padding-right:16px}
+  .shop-category-card{min-height:132px;padding-inline:10px}
+  .shop-category-name{font-size:16px}
+  .collection-card,.collection-large{height:235px}
+  .collection-large{height:285px}
+  .collection-title h3{font-size:25px}
+  .product-grid{gap:18px 8px}
+}
+@media(max-width:340px){
+  .wordmark{font-size:22px}
+  .cart-button{font-size:8px}
+  .shop-category-grid{grid-template-columns:1fr}
+  .shop-category-card{min-height:112px}
+  .collection-grid{grid-template-columns:1fr}
+  .collection-large{grid-column:auto}
+  .collection-card,.collection-large{height:300px}
+  .product-grid{grid-template-columns:1fr}
+  .hero h1{font-size:43px}
+}
