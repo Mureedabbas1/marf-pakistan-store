@@ -125,26 +125,6 @@
     heading.className = 'search-results-heading'; heading.textContent = 'CATEGORIES';
     searchResults.prepend(heading);
     if (!matches.length) { searchResults.hidden = true; return; }
-    matches.forEach(card => {
-      const result = document.createElement('button');
-      result.type = 'button';
-      result.className = 'search-result-item';
-      const name = document.createElement('span');
-      name.textContent = card.querySelector('.shop-category-name').textContent;
-      const urdu = document.createElement('small');
-      urdu.textContent = card.querySelector('.shop-category-urdu').textContent;
-      const arrow = document.createElement('span');
-      arrow.className = 'search-result-arrow';
-      arrow.textContent = '↗';
-      result.append(name, urdu, arrow);
-      result.addEventListener('click', () => {
-        closeSearch();
-        card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-        card.classList.add('search-category-highlight');
-        setTimeout(() => card.classList.remove('search-category-highlight'), 1600);
-      });
-      searchResults.append(result);
-    });
     searchResults.hidden = false;
   }
   searchInput.addEventListener('input', renderSearchResults);
