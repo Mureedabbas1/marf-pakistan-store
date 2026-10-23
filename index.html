@@ -121,6 +121,28 @@
     (() => {
       const grid = document.getElementById('homepage-live-products');
       const money = n => new Intl.NumberFormat('en-PK',{style:'currency',currency:'PKR',maximumFractionDigits:0}).format(Number(n||0));
+      function showHomeProduct(p) {
+        let modal=document.getElementById('home-product-detail');
+        if(!modal){
+          modal=document.createElement('div');modal.id='home-product-detail';
+          modal.innerHTML='<div class="home-product-backdrop" data-close></div><section class="home-product-panel" role="dialog" aria-modal="true" aria-labelledby="home-product-title"><button class="home-product-close" type="button" aria-label="Close product details" data-close>×</button><div class="home-product-photo"></div><div class="home-product-copy"><small class="home-product-category"></small><h2 id="home-product-title"></h2><p class="home-product-description"></p><strong class="home-product-price"></strong><p class="home-product-stock"></p><p class="home-product-sku"></p><a class="button button-gold home-product-order" href="products.html">View details & order ↗</a></div></section>';
+          const style=document.createElement('style');style.textContent='#home-product-detail{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}#home-product-detail.open{display:flex}.home-product-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(6px)}.home-product-panel{position:relative;z-index:1;width:min(850px,100%);max-height:90vh;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#11110f;border:1px solid rgba(201,169,106,.4);border-radius:12px;box-shadow:0 25px 90px #000}.home-product-photo{min-height:320px;background:#1b1a16;display:flex;align-items:center;justify-content:center}.home-product-photo img{width:100%;height:100%;max-height:65vh;object-fit:contain;padding:20px;box-sizing:border-box}.home-product-copy{padding:clamp(22px,4vw,38px);display:flex;flex-direction:column;align-items:flex-start;gap:12px}.home-product-category,.home-product-sku{font-size:10px;letter-spacing:.1em;color:#c9a96a;text-transform:uppercase}.home-product-copy h2{font:500 clamp(30px,5vw,44px)/1 "Cormorant Garamond",Georgia,serif;margin:0}.home-product-description{color:#aaa69d;font-size:13px;line-height:1.8;margin:0}.home-product-price{color:#e6d3a2;font-size:18px}.home-product-stock{color:#b8d7ad;font-size:11px;margin:0}.home-product-order{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;padding:12px 18px}.home-product-close{position:absolute;z-index:3;top:9px;right:12px;border:1px solid rgba(201,169,106,.35);background:#111;color:#f2eee5;width:36px;height:36px;border-radius:50%;font-size:24px;cursor:pointer}@media(max-width:600px){.home-product-panel{grid-template-columns:1fr;max-width:440px}.home-product-photo{min-height:210px;height:30vh}.home-product-photo img{max-height:30vh}.home-product-copy{gap:9px}}';
+          document.head.append(style);document.body.append(modal);
+          modal.addEventListener('click',e=>{if(e.target.closest('[data-close]'))modal.classList.remove('open')});
+          document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+        }
+        const photo=modal.querySelector('.home-product-photo');photo.replaceChildren();
+        if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.referrerPolicy='no-referrer';photo.append(img)}else{const empty=document.createElement('span');empty.textContent='MARF';photo.append(empty)}
+        modal.querySelector('.home-product-category').textContent=String(p.category||'').replace(/-/g,' ');
+        modal.querySelector('#home-product-title').textContent=p.name;
+        modal.querySelector('.home-product-description').textContent=p.description||'Considered everyday essential.';
+        const price=modal.querySelector('.home-product-price');price.textContent=money(p.price_pkr);
+        if(p.compare_at_price_pkr&&Number(p.compare_at_price_pkr)>Number(p.price_pkr)){const old=document.createElement('del');old.textContent=' '+money(p.compare_at_price_pkr);price.append(old)}
+        modal.querySelector('.home-product-stock').textContent='Available stock: '+p.stock_quantity;
+        modal.querySelector('.home-product-sku').textContent=p.sku?'SKU: '+p.sku:'';
+        modal.querySelector('.home-product-order').href='products.html#product-'+encodeURIComponent(p.id);
+        modal.classList.add('open');
+      }
       async function loadLiveProducts() {
         try {
           const client = window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZKc1KkP-BeUGg_OBdWwhL2');
@@ -131,7 +153,7 @@
             const p=document.createElement('p'); p.className='section-intro'; p.textContent='New products are being prepared. Please check back soon.'; grid.append(p); return;
           }
           data.forEach((p,i) => {
-            const card=document.createElement('article'); card.className='product-card visible'; card.style.cursor='pointer'; card.tabIndex=0; card.setAttribute('role','link'); card.setAttribute('aria-label','View details for '+p.name); card.addEventListener('click',e=>{if(!e.target.closest('a,button'))location.href='products.html#product-'+encodeURIComponent(p.id)}); card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();location.href='products.html#product-'+encodeURIComponent(p.id)}});
+            const card=document.createElement('article'); card.className='product-card visible'; card.style.cursor='pointer'; card.tabIndex=0; card.setAttribute('role','link'); card.setAttribute('aria-label','View details for '+p.name); card.addEventListener('click',e=>{if(!e.target.closest('a,button'))showHomeProduct(p)}); card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();showHomeProduct(p)}});
             const imageBox=document.createElement('div'); imageBox.className='product-image';
             const tag=document.createElement('span'); tag.className='product-tag'; tag.textContent='AVAILABLE NOW'; imageBox.append(tag);
             if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';imageBox.append(img);}
