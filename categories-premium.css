@@ -106,3 +106,88 @@
  .shop-category-arrow{right:9px;bottom:10px}
 }
 @media(prefers-reduced-motion:reduce){.shop-category-card,.shop-category-card::before,.shop-category-card::after,.shop-category-icon,.shop-category-arrow{transition:none}}
+
+/* Global polish: every remaining card, tile, image panel and input gets rounded corners. */
+.collection-card,
+.collection-card img,
+.product-image,
+.product-image > img,
+.manifesto-image,
+.manifesto-image img,
+.hero-image-wrap,
+.quick-add,
+.button,
+.button-outline,
+.button-gold,
+.filter,
+.product-tag,
+.cart-item,
+.drawer-panel,
+.search-panel,
+.search-panel input,
+.search-panel form > button[type="submit"],
+.toast,
+.catalogue-status,
+.catalogue-grid > *,
+.catalogue-grid a,
+.category-card,
+.category-tile,
+.product-card,
+.product-detail-image,
+.product-gallery,
+.product-gallery img,
+.product-modal,
+.product-modal img,
+.related-product-card,
+.feature-card,
+.blog-card,
+.guide-card,
+.faq-card,
+.newsletter form input,
+.newsletter form button,
+input,
+select,
+textarea {
+  border-radius: 16px;
+}
+.collection-card,
+.collection-card img,
+.product-image,
+.product-image > img,
+.manifesto-image,
+.manifesto-image img,
+.hero-image-wrap {
+  overflow: hidden;
+}
+.collection-card,
+.product-image,
+.manifesto-image,
+.catalogue-grid > *,
+.catalogue-grid a,
+.category-card,
+.category-tile,
+.product-card,
+.feature-card,
+.blog-card,
+.guide-card,
+.faq-card {
+  border-radius: 22px;
+}
+.collection-card img,
+.product-image > img,
+.manifesto-image img {
+  border-radius: inherit;
+}
+.quick-add { border-radius: 13px; }
+.product-tag { border-radius: 999px; }
+.button,.button-outline,.button-gold { border-radius: 999px; }
+.filter { border-radius: 999px; }
+.cart-drawer .drawer-panel { border-radius: 22px 0 0 22px; }
+.search-panel { border-radius: 0 0 22px 22px; }
+@media(max-width:620px){
+ .collection-card,.product-image,.manifesto-image,
+ .catalogue-grid > *, .catalogue-grid a,
+ .category-card,.category-tile,.product-card,
+ .feature-card,.blog-card,.guide-card,.faq-card { border-radius:18px; }
+ .hero-image-wrap { border-radius:150px 150px 18px 18px; }
+}
