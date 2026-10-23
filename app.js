@@ -1,5 +1,20 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Live date/time for Pakistan (Asia/Karachi); uses the visitor's device clock.
+  const liveClock = document.getElementById('marf-live-clock');
+  const liveDate = document.getElementById('marf-live-date');
+  function updateMarfClock() {
+    const now = new Date();
+    if (liveClock) liveClock.textContent = new Intl.DateTimeFormat('en-PK', {
+      timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    }).format(now);
+    if (liveDate) liveDate.textContent = new Intl.DateTimeFormat('en-PK', {
+      timeZone: 'Asia/Karachi', weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
+    }).format(now);
+  }
+  updateMarfClock();
+  window.setInterval(updateMarfClock, 1000);
+
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
