@@ -1,5 +1,5 @@
 (() => {
-  const client = window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZc1KkP-BeUGg_OBdWwhL2');
+  const client = window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZKc1KkP-BeUGg_OBdWwhL2');
   const $ = id => document.getElementById(id);
   const money = n => n == null ? 'Delivery TBD' : new Intl.NumberFormat('en-PK',{style:'currency',currency:'PKR',maximumFractionDigits:0}).format(Number(n));
   const slugify = s => String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,160);
