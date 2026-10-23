@@ -69,18 +69,32 @@
   $('sign-out').addEventListener('click',async()=>{await client.auth.signOut();location.reload();});
   $('menu-toggle')?.addEventListener('click',()=>document.querySelector('.main-nav')?.classList.toggle('open'));
 
-  function clearProductForm(){const form=$('product-form');form.reset();form.elements.id.value='';form.elements.stock.value='0';form.elements.active.value='false';$('product-form-heading').textContent='Add a product';}
+  async function nextProductSku(){
+    const input=$('product-form').elements.sku;
+    const {data,error}=await client.from('products').select('sku');
+    if(error){status($('product-message'),'Could not generate SKU: '+error.message);return null;}
+    const max=(data||[]).reduce((highest,p)=>{
+      const match=String(p.sku||'').match(/^MARF-110-(\d+)$/i);
+      return match?Math.max(highest,Number(match[1])||0):highest;
+    },0);
+    input.value='MARF-110-'+(max+1);
+    return input.value;
+  }
+  async function clearProductForm(){const form=$('product-form');form.reset();form.elements.id.value='';form.elements.stock.value='0';form.elements.active.value='false';$('product-form-heading').textContent='Add a product';await nextProductSku();}
   $('reset-product').addEventListener('click',clearProductForm);
   $('product-form').addEventListener('submit',async e=>{
     e.preventDefault();const form=e.currentTarget,fd=new FormData(form),btn=$('save-product');btn.disabled=true;status($('product-message'),'Saving product…');
     const name=String(fd.get('name')).trim();
-    const payload={name,slug:slugify(name),sku:String(fd.get('sku')||'').trim()||null,category:String(fd.get('category')),price_pkr:Number(fd.get('price')),compare_at_price_pkr:fd.get('compare')===''?null:Number(fd.get('compare')),stock_quantity:Number(fd.get('stock')),image_url:String(fd.get('image')||'').trim()||null,description:String(fd.get('description')||'').trim()||null,is_active:fd.get('active')==='true',updated_at:new Date().toISOString()};
-    const id=String(fd.get('id')||'');if(id)payload.id=id;
+    const id=String(fd.get('id')||'');
+    const sku=id?String(fd.get('sku')||'').trim():(await nextProductSku());
+    if(!sku){btn.disabled=false;return;}
+    const payload={name,slug:slugify(name),sku,category:String(fd.get('category')),price_pkr:Number(fd.get('price')),compare_at_price_pkr:fd.get('compare')===''?null:Number(fd.get('compare')),stock_quantity:Number(fd.get('stock')),image_url:String(fd.get('image')||'').trim()||null,description:String(fd.get('description')||'').trim()||null,is_active:fd.get('active')==='true',updated_at:new Date().toISOString()};
+    if(id)payload.id=id;
     try{
       if(!payload.slug||!Number.isFinite(payload.price_pkr)||payload.price_pkr<0||!Number.isInteger(payload.stock_quantity)||payload.stock_quantity<0)throw new Error('Check the product name, price and stock.');
       const result=id?await client.from('products').update(payload).eq('id',id).select().single():await client.from('products').insert(payload).select().single();
       if(result.error)throw result.error;
-      status($('product-message'),'Product saved successfully.',true);clearProductForm();await loadProducts();
+      status($('product-message'),'Product saved successfully. SKU: '+sku,true);await clearProductForm();await loadProducts();
     }catch(err){status($('product-message'),err.message||'Could not save product.');}
     finally{btn.disabled=false;}
   });
