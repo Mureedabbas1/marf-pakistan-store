@@ -8,3 +8,17 @@
 .marf-timezone{font-size:8px;letter-spacing:.1em;color:var(--gold-light);border-left:1px solid var(--line);padding-left:12px;white-space:nowrap}
 @media(max-width:620px){.marf-timebar{gap:8px;min-height:42px;padding:8px 5%}.marf-timebar-label{font-size:7px;letter-spacing:.08em;gap:5px}.marf-live-clock{font-size:17px}.marf-live-date{font-size:9px}.marf-timezone{font-size:7px;padding-left:8px}}
 @media(max-width:390px){.marf-timebar{flex-wrap:wrap;justify-content:space-between}.marf-timebar-label{width:100%;margin-bottom:1px}.marf-live-date{margin-left:auto}}
+
+/* Full MARF Pakistan category directory */
+.shop-categories-section{padding-top:88px;padding-bottom:88px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(201,169,106,.055),transparent 55%),var(--ink)}
+.shop-category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.shop-category-card{position:relative;min-height:155px;padding:18px 17px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);transition:transform .3s var(--ease),border-color .3s,background .3s;overflow:hidden}
+.shop-category-card:hover,.shop-category-card:focus-visible{transform:translateY(-4px);border-color:rgba(201,169,106,.62);background:linear-gradient(145deg,rgba(201,169,106,.1),rgba(255,255,255,.02));outline:none}
+.shop-category-number{font-size:8px;letter-spacing:.15em;color:var(--gold)}
+.shop-category-icon{position:absolute;right:17px;top:13px;font:27px var(--serif);color:rgba(201,169,106,.8)}
+.shop-category-name{max-width:85%;margin-top:8px;font:21px/1.05 var(--serif);color:var(--ivory)}
+.shop-category-urdu{font-size:10px;color:#aaa397;line-height:1.6}
+.shop-category-arrow{position:absolute;right:15px;bottom:14px;font-size:13px;color:var(--gold);transition:transform .25s}
+.shop-category-card:hover .shop-category-arrow{transform:translate(2px,-2px)}
+@media(max-width:900px){.shop-category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.shop-category-card{min-height:145px}}
+@media(max-width:620px){.shop-categories-section{padding-top:65px;padding-bottom:65px}.shop-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.shop-category-card{padding:14px 12px;min-height:140px}.shop-category-name{font-size:19px}.shop-category-urdu{font-size:9px}.shop-category-icon{right:12px;top:10px;font-size:23px}}
