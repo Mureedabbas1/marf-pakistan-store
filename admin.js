@@ -72,7 +72,7 @@
   const states=['pending','confirmed','processing','shipped','delivered','cancelled'];
   async function loadOrders(){
     const body=$('orders-table');body.innerHTML='<tr><td colspan="5">Loading…</td></tr>';
-    const {data,error}=await client.from('orders').select('id,order_number,customer_name,phone,city,subtotal_pkr,shipping_pkr,total_pkr,status,created_at').order('created_at',{ascending:false}).limit(100);
+    const {data,error}=await client.from('orders').select('id,order_number,customer_name,phone,email,shipping_address,notes,city,subtotal_pkr,shipping_pkr,total_pkr,status,created_at').order('created_at',{ascending:false}).limit(100);
     if(error){body.innerHTML='<tr><td colspan="5">Could not load orders: '+safe(error.message)+'</td></tr>';return;}
     if(!data?.length){body.innerHTML='<tr><td colspan="5">No orders received yet.</td></tr>';return;}
     body.innerHTML=data.map(o=>'<tr><td><strong>#'+safe(o.order_number)+'</strong><br><small>'+safe(new Date(o.created_at).toLocaleString())+'</small></td><td>'+safe(o.customer_name)+'<br>'+safe(o.phone)+'<br>'+safe(o.city)+'</td><td>'+money(o.total_pkr)+'<br><small>Items '+money(o.subtotal_pkr)+' · Delivery '+(o.shipping_pkr==null?'TBD':money(o.shipping_pkr))+'</small></td><td><select data-status="'+safe(o.id)+'">'+states.map(s=>'<option value="'+s+'" '+(s===o.status?'selected':'')+'>'+s.charAt(0).toUpperCase()+s.slice(1)+'</option>').join('')+'</select></td><td><button class="product-edit-btn" data-order="'+safe(o.id)+'">View</button></td></tr>').join('');
