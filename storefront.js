@@ -53,6 +53,36 @@
     renderCart(); message(product.name + ' added to your bag.',true);
     document.getElementById('checkout-panel')?.scrollIntoView({behavior:'smooth',block:'start'});
   }
+  function openProductDetails(p) {
+    let modal = document.getElementById('product-detail-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'product-detail-modal';
+      modal.className = 'product-detail-modal';
+      modal.innerHTML = '<div class="product-detail-backdrop" data-detail-close></div><section class="product-detail-panel" role="dialog" aria-modal="true" aria-labelledby="product-detail-name"><button class="product-detail-close" type="button" aria-label="Close details" data-detail-close>×</button><div class="product-detail-photo"></div><div class="product-detail-copy"><small class="product-detail-category"></small><h2 id="product-detail-name"></h2><p class="product-detail-description"></p><strong class="product-detail-price"></strong><p class="product-detail-stock"></p><p class="product-detail-sku"></p><button class="button button-gold product-detail-add" type="button">Add to bag</button></div></section>';
+      document.body.append(modal);
+      const style = document.createElement('style');
+      style.textContent = '#product-detail-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px}#product-detail-modal.open{display:flex}.product-detail-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(6px)}.product-detail-panel{position:relative;z-index:1;width:min(850px,100%);max-height:90vh;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#11110f;border:1px solid rgba(201,169,106,.35);border-radius:12px;box-shadow:0 25px 90px #000}.product-detail-photo{min-height:330px;background:#1b1a16;display:flex;align-items:center;justify-content:center}.product-detail-photo img{width:100%;height:100%;max-height:65vh;object-fit:contain;padding:18px}.product-detail-copy{padding:clamp(22px,4vw,38px);display:flex;flex-direction:column;align-items:flex-start;gap:12px}.product-detail-category,.product-detail-sku{font-size:10px;letter-spacing:.1em;color:#c9a96a;text-transform:uppercase}.product-detail-copy h2{font:500 clamp(30px,5vw,44px)/1 "Cormorant Garamond",Georgia,serif;margin:0}.product-detail-description{color:#aaa69d;font-size:13px;line-height:1.8;margin:0}.product-detail-price{color:#e6d3a2;font-size:17px}.product-detail-stock{color:#b8d7ad;font-size:11px;margin:0}.product-detail-add{margin-top:auto;width:100%;cursor:pointer}.product-detail-close{position:absolute;z-index:3;top:9px;right:12px;border:1px solid rgba(201,169,106,.35);background:#111;color:#f2eee5;width:36px;height:36px;border-radius:50%;font-size:24px;cursor:pointer}@media(max-width:600px){.product-detail-panel{grid-template-columns:1fr;max-width:440px}.product-detail-photo{min-height:220px;height:32vh}.product-detail-photo img{max-height:32vh}.product-detail-copy{gap:9px}}';
+      document.head.append(style);
+      modal.addEventListener('click', e => { if (e.target.closest('[data-detail-close]')) modal.classList.remove('open'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+    }
+    const photo = modal.querySelector('.product-detail-photo');
+    photo.replaceChildren();
+    if (p.image_url) { const img = document.createElement('img'); img.src = p.image_url; img.alt = p.name; img.referrerPolicy = 'no-referrer'; photo.append(img); }
+    else { const placeholder = document.createElement('span'); placeholder.textContent = 'MARF'; photo.append(placeholder); }
+    modal.querySelector('.product-detail-category').textContent = String(p.category||'').replace(/-/g,' ');
+    modal.querySelector('#product-detail-name').textContent = p.name;
+    modal.querySelector('.product-detail-description').textContent = p.description || 'Considered everyday essential.';
+    const price = modal.querySelector('.product-detail-price');
+    price.textContent = money(p.price_pkr);
+    if (p.compare_at_price_pkr && Number(p.compare_at_price_pkr) > Number(p.price_pkr)) { const old = document.createElement('del'); old.textContent = ' ' + money(p.compare_at_price_pkr); price.append(old); }
+    modal.querySelector('.product-detail-stock').textContent = 'Available stock: ' + p.stock_quantity;
+    modal.querySelector('.product-detail-sku').textContent = p.sku ? 'SKU: ' + p.sku : '';
+    const add = modal.querySelector('.product-detail-add');
+    add.onclick = () => { addProduct(p); modal.classList.remove('open'); };
+    modal.classList.add('open');
+  }
   function renderProducts(products) {
     if (!grid) return;
     grid.replaceChildren();
@@ -61,7 +91,7 @@
       grid.append(p); return;
     }
     products.forEach((p,i)=>{
-      const card=document.createElement('article'); card.className='live-product-card';
+      const card=document.createElement('article'); card.className='live-product-card'; card.tabIndex=0; card.setAttribute('role','button'); card.setAttribute('aria-label','View details for '+p.name); card.addEventListener('click',e=>{if(!e.target.closest('button'))openProductDetails(p)}); card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();openProductDetails(p)}});
       const image=document.createElement('div'); image.className='live-product-image';
       if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';img.referrerPolicy='no-referrer';image.append(img);}
       else {const placeholder=document.createElement('span');placeholder.textContent='MARF';image.append(placeholder);}
