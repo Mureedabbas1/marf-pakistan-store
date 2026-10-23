@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Discover considered everyday essentials at MARF Pakistan. Premium bags, beauty, wallets and lifestyle accessories. Cash on delivery coming soon.">
+  <title>MARF PAKISTAN — Everyday, Elevated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="announcement"><span>THE MARF EDIT</span><span>Thoughtful essentials. Elevated everyday.</span><span>PAKISTAN · EST. 2026</span></div>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="MARF Pakistan home">MARF<span>®</span><small>PAKISTAN</small></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#collections">Collections</a><a href="#featured">The edit</a><a href="#story">Our philosophy</a>
+    </nav>
+    <div class="header-actions"><button class="icon-button search-toggle" aria-label="Search products">⌕</button><button class="cart-button" id="cart-open">Bag <span id="cart-count">0</span></button><button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button></div>
+  </header>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-glow"></div><div class="hero-grid"></div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A NEW PERSPECTIVE ON EVERYDAY</p>
+        <h1>Quiet luxury.<br><em>Everyday ritual.</em></h1>
+        <p class="hero-description">A considered collection of pieces that bring a little more intention to the way you move through the world.</p>
+        <div class="hero-actions"><a class="button button-gold" href="#collections">Explore the collection <span>↗</span></a><a class="text-link" href="#story">Discover MARF <span>→</span></a></div>
+        <div class="hero-note"><span class="note-dot"></span> MADE FOR YOUR EVERYDAY, MADE TO FEEL DIFFERENT</div>
+      </div>
+      <div class="hero-art" aria-label="Editorial still life of a premium handbag">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-image-wrap"><img class="hero-image" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1100&q=85" alt="Elegant structured handbag in a warm studio" fetchpriority="high"></div>
+        <div class="floating-label label-top"><span>01 / THE SIGNATURE</span><span>OBJECTS WITH INTENTION</span></div>
+        <div class="floating-label label-bottom"><span>FORM MEETS FUNCTION</span><span class="label-mark">M.</span></div>
+        <div class="vertical-type">THE ART OF LESS, DONE BETTER</div>
+      </div>
+      <div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>01 — 04</span></div>
+    </section>
+    <section class="ticker" aria-label="MARF values"><div class="ticker-track"><span>LESS, BUT BETTER</span><i>✳</i><span>THE DAILY UNIFORM</span><i>✳</i><span>DETAIL IS EVERYTHING</span><i>✳</i><span>LESS, BUT BETTER</span><i>✳</i><span>THE DAILY UNIFORM</span><i>✳</i></div></section>
+    <section class="section collections-section" id="collections">
+      <div class="section-heading reveal"><div><p class="eyebrow">01 — FIND YOUR EVERYDAY</p><h2>Considered <em>collections.</em></h2></div><p class="section-intro">The little things are never little. Explore everyday essentials chosen for their form, function and feeling.</p></div>
+      <div class="collection-grid">
+        <a class="collection-card collection-large reveal" href="#featured" data-category="Bags"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1100&q=85" alt="Minimal premium everyday backpack" loading="lazy"><div class="collection-overlay"></div><div class="collection-meta"><span>01 / CARRY WITH INTENTION</span><span class="round-arrow">↗</span></div><div class="collection-title"><h3>Bags &<br>carryalls</h3><span>EXPLORE COLLECTION</span></div></a>
+        <a class="collection-card reveal" href="#featured" data-category="Beauty"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="Minimal beauty and skincare essentials" loading="lazy"><div class="collection-overlay"></div><div class="collection-meta"><span>02 / YOUR DAILY RITUAL</span><span class="round-arrow">↗</span></div><div class="collection-title"><h3>Beauty &<br>care</h3><span>EXPLORE COLLECTION</span></div></a>
+        <a class="collection-card reveal" href="#featured" data-category="Wallets"><img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=85" alt="Classic leather wallet detail" loading="lazy"><div class="collection-overlay"></div><div class="collection-meta"><span>03 / KEEP IT CLOSE</span><span class="round-arrow">↗</span></div><div class="collection-title"><h3>Wallets &<br>small goods</h3><span>EXPLORE COLLECTION</span></div></a>
+      </div>
+    </section>
+    <section class="featured-section" id="featured">
+      <div class="section-heading reveal"><div><p class="eyebrow">02 — THE MARF EDIT</p><h2>Everyday icons. <em>In the making.</em></h2></div><p class="section-intro">A first look at the categories we're curating. Product selection and live ordering will be added next.</p></div>
+      <div class="filter-row" role="group" aria-label="Filter product categories"><button class="filter active" data-filter="All">All pieces <span>04</span></button><button class="filter" data-filter="Bags">Bags</button><button class="filter" data-filter="Beauty">Beauty</button><button class="filter" data-filter="Wallets">Wallets</button></div>
+      <div class="product-grid" id="product-grid">
+        <article class="product-card reveal" data-category="Bags"><div class="product-image"><span class="product-tag">THE DAILY EDIT</span><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=85" alt="Minimal neutral handbag" loading="lazy"><button class="quick-add" data-name="The Everyday Tote" data-price="0">＋ Add to bag</button><span class="product-index">01</span></div><div class="product-info"><div><h3>The Everyday Tote</h3><p>Carry · Essentials</p></div><span class="price">Coming soon</span></div></article>
+        <article class="product-card reveal" data-category="Bags"><div class="product-image"><span class="product-tag">WORK, REIMAGINED</span><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85" alt="Modern everyday backpack" loading="lazy"><button class="quick-add" data-name="The City Backpack" data-price="0">＋ Add to bag</button><span class="product-index">02</span></div><div class="product-info"><div><h3>The City Backpack</h3><p>Carry · On the move</p></div><span class="price">Coming soon</span></div></article>
+        <article class="product-card reveal" data-category="Beauty"><div class="product-image"><span class="product-tag">YOUR DAILY RITUAL</span><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85" alt="Skincare products in soft light" loading="lazy"><button class="quick-add" data-name="The Ritual Set" data-price="0">＋ Add to bag</button><span class="product-index">03</span></div><div class="product-info"><div><h3>The Ritual Set</h3><p>Beauty · Daily care</p></div><span class="price">Coming soon</span></div></article>
+        <article class="product-card reveal" data-category="Wallets"><div class="product-image"><span class="product-tag">MADE TO KEEP</span><img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=85" alt="Classic wallet in close-up" loading="lazy"><button class="quick-add" data-name="The Essential Wallet" data-price="0">＋ Add to bag</button><span class="product-index">04</span></div><div class="product-info"><div><h3>The Essential Wallet</h3><p>Small goods · Everyday</p></div><span class="price">Coming soon</span></div></article>
+      </div>
+      <p class="prototype-note"><span>✳</span> PREVIEW COLLECTION — FINAL PRODUCTS, PRICES AND COD CHECKOUT WILL BE SET UP BEFORE LAUNCH.</p>
+    </section>
+    <section class="manifesto" id="story"><div class="manifesto-image reveal"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85" alt="Timeless wardrobe pieces in a considered editorial setting" loading="lazy"><div class="image-caption">THE MARF POINT OF VIEW <span>EST. 2026</span></div></div><div class="manifesto-copy reveal"><p class="eyebrow">03 — OUR PHILOSOPHY</p><h2>Not more things.<br><em>More meaning.</em></h2><p>MARF is built around a simple idea: the things you reach for every day should feel considered. Useful by nature, beautiful by design, and chosen to fit your own way of living.</p><a class="text-link" href="#newsletter">A little more about us <span>→</span></a><div class="manifesto-stamp">M<span>.</span></div></div></section>
+    <section class="newsletter" id="newsletter"><div class="newsletter-copy"><p class="eyebrow">THE MARF LETTER</p><h2>Good things are <em>on the way.</em></h2><p>Our first collection is being curated. Check back soon for the launch.</p></div><a href="#top" class="button button-outline">Back to the beginning <span>↑</span></a></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark footer-mark" href="#top">MARF<span>®</span><small>PAKISTAN</small></a><p>Everyday, elevated.</p><div class="footer-links"><a href="#collections">Collections</a><a href="#story">Our philosophy</a><a href="mailto:hello@marfpakistan.com">Contact</a></div><span class="copyright">© 2026 MARF PAKISTAN. MADE WITH INTENTION.</span></footer>
+  <div class="cart-drawer" id="cart-drawer" aria-hidden="true"><div class="drawer-backdrop" id="cart-close"></div><aside class="drawer-panel" aria-label="Shopping bag"><div class="drawer-heading"><h2>Your bag <em id="drawer-count">(0)</em></h2><button id="drawer-x" aria-label="Close bag">×</button></div><div id="cart-items" class="cart-items"><p class="empty-cart">Your bag is waiting for something good.</p></div><div class="drawer-footer"><p>Cash on delivery will be available at launch.</p><button class="button button-gold checkout-preview" disabled>Checkout · Coming soon</button></div></aside></div>
+  <div class="search-panel" id="search-panel"><form id="search-form"><input id="search-input" type="search" placeholder="Search the collection…" aria-label="Search products"><button type="submit">Search ↗</button><button type="button" id="search-close" aria-label="Close search">×</button></form></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
