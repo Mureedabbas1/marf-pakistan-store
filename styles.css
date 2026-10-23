@@ -349,3 +349,13 @@ h1{font-size:clamp(60px,6.1vw,88px);line-height:.91;letter-spacing:-.045em}
 .cart-button:hover .bag-icon{transform:translateY(-2px)}
 .bag-label{display:inline}
 @media(max-width:390px){.cart-button{gap:4px}.bag-icon{width:16px;height:16px;flex-basis:16px}}
+
+
+/* WhatsApp COD enquiry form */
+.cod-request-form{display:grid;gap:.55rem;margin-top:1rem}
+.cod-request-form label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory,#f4efe5)}
+.cod-request-form input,.cod-request-form textarea{width:100%;min-width:0;padding:.8rem .85rem;border:1px solid rgba(201,169,106,.32);border-radius:8px;background:rgba(255,255,255,.045);color:inherit;font:inherit;font-size:.9rem}
+.cod-request-form input:focus,.cod-request-form textarea:focus{outline:2px solid rgba(201,169,106,.6);outline-offset:1px}
+.cod-request-form textarea{min-height:86px;resize:vertical}
+.cod-request-form small,.checkout-note{display:block;color:rgba(244,239,229,.72);font-size:.78rem;line-height:1.6}
+.cod-request-form .button{width:100%;margin-top:.3rem}
