@@ -96,7 +96,7 @@
     const form=event.currentTarget;
     const fd=new FormData(form);
     const items=[...cart.entries()].map(([product_id,item])=>({product_id,quantity:item.quantity}));
-    const customerName=String(fd.get('name')||'');\n    const customerName=String(fd.get('name')||'');
+    const customerName=String(fd.get('name')||'').trim();
     const submit=form.querySelector('button[type="submit"]'); submit.disabled=true; submit.textContent='Placing request…';
     message('Submitting your order securely…');
     try{
