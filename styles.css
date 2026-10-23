@@ -38,3 +38,5 @@
 .search-result-item small{font:10px var(--sans);color:#aaa397}
 .search-result-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gold)}
 .search-category-highlight{outline:1px solid var(--gold)!important;outline-offset:3px;box-shadow:0 0 28px rgba(201,169,106,.18)}
+
+.search-result-item[hidden]{display:none!important}
