@@ -68,11 +68,43 @@
   document.getElementById('drawer-x').addEventListener('click', closeCart);
   document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeCart(); closeSearch(); } });
   document.querySelectorAll('.quick-add').forEach(button => button.addEventListener('click', () => {
-    showToast('Preview only — live products and ordering are being set up.');
-    // Keep this as a visual preview until real products and prices are configured.
-    cart.push(button.dataset.name);
+    const name = button.dataset.name || 'MARF collection item';
+    if (!cart.includes(name)) cart.push(name);
     renderCart();
+    openCart();
+    showToast('Added to your enquiry list. We will confirm availability and price.');
   }));
+
+  const codRequestForm = document.getElementById('cod-request-form');
+  codRequestForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!cart.length) {
+      showToast('Please add an item to your enquiry list first.');
+      return;
+    }
+    const formData = new FormData(codRequestForm);
+    const name = String(formData.get('name') || '').trim();
+    const phone = String(formData.get('phone') || '').trim();
+    const city = String(formData.get('city') || '').trim();
+    const address = String(formData.get('address') || '').trim();
+    if (!name || !phone || !city || !address) {
+      showToast('Please complete all delivery details.');
+      return;
+    }
+    const message = [
+      'MARF Pakistan — Cash on Delivery enquiry',
+      '',
+      'Items: ' + cart.join(', '),
+      'Customer: ' + name,
+      'Mobile: ' + phone,
+      'City: ' + city,
+      'Delivery address: ' + address,
+      '',
+      'Please confirm current stock, exact product details, final price and delivery charges before accepting this order.'
+    ].join('\n');
+    const whatsappUrl = 'https://wa.me/923404612368?text=' + encodeURIComponent(message);
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  });
 
   document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('.filter').forEach(filter => filter.classList.remove('active'));
