@@ -124,22 +124,22 @@
       async function loadLiveProducts() {
         try {
           const client = window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZKc1KkP-BeUGg_OBdWwhL2');
-          const {data,error} = await client.from('products').select('id,name,description,category,price_pkr,compare_at_price_pkr,image_url,stock_quantity').eq('is_active',true).gt('stock_quantity',0).order('created_at',{ascending:false}).limit(50);
+          const {data,error} = await client.from('products').select('id,name,description,category,price_pkr,compare_at_price_pkr,image_url,stock_quantity,sku').eq('is_active',true).gt('stock_quantity',0).order('created_at',{ascending:false}).limit(50);
           if(error) throw error;
           grid.replaceChildren();
           if(!data || !data.length) {
             const p=document.createElement('p'); p.className='section-intro'; p.textContent='New products are being prepared. Please check back soon.'; grid.append(p); return;
           }
           data.forEach((p,i) => {
-            const card=document.createElement('article'); card.className='product-card visible';
+            const card=document.createElement('article'); card.className='product-card visible'; card.style.cursor='pointer'; card.tabIndex=0; card.setAttribute('role','link'); card.setAttribute('aria-label','View details for '+p.name); card.addEventListener('click',e=>{if(!e.target.closest('a,button'))location.href='products.html#product-'+encodeURIComponent(p.id)}); card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();location.href='products.html#product-'+encodeURIComponent(p.id)}});
             const imageBox=document.createElement('div'); imageBox.className='product-image';
             const tag=document.createElement('span'); tag.className='product-tag'; tag.textContent='AVAILABLE NOW'; imageBox.append(tag);
             if(p.image_url){const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;img.loading='lazy';imageBox.append(img);}
-            const button=document.createElement('a');button.className='quick-add';button.href='products.html#live-products';button.textContent='＋ View & order';imageBox.append(button);
+            const button=document.createElement('a');button.className='quick-add';button.href='products.html#product-'+encodeURIComponent(p.id);button.textContent='＋ View details & order';imageBox.append(button);
             const index=document.createElement('span');index.className='product-index';index.textContent=String(i+1).padStart(2,'0');imageBox.append(index);
             const info=document.createElement('div');info.className='product-info';
             const details=document.createElement('div');const title=document.createElement('h3');title.textContent=p.name;const desc=document.createElement('p');desc.textContent=p.description||String(p.category||'').replace(/-/g,' ');details.append(title,desc);
-            const price=document.createElement('span');price.className='price';price.textContent=money(p.price_pkr);info.append(details,price);card.append(imageBox,info);grid.append(card);
+            const price=document.createElement('span');price.className='price';price.textContent=money(p.price_pkr);if(p.compare_at_price_pkr&&Number(p.compare_at_price_pkr)>Number(p.price_pkr)){const old=document.createElement('del');old.textContent=' '+money(p.compare_at_price_pkr);price.append(old)}const stock=document.createElement('p');stock.textContent='In stock: '+p.stock_quantity;info.append(details,price,stock);card.append(imageBox,info);grid.append(card);
           });
         } catch(e) {
           grid.replaceChildren();const p=document.createElement('p');p.className='section-intro';p.textContent='Live products could not load right now. Please use Shop All to view the catalogue.';grid.append(p);
