@@ -110,17 +110,21 @@
   document.getElementById('search-close').addEventListener('click', closeSearch);
   const searchResults = document.getElementById('search-results');
   const categoryCards = [...document.querySelectorAll('.shop-category-card')];
+  const staticSearchItems = [...document.querySelectorAll('.search-result-item[data-search-category]')];
+  staticSearchItems.forEach(item => item.addEventListener('click', () => {
+    const target = categoryCards.find(card => card.dataset.shopCategory === item.dataset.searchCategory);
+    closeSearch();
+    if (target) { target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' }); target.classList.add('search-category-highlight'); setTimeout(() => target.classList.remove('search-category-highlight'), 1600); }
+  }));
   function renderSearchResults() {
     const term = searchInput.value.trim().toLowerCase();
-    searchResults.replaceChildren();
-    const matches = categoryCards.filter(card =>
-      !term || (card.dataset.shopCategory + ' ' + card.textContent).toLowerCase().includes(term)
-    );
-    if (!matches.length) { searchResults.hidden = true; return; }
+    const matches = staticSearchItems.filter(item => !term || (item.dataset.searchCategory + ' ' + item.textContent).toLowerCase().includes(term));
+    staticSearchItems.forEach(item => { item.hidden = !matches.includes(item); });
+    searchResults.querySelector('.search-results-heading')?.remove();
     const heading = document.createElement('p');
-    heading.className = 'search-results-heading';
-    heading.textContent = 'CATEGORIES';
-    searchResults.append(heading);
+    heading.className = 'search-results-heading'; heading.textContent = 'CATEGORIES';
+    searchResults.prepend(heading);
+    if (!matches.length) { searchResults.hidden = true; return; }
     matches.forEach(card => {
       const result = document.createElement('button');
       result.type = 'button';
