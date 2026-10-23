@@ -124,7 +124,7 @@
       async function loadLiveProducts() {
         try {
           const client = window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZKc1KkP-BeUGg_OBdWwhL2');
-          const {data,error} = await client.from('products').select('id,name,description,category,price_pkr,compare_at_price_pkr,image_url,stock_quantity').eq('is_active',true).gt('stock_quantity',0).order('created_at',{ascending:false}).limit(8);
+          const {data,error} = await client.from('products').select('id,name,description,category,price_pkr,compare_at_price_pkr,image_url,stock_quantity').eq('is_active',true).gt('stock_quantity',0).order('created_at',{ascending:false}).limit(50);
           if(error) throw error;
           grid.replaceChildren();
           if(!data || !data.length) {
