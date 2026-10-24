@@ -67,12 +67,10 @@
   document.getElementById('cart-close').addEventListener('click', closeCart);
   document.getElementById('drawer-x').addEventListener('click', closeCart);
   document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeCart(); closeSearch(); } });
-  document.querySelectorAll('.quick-add').forEach(button => button.addEventListener('click', () => {
-    const name = button.dataset.name || 'MARF collection item';
-    if (!cart.includes(name)) cart.push(name);
-    renderCart();
-    openCart();
-    showToast('Added to your enquiry list. We will confirm availability and price.');
+  document.querySelectorAll('.quick-add').forEach(button => button.addEventListener('click', event => {
+    event.preventDefault();
+    // Editorial preview cards are not live inventory; send customers to the real Supabase-backed checkout.
+    window.location.href = 'products.html#checkout-panel';
   }));
 
   const codRequestForm = document.getElementById('cod-request-form');
