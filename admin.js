@@ -361,5 +361,20 @@
   $('drawer-close').addEventListener('click', closeDrawer);
   $('drawer-scrim').addEventListener('click', closeDrawer);
 
+  // Poll for new orders while the admin dashboard is open so new customer orders appear automatically.
+  let lastKnownOrderIds = new Set();
+  let hasInitialOrderSnapshot = false;
+  window.setInterval(async () => {
+    if ($('dashboard').classList.contains('admin-hide') || document.visibilityState !== 'visible') return;
+    const previousIds = lastKnownOrderIds;
+    await loadOrders();
+    const freshOrders = state.orders.filter(order => !previousIds.has(order.id));
+    lastKnownOrderIds = new Set(state.orders.map(order => order.id));
+    if (hasInitialOrderSnapshot && freshOrders.length) {
+      toast('New customer order received! #' + freshOrders[0].order_number);
+    }
+    hasInitialOrderSnapshot = true;
+  }, 15000);
+
   client.auth.getSession().then(({ data }) => { if (data.session) enterDashboard(data.session.user); });
 })();
