@@ -2,6 +2,12 @@
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // Intro splash: remember it was shown, then remove from the DOM
+  const splash = document.getElementById('marf-splash');
+  if (splash) {
+    try { sessionStorage.setItem('marfSplash', '1'); } catch (e) {}
+    setTimeout(() => splash.classList.add('is-done'), 2800);
+  }
   const header = document.querySelector('.site-header');
   const hero = document.querySelector('.hero');
 
