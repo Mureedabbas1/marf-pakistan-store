@@ -25,23 +25,23 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261024-logo2">
 
 <style id="marf-left-sidebar-styles">
-:root{--marf-sidebar-width:204px}
-.marf-left-sidebar{position:fixed;z-index:800;left:14px;top:76px;bottom:14px;width:var(--marf-sidebar-width);display:flex;flex-direction:column;gap:18px;padding:18px 13px;border:1px solid rgba(201,169,106,.28);border-radius:18px;background:linear-gradient(165deg,rgba(19,18,15,.96),rgba(8,8,8,.94));box-shadow:0 18px 55px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,245,220,.035);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,169,106,.35) transparent}
-.marf-side-brand{display:flex;align-items:center;justify-content:center;padding:3px 0 15px;border-bottom:1px solid rgba(201,169,106,.18)}
-.marf-side-brand img{width:126px;max-height:48px;object-fit:contain}
-.marf-side-kicker{margin:0 8px -8px;color:#c9a96a;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
-.marf-side-links{display:grid;gap:5px}
-.marf-side-links a{display:flex;align-items:center;gap:11px;min-height:40px;padding:9px 10px;border:1px solid transparent;border-radius:11px;color:#e9e3d8;text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.015em;transition:background .2s,border-color .2s,color .2s,transform .2s}
-.marf-side-links a:hover,.marf-side-links a:focus-visible{background:rgba(201,169,106,.10);border-color:rgba(201,169,106,.25);color:#f2dba8;transform:translateX(2px);outline:none}
-.marf-side-icon{display:grid;place-items:center;flex:0 0 23px;width:23px;height:23px;border:1px solid rgba(201,169,106,.24);border-radius:8px;color:#d9bc80;font-size:14px;line-height:1}
-.marf-side-divider{height:1px;background:rgba(201,169,106,.16);margin:0 5px}
-.marf-side-help{margin-top:auto;padding:13px 11px;border:1px solid rgba(201,169,106,.2);border-radius:13px;background:linear-gradient(145deg,rgba(201,169,106,.09),rgba(201,169,106,.025))}
-.marf-side-help strong{display:block;color:#ead6aa;font:500 20px/1.1 "Cormorant Garamond",Georgia,serif}
-.marf-side-help p{margin:7px 0 11px;color:#aaa59a;font-size:10px;line-height:1.65}
-.marf-side-help a{display:flex;justify-content:center;align-items:center;gap:6px;padding:9px 8px;border-radius:9px;background:#c9a96a;color:#111;text-decoration:none;font-size:10px;font-weight:800}
-@media(min-width:1240px){.site-header,.marf-timebar,main,.site-footer{margin-left:232px!important;width:calc(100% - 246px)!important}.site-header{padding-left:clamp(14px,2vw,32px)!important;padding-right:clamp(14px,2vw,32px)!important}}
-@media(max-width:1239px){.marf-left-sidebar{display:none}}
-@media(prefers-reduced-motion:reduce){.marf-side-links a{transition:none}}
+:root{--marf-sidebar-width:68px}
+.marf-left-sidebar{position:fixed;z-index:1000;left:0;top:0;bottom:0;width:var(--marf-sidebar-width);display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 9px;background:rgba(9,9,9,.97);border-right:1px solid rgba(201,169,106,.24);box-shadow:8px 0 32px rgba(0,0,0,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);overflow-y:auto;scrollbar-width:none}
+.marf-left-sidebar::-webkit-scrollbar{display:none}
+.marf-side-brand{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;margin-bottom:8px;border:1px solid rgba(201,169,106,.35);border-radius:15px;background:rgba(201,169,106,.07);text-decoration:none}
+.marf-side-brand img{width:32px;height:32px;object-fit:contain}
+.marf-side-links{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%}
+.marf-side-links a{position:relative;display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;padding:0;border:1px solid transparent;border-radius:15px;color:#d9bc80;text-decoration:none;font-size:22px;line-height:1;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.marf-side-links a:hover,.marf-side-links a:focus-visible{background:rgba(201,169,106,.13);border-color:rgba(201,169,106,.38);color:#f6e5bd;transform:translateY(-1px);outline:none}
+.marf-side-links a:focus-visible{box-shadow:0 0 0 2px rgba(201,169,106,.25)}
+.marf-side-links a::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);padding:9px 12px;border:1px solid rgba(201,169,106,.28);border-radius:9px;background:#111;color:#f0e6d2;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .15s}
+.marf-side-links a:hover::after,.marf-side-links a:focus-visible::after{opacity:1;visibility:visible}
+.marf-side-divider{width:34px;height:1px;flex:0 0 1px;margin:3px 0;background:rgba(201,169,106,.25)}
+.marf-side-spacer{flex:1;min-height:8px}
+.marf-side-links a[aria-label="WhatsApp MARF"]{color:#d9bc80}
+@media(min-width:768px){.site-header,.marf-timebar,main,.site-footer{margin-left:88px!important;width:calc(100% - 104px)!important}.site-header{padding-left:clamp(14px,2vw,32px)!important;padding-right:clamp(14px,2vw,32px)!important}}
+@media(max-width:767px){.marf-left-sidebar{display:none}}
+@media(prefers-reduced-motion:reduce){.marf-side-links a,.marf-side-links a::after{transition:none}}
 </style>
 
 </head>
@@ -49,27 +49,28 @@
   <div class="marf-splash" id="marf-splash" aria-hidden="true"><div class="marf-splash-mark"><img src="marf-monogram.png?v=20261024-logo2" alt=""><i></i><span>PAKISTAN</span></div></div>
     <div class="announcement"><span>THE MARF EDIT</span><span>Thoughtful essentials. Elevated everyday.</span><span>PAKISTAN · EST. 2026</span></div>
 
-<aside class="marf-left-sidebar" aria-label="MARF quick navigation">
-  <a class="marf-side-brand" href="#top" aria-label="MARF Pakistan home"><img src="marf-logo.svg?v=20261024-logo2" alt="MARF Pakistan"></a>
-  <p class="marf-side-kicker">Explore MARF</p>
-  <nav class="marf-side-links" aria-label="Quick navigation">
-    <a href="#top"><span class="marf-side-icon" aria-hidden="true">⌂</span>Home</a>
-    <a href="products.html"><span class="marf-side-icon" aria-hidden="true">◇</span>Shop All Products</a>
-    <a href="#collections"><span class="marf-side-icon" aria-hidden="true">✧</span>Collections</a>
-    <a href="#shop-categories"><span class="marf-side-icon" aria-hidden="true">▦</span>20 Categories</a>
-    <a href="#live-stock"><span class="marf-side-icon" aria-hidden="true">◉</span>Available Now</a>
+<aside class="marf-left-sidebar" aria-label="MARF icon navigation">
+  <a class="marf-side-brand" href="#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
+  <nav class="marf-side-links" aria-label="Shop navigation">
+    <a href="#top" data-label="Home" aria-label="Home" title="Home">⌂</a>
+    <a href="products.html" data-label="Shop All Products" aria-label="Shop All Products" title="Shop All Products">◇</a>
+    <a href="#collections" data-label="Collections" aria-label="Collections" title="Collections">✧</a>
+    <a href="#shop-categories" data-label="20 Categories" aria-label="20 Categories" title="20 Categories">▦</a>
+    <a href="#live-stock" data-label="Available Now" aria-label="Available Now" title="Available Now">◉</a>
   </nav>
   <div class="marf-side-divider" aria-hidden="true"></div>
-  <p class="marf-side-kicker">Help & Discover</p>
-  <nav class="marf-side-links" aria-label="Help and discovery links">
-    <a href="gift-guide.html"><span class="marf-side-icon" aria-hidden="true">♡</span>Gift Guide</a>
-    <a href="blog.html"><span class="marf-side-icon" aria-hidden="true">✎</span>The Journal</a>
-    <a href="faq.html"><span class="marf-side-icon" aria-hidden="true">?</span>FAQs</a>
-    <a href="shipping.html"><span class="marf-side-icon" aria-hidden="true">↗</span>Shipping Policy</a>
-    <a href="returns.html"><span class="marf-side-icon" aria-hidden="true">↺</span>Returns & Refunds</a>
-    <a href="contact.html"><span class="marf-side-icon" aria-hidden="true">✉</span>Contact Us</a>
+  <nav class="marf-side-links" aria-label="Help and discovery">
+    <a href="gift-guide.html" data-label="Gift Guide" aria-label="Gift Guide" title="Gift Guide">♡</a>
+    <a href="blog.html" data-label="The Journal" aria-label="The Journal" title="The Journal">✎</a>
+    <a href="faq.html" data-label="FAQs" aria-label="FAQs" title="FAQs">?</a>
+    <a href="shipping.html" data-label="Shipping Policy" aria-label="Shipping Policy" title="Shipping Policy">↗</a>
+    <a href="returns.html" data-label="Returns & Refunds" aria-label="Returns & Refunds" title="Returns & Refunds">↺</a>
+    <a href="contact.html" data-label="Contact Us" aria-label="Contact Us" title="Contact Us">✉</a>
   </nav>
-  <div class="marf-side-help"><strong>Need a hand?</strong><p>Questions about a product or COD order request? Talk to the MARF team.</p><a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer">WhatsApp MARF ↗</a></div>
+  <div class="marf-side-spacer"></div>
+  <nav class="marf-side-links" aria-label="Direct support">
+    <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" data-label="WhatsApp MARF" aria-label="WhatsApp MARF" title="WhatsApp MARF">☏</a>
+  </nav>
 </aside>
 
   <header class="site-header">
