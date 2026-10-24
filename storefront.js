@@ -158,13 +158,13 @@
       if(error) throw error;
       if(!data?.success) throw new Error('Order could not be confirmed.');
       const total=data.total_pkr==null?'Delivery charge to be confirmed':money(data.total_pkr);
-      message('Order request received! Order #'+data.order_number+'. Items: '+money(data.subtotal_pkr)+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
+      message('Your order has been placed successfully! Order #'+data.order_number+'. Items subtotal: '+money(data.subtotal_pkr)+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
       cart.clear(); form.reset(); renderCart();
       const waText='MARF Pakistan order request #'+data.order_number+'\nCustomer: '+customerName+'\nPlease contact me to confirm delivery details.';
       const wa=document.getElementById('order-whatsapp-followup');
       if(wa){wa.href='https://wa.me/923404612368?text='+encodeURIComponent(waText);wa.hidden=false;}
     }catch(e){message(e.message||'Could not submit your order. Please check your details and try again.');}
-    finally{submit.disabled=false;submit.textContent='Place COD order request';}
+    finally{submit.disabled=false;submit.textContent='Place COD order';}
   });
   init();
 })();
