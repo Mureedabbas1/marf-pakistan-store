@@ -329,7 +329,7 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 /* Hero: the floating "M." becomes the real monogram */
 .floating-label .label-mark{
   font-size:0!important;width:46px;height:50px;color:transparent!important;
-  background:url("marf-monogram.png?v=20261024-logo") left center/contain no-repeat;
+  background:url("marf-monogram.png?v=20261024-logo2") left center/contain no-repeat;
   filter:drop-shadow(0 0 14px rgba(212,175,103,.28));
 }
 @media(max-width:620px){.floating-label .label-mark{width:36px;height:40px}}
@@ -338,7 +338,7 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 .manifesto-stamp{
   font-size:0!important;-webkit-text-stroke:0;color:transparent;
   width:clamp(130px,13vw,190px);aspect-ratio:817/893;height:auto;
-  background:url("marf-monogram.png?v=20261024-logo") center/contain no-repeat;
+  background:url("marf-monogram.png?v=20261024-logo2") center/contain no-repeat;
   opacity:.1;transform:rotate(0);bottom:-125px;right:0;pointer-events:none;
 }
 @media(max-width:620px){.manifesto-stamp{width:100px;bottom:-95px;right:0}}
