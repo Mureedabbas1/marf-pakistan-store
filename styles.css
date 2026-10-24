@@ -509,3 +509,30 @@ h1{font-size:clamp(60px,6.1vw,88px);line-height:.91;letter-spacing:-.045em}
  .live-home-grid .smart-watch-featured .product-info h3{font-size:19px}
  .live-home-grid .smart-watch-featured .quick-add{left:9px;right:9px;bottom:9px;width:calc(100% - 18px);height:35px;font-size:8px}
 }
+
+
+/* Premium product details hierarchy — consistent across homepage product cards */
+.live-home-grid .product-info{display:flex;flex-direction:column;align-items:stretch;gap:13px;padding:17px 16px 18px;min-width:0}
+.live-home-grid .product-info .product-copy{display:flex;flex-direction:column;gap:7px;min-width:0}
+.live-home-grid .product-info .product-title{margin:0;color:#f4efe5;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(19px,1.8vw,24px);font-weight:500;line-height:1.15;letter-spacing:-.01em;overflow-wrap:anywhere}
+.live-home-grid .product-info .product-description{margin:0;color:rgba(244,239,229,.65);font-size:10px;line-height:1.65;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:3.3em;max-height:3.3em;overflow-wrap:anywhere}
+.live-home-grid .product-meta-row{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid rgba(201,169,106,.19);padding-top:11px}
+.live-home-grid .product-price-wrap{display:flex;flex-direction:column;gap:3px;min-width:0}
+.live-home-grid .product-price-label{font-size:7px;line-height:1.2;letter-spacing:.18em;color:rgba(201,169,106,.8)}
+.live-home-grid .product-info .price{display:block;color:#e8d5a7;font-size:clamp(12px,1.1vw,15px);font-weight:600;line-height:1.35;letter-spacing:.015em;overflow-wrap:anywhere}
+.live-home-grid .product-info .price del{margin-left:4px;color:rgba(244,239,229,.42);font-size:9px;font-weight:400}
+.live-home-grid .product-stock-pill{display:inline-flex;align-items:center;gap:5px;max-width:100%;padding:6px 8px;border:1px solid rgba(151,190,133,.22);border-radius:999px;background:rgba(100,145,80,.09);color:#b8d7ad;font-size:8px;line-height:1.2;white-space:nowrap}
+.live-home-grid .product-stock-pill i{width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:#a7cf91;box-shadow:0 0 8px rgba(167,207,145,.35)}
+.live-home-grid .smart-watch-featured .product-info{gap:13px}
+.live-home-grid .smart-watch-featured .product-info .product-title{font-size:clamp(21px,1.8vw,25px);line-height:1.12}
+.live-home-grid .smart-watch-featured .product-info .product-description{font-size:10px;line-height:1.65}
+.live-home-grid .smart-watch-featured .product-meta-row{align-items:center}
+@media(max-width:620px){
+ .live-home-grid .product-info{padding:13px 11px 15px;gap:11px}
+ .live-home-grid .product-info .product-title{font-size:18px}
+ .live-home-grid .product-info .product-description{font-size:9px;line-height:1.6;min-height:2.9em;max-height:2.9em}
+ .live-home-grid .product-meta-row{gap:7px;padding-top:9px}
+ .live-home-grid .product-info .price{font-size:12px}
+ .live-home-grid .product-stock-pill{font-size:7px;padding:5px 7px}
+ .live-home-grid .smart-watch-featured .product-info{padding:13px 12px 15px}
+}
