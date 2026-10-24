@@ -71,6 +71,18 @@
     @media(max-width:760px){.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalogue-card{min-height:120px;padding:17px}.catalogue-card h2{font-size:23px}}
     @media(max-width:480px){.live-product-grid{gap:10px}.live-product-info{padding:12px}.live-product-info h3{font-size:21px}.cod-checkout-form{grid-template-columns:1fr}.cod-checkout-form .full-width{grid-column:auto}.checkout-line{align-items:flex-start;flex-direction:column}.qty-controls{align-self:flex-end}}\n    @media(max-width:380px){.catalogue-grid{grid-template-columns:1fr}.live-product-grid{grid-template-columns:1fr}}
 
+    /* MARF liquid-glass Place Order button */
+    .cod-checkout-form button.button-gold{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border:1px solid rgba(255,239,194,.78);border-radius:16px;background:linear-gradient(125deg,#f5dfaa 0%,#c9a96a 24%,#a98242 48%,#ead39b 72%,#b38b4d 100%);background-size:200% 200%;color:#17120a;font-family:Manrope,Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:inset 0 1px 1px rgba(255,255,255,.78),inset 0 -2px 4px rgba(82,52,12,.22),0 8px 24px rgba(201,169,106,.22),0 2px 0 rgba(255,255,255,.12);text-shadow:0 1px 0 rgba(255,255,255,.28);transition:transform .25s ease,box-shadow .25s ease,filter .25s ease,background-position .5s ease}
+    .cod-checkout-form button.button-gold::before{content:"";position:absolute;z-index:-1;inset:1px;border-radius:14px;background:linear-gradient(110deg,rgba(255,255,255,.55),rgba(255,255,255,.08) 28%,transparent 48%,rgba(255,255,255,.28) 72%,rgba(255,255,255,.04));opacity:.72;pointer-events:none}
+    .cod-checkout-form button.button-gold::after{content:"";position:absolute;z-index:-1;top:-70%;left:-45%;width:38%;height:240%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);filter:blur(2px);transition:left .65s ease;pointer-events:none}
+    .cod-checkout-form button.button-gold:hover{transform:translateY(-2px);background-position:100% 50%;box-shadow:inset 0 1px 1px rgba(255,255,255,.9),inset 0 -2px 4px rgba(82,52,12,.2),0 13px 30px rgba(201,169,106,.32),0 0 0 4px rgba(201,169,106,.08);filter:saturate(1.08)}
+    .cod-checkout-form button.button-gold:hover::after{left:120%}
+    .cod-checkout-form button.button-gold:focus-visible{outline:2px solid #f5dfaa;outline-offset:4px}
+    .cod-checkout-form button.button-gold:active{transform:translateY(0) scale(.99)}
+    .cod-checkout-form button.button-gold:disabled{transform:none;filter:grayscale(.2);box-shadow:none;cursor:wait}
+    @media(prefers-reduced-motion:reduce){.cod-checkout-form button.button-gold,.cod-checkout-form button.button-gold::after{transition:none}}
+
+
     /* Keep catalogue cards compact; full product description remains in the detail view. */
     .live-product-info>p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:1.6;max-height:3.2em;min-height:3.2em;overflow-wrap:anywhere}
   </style>
