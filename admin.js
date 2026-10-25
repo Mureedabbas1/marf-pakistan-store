@@ -233,7 +233,7 @@
   }
   $('reset-product').addEventListener('click', clearProductForm);
 
-  // photo gallery (existing + newly chosen files)
+  // Product-card cover: the first saved gallery photo is always the storefront card image. Use “Use on card” to move any photo to the front.\n  // photo gallery (existing + newly chosen files)
   function getGallery() { try { const a = JSON.parse($('product-form').elements.image_urls.value || '[]'); return Array.isArray(a) ? a : []; } catch { return []; } }
   function setGallery(a) { $('product-form').elements.image_urls.value = JSON.stringify(a); renderGallery(); }
   let previews = [];
@@ -241,7 +241,7 @@
     previews.forEach(u => URL.revokeObjectURL(u));
     const g = getGallery(); const files = [...($('product-form').elements.image_files.files || [])];
     previews = files.map(f => URL.createObjectURL(f));
-    const own = g.map((u, i) => '<div class="shot"><img src="' + safe(u) + '" alt="Product photo ' + (i + 1) + '" loading="lazy">' + (i === 0 ? '<span class="tag">Cover</span>' : '') + '<div class="acts">' + (i === 0 ? '<span></span>' : '<button type="button" data-photo-cover="' + i + '" aria-label="Make cover photo" title="Make cover"><svg class="ic"><use href="#i-star"/></svg></button>') + '<button type="button" data-photo-remove="' + i + '" aria-label="Remove photo" title="Remove"><svg class="ic"><use href="#i-x"/></svg></button></div></div>').join('');
+    const own = g.map((u, i) => '<div class="shot ' + (i === 0 ? 'is-cover' : '') + '"><img src="' + safe(u) + '" alt="Product photo ' + (i + 1) + '" loading="lazy">' + (i === 0 ? '<span class="tag">Card image</span>' : '<span class="tag photo-number">Photo ' + (i + 1) + '</span>') + '<div class="acts">' + (i === 0 ? '<span class="cover-selected">✓ Shown on card</span>' : '<button class="make-cover" type="button" data-photo-cover="' + i + '" aria-label="Show photo ' + (i + 1) + ' on product card" title="Use this photo on product card">Use on card</button>') + '<button class="remove-photo" type="button" data-photo-remove="' + i + '" aria-label="Remove photo ' + (i + 1) + '" title="Remove photo"><svg class="ic"><use href="#i-x"/></svg></button></div></div>').join('');
     const fresh = previews.map((u, i) => '<div class="shot new"><img src="' + u + '" alt="New photo ' + (i + 1) + '"><span class="tag">New</span></div>').join('');
     $('photo-gallery').innerHTML = (own + fresh) || '<p class="empty">No photos yet.</p>';
     if (files.length) $('photo-gallery').insertAdjacentHTML('beforeend', '<button type="button" class="link-btn" style="grid-column:1/-1;justify-self:start" data-photo-clear>Clear ' + files.length + ' new photo' + (files.length > 1 ? 's' : '') + '</button>');
