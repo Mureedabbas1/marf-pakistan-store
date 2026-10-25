@@ -7,6 +7,8 @@
   const cartCount = document.getElementById('checkout-count');
   const totalBox = document.getElementById('checkout-subtotal');
   const feeBox = document.getElementById('checkout-delivery');
+  const packagingFeeBox = document.getElementById('checkout-packaging-fee');
+  const packagingSelect = document.getElementById('packaging-type');
   const msg = document.getElementById('checkout-message');
   const cart = new Map();
   let shippingFee = null;
@@ -42,6 +44,9 @@
     if (!count) { const p=document.createElement('p'); p.textContent='Your bag is empty. Add an available product above.'; p.className='empty-cart'; cartBox.append(p); }
     if(cartCount) cartCount.textContent=String(count);
     if(totalBox) totalBox.textContent=money(subtotal);
+    const packagingType = packagingSelect?.value || 'simple';
+    const packagingFee = packagingType === 'premium' ? 200 : packagingType === 'standard' ? 100 : 0;
+    if(packagingFeeBox) packagingFeeBox.textContent=packagingFee === 0 ? 'Free' : money(packagingFee);
     if(feeBox) feeBox.textContent=shippingFee === null ? 'To be confirmed' : (shippingFee === 0 ? 'Free' : money(shippingFee));
   }
   function addProduct(product) {
@@ -136,6 +141,7 @@
       message('We could not load the live catalogue right now. Please refresh or contact MARF.');
     }
   }
+  packagingSelect?.addEventListener('change',renderCart);
   document.getElementById('cod-checkout-form')?.addEventListener('submit',async event=>{
     event.preventDefault();
     if(document.getElementById('return-policy-modal') && event.currentTarget.dataset.returnPolicyAccepted !== 'true') return;
@@ -154,12 +160,13 @@
         p_shipping_address:String(fd.get('address')||'').trim(),
         p_city:String(fd.get('city')||'').trim(),
         p_notes:String(fd.get('notes')||'').trim()||null,
+        p_packaging_type:String(fd.get('packaging_type')||'simple'),
         p_items:items
       });
       if(error) throw error;
       if(!data?.success) throw new Error('Order could not be confirmed.');
       const total=data.total_pkr==null?'Delivery charge to be confirmed':money(data.total_pkr);
-      message('Your order has been placed successfully! Order #'+data.order_number+'. Items subtotal: '+money(data.subtotal_pkr)+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
+      message('Your order has been placed successfully! Order #'+data.order_number+'. Items subtotal: '+money(data.subtotal_pkr)+'. Packaging: '+(data.packaging_fee_pkr ? money(data.packaging_fee_pkr) : 'Free')+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
       cart.clear(); form.reset(); form.dataset.returnPolicyAccepted='false'; renderCart();
       const waText='MARF Pakistan order request #'+data.order_number+'\nCustomer: '+customerName+'\nPlease contact me to confirm delivery details.';
       const wa=document.getElementById('order-whatsapp-followup');
