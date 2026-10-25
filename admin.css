@@ -301,3 +301,13 @@ select.status-select option{background:#11110f;color:var(--ivory);text-transform
   .top-actions .btn,.icon-btn{width:40px;min-height:40px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}}
+
+/* Product-card cover picker: make the selected image and action obvious on desktop and mobile. */
+.shot .acts{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:6px;background:linear-gradient(transparent,rgba(0,0,0,.94));opacity:1;}
+.shot.is-cover{border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(201,169,106,.14)}
+.shot .tag{z-index:1}
+.shot .tag.photo-number{color:#f5f0e7;background:rgba(8,8,7,.8)}
+.shot .acts button.make-cover{width:auto;min-width:0;height:30px;padding:0 9px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;white-space:nowrap;border-color:var(--gold);background:rgba(8,8,7,.92);color:var(--gold-light)}
+.shot .acts button.make-cover:hover{background:var(--gold);color:#111}
+.shot .acts .cover-selected{font-size:9px;font-weight:800;color:#f1d9a2;line-height:1.25}
+.shot .acts button.remove-photo{flex:0 0 30px}
