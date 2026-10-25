@@ -138,6 +138,7 @@
   }
   document.getElementById('cod-checkout-form')?.addEventListener('submit',async event=>{
     event.preventDefault();
+    if(document.getElementById('return-policy-modal') && event.currentTarget.dataset.returnPolicyAccepted !== 'true') return;
     if(!cart.size){message('Please add at least one in-stock product first.');return;}
     const form=event.currentTarget;
     const fd=new FormData(form);
