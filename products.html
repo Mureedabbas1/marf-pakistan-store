@@ -64,6 +64,23 @@
     .cod-checkout-form .full-width{grid-column:1/-1}
     .cod-checkout-form button{grid-column:1/-1;min-height:48px;cursor:pointer}
     .cod-checkout-form button:disabled{opacity:.55;cursor:wait}
+    .return-policy-modal[hidden]{display:none!important}
+    .return-policy-modal{position:fixed;inset:0;z-index:10050;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .return-policy-dialog{width:min(100%,620px);max-height:min(88vh,820px);overflow:auto;background:#101010;color:#f5f0e7;border:1px solid rgba(201,169,106,.55);border-radius:18px;padding:clamp(20px,4vw,32px);box-shadow:0 24px 90px rgba(0,0,0,.6)}
+    .return-policy-kicker{color:#c9a96a;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+    .return-policy-dialog h2{font:500 clamp(30px,5vw,42px)/1.05 "Cormorant Garamond",Georgia,serif;margin:10px 0 8px;text-align:left}
+    .return-policy-dialog>p{color:#bdb5a8;font-size:12px;line-height:1.7}
+    .return-policy-list{padding-left:22px;margin:18px 0;display:grid;gap:10px}
+    .return-policy-list li{padding-left:3px;color:#e8e0d4;font-size:12px;line-height:1.65}
+    .return-policy-list strong{color:#e2c58e}
+    .return-policy-list a{color:#e2c58e;text-decoration:underline;overflow-wrap:anywhere}
+    .return-policy-ack{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid rgba(201,169,106,.25);border-radius:10px;color:#e8e0d4;font-size:12px;line-height:1.6}
+    .return-policy-ack input{margin-top:3px;accent-color:#c9a96a;flex:0 0 auto}
+    .return-policy-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .return-policy-actions button{flex:1;min-width:145px;border-radius:8px;padding:13px 16px;font:600 12px Manrope,Arial,sans-serif}
+    .return-policy-cancel{border:1px solid rgba(201,169,106,.35);background:transparent;color:#f5f0e7}
+    .return-policy-continue{border:1px solid #c9a96a;background:#c9a96a;color:#111}
+    .return-policy-continue:disabled{opacity:.45;cursor:not-allowed}
     .checkout-message{margin:14px 0;color:#f0c7a5;font-size:13px;line-height:1.7}
     .checkout-message.success{color:#b8d7ad}
     .order-followup{display:inline-block;color:var(--gold-light);margin-top:8px;font-size:12px}
@@ -173,6 +190,29 @@
         <label class="full-width">Order notes (optional)<textarea name="notes" maxlength="1000" placeholder="Any delivery instructions"></textarea></label>
         <button class="button button-gold" type="submit">Place COD order</button>
       </form>
+      <section id="return-policy-modal" class="return-policy-modal" role="dialog" aria-modal="true" aria-labelledby="return-policy-title" aria-describedby="return-policy-intro" hidden>
+        <div class="return-policy-dialog">
+          <span class="return-policy-kicker">MARF Pakistan · Before you order</span>
+          <h2 id="return-policy-title">Please review our <em>Return Policy.</em></h2>
+          <p id="return-policy-intro">Please read these 9 short points before continuing with your order.</p>
+          <ol class="return-policy-list">
+            <li><strong>Return Period:</strong> Request a return within 7 days of delivery.</li>
+            <li><strong>Product Condition:</strong> The item must be unused, undamaged, and in its original packaging.</li>
+            <li><strong>Change of Mind:</strong> You may request a return if you don’t like the product, within 7 days.</li>
+            <li><strong>Refund Deduction:</strong> A 30% deduction may apply to approved change-of-mind refunds, where legally permitted.</li>
+            <li><strong>Damaged/Wrong Item:</strong> Contact us for an appropriate resolution if the item is damaged, faulty, or incorrect.</li>
+            <li><strong>How to Request:</strong> Email your order number, product name, and reason for return.</li>
+            <li><strong>Approval Required:</strong> Do not send the item back without our approval and return instructions.</li>
+            <li><strong>Contact Email:</strong> <a href="mailto:marfglobalenterprises@gmail.com">marfglobalenterprises@gmail.com</a></li>
+            <li><strong>Full Policy:</strong> <a href="returns.html" target="_blank" rel="noopener noreferrer">Read the complete return policy</a>.</li>
+          </ol>
+          <label class="return-policy-ack"><input id="return-policy-acknowledged" type="checkbox"><span>I have read and understood the return policy.</span></label>
+          <div class="return-policy-actions">
+            <button type="button" class="return-policy-cancel" id="return-policy-cancel">Go Back</button>
+            <button type="button" class="return-policy-continue" id="return-policy-continue" disabled>Agree &amp; Place Order</button>
+          </div>
+        </div>
+      </section>
       <p id="checkout-message" class="checkout-message" role="status" aria-live="polite"></p>
       <a id="order-whatsapp-followup" class="order-followup" href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" hidden>Contact MARF on WhatsApp ↗</a>
     </section>
@@ -204,6 +244,34 @@
   <footer class="site-footer"><div><a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="shipping.html">Shipping</a> · <a href="returns.html">Returns</a> · <a href="contact.html">Contact</a></div><p>© 2026 MARF Pakistan. Everyday, elevated.</p></footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
   <script src="storefront.js?v=20261024-multiphotos1" defer></script>
+  <script>
+    (() => {
+      const form = document.getElementById('cod-checkout-form');
+      const modal = document.getElementById('return-policy-modal');
+      const acknowledgement = document.getElementById('return-policy-acknowledged');
+      const continueButton = document.getElementById('return-policy-continue');
+      const cancelButton = document.getElementById('return-policy-cancel');
+      if (!form || !modal || !acknowledgement || !continueButton || !cancelButton) return;
+      const closeModal = () => { modal.hidden = true; };
+      acknowledgement.addEventListener('change', () => { continueButton.disabled = !acknowledgement.checked; });
+      cancelButton.addEventListener('click', closeModal);
+      modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && !modal.hidden) closeModal(); });
+      form.addEventListener('submit', event => {
+        if (form.dataset.returnPolicyAccepted === 'true') return;
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        modal.hidden = false;
+        acknowledgement.focus();
+      }, true);
+      continueButton.addEventListener('click', () => {
+        if (!acknowledgement.checked) return;
+        form.dataset.returnPolicyAccepted = 'true';
+        closeModal();
+        form.requestSubmit();
+      });
+    })();
+  </script>
   <script>
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.main-nav');
