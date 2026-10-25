@@ -24,7 +24,48 @@
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png?v=20261024-logo2">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=20261024-logo2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261024-logo2">
+<style id="marf-left-sidebar-styles">
+:root{--marf-sidebar-width:68px}
+.marf-left-sidebar{position:fixed;z-index:1000;left:0;top:0;bottom:0;width:68px;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 9px;background:rgba(9,9,9,.97);border-right:1px solid rgba(201,169,106,.24);box-shadow:8px 0 32px rgba(0,0,0,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);overflow-y:auto;scrollbar-width:none}
+.marf-left-sidebar::-webkit-scrollbar{display:none}
+.marf-side-brand{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;margin-bottom:8px;border:1px solid rgba(201,169,106,.35);border-radius:15px;background:rgba(201,169,106,.07);text-decoration:none}
+.marf-side-brand img{width:32px;height:32px;object-fit:contain}
+.marf-side-links{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%}
+.marf-side-links a{position:relative;display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;padding:0;border:1px solid transparent;border-radius:15px;color:#d9bc80;text-decoration:none;font-size:22px;line-height:1;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.marf-side-links a:hover,.marf-side-links a:focus-visible{background:rgba(201,169,106,.13);border-color:rgba(201,169,106,.38);color:#f6e5bd;transform:translateY(-1px);outline:none}
+.marf-side-links a::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);padding:9px 12px;border:1px solid rgba(201,169,106,.28);border-radius:9px;background:#111;color:#f0e6d2;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .15s}
+.marf-side-links a:hover::after,.marf-side-links a:focus-visible::after{opacity:1;visibility:visible}
+.marf-side-divider{width:34px;height:1px;flex:0 0 1px;margin:3px 0;background:rgba(201,169,106,.25)}
+.marf-side-spacer{flex:1;min-height:8px}
+.marf-side-links a[aria-label="WhatsApp MARF"]{color:#d9bc80}
+@media(min-width:768px){body{padding-left:88px!important}}
+@media(max-width:767px){.marf-left-sidebar{display:none}}
+@media(prefers-reduced-motion:reduce){.marf-side-links a,.marf-side-links a::after{transition:none}}
+</style>
 </head><body>
+<aside class="marf-left-sidebar" aria-label="MARF icon navigation">
+  <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
+  <nav class="marf-side-links" aria-label="Shop navigation">
+    <a href="index.html#top" data-label="Home" aria-label="Home" title="Home">⌂</a>
+    <a href="products.html" data-label="Shop All Products" aria-label="Shop All Products" title="Shop All Products">◇</a>
+    <a href="index.html#collections" data-label="Collections" aria-label="Collections" title="Collections">✧</a>
+    <a href="index.html#shop-categories" data-label="20 Categories" aria-label="20 Categories" title="20 Categories">▦</a>
+    <a href="index.html#live-stock" data-label="Available Now" aria-label="Available Now" title="Available Now">◉</a>
+  </nav>
+  <div class="marf-side-divider" aria-hidden="true"></div>
+  <nav class="marf-side-links" aria-label="Help and discovery">
+    <a href="gift-guide.html" data-label="Gift Guide" aria-label="Gift Guide" title="Gift Guide">♡</a>
+    <a href="blog.html" data-label="The Journal" aria-label="The Journal" title="The Journal">✎</a>
+    <a href="faq.html" data-label="FAQs" aria-label="FAQs" title="FAQs">?</a>
+    <a href="shipping.html" data-label="Shipping Policy" aria-label="Shipping Policy" title="Shipping Policy">↗</a>
+    <a href="returns.html" data-label="Returns & Refunds" aria-label="Returns & Refunds" title="Returns & Refunds">↺</a>
+    <a href="contact.html" data-label="Contact Us" aria-label="Contact Us" title="Contact Us">✉</a>
+  </nav>
+  <div class="marf-side-spacer"></div>
+  <nav class="marf-side-links" aria-label="Direct support">
+    <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" data-label="WhatsApp MARF" aria-label="WhatsApp MARF" title="WhatsApp MARF">☏</a>
+  </nav>
+</aside>
 <header><a class="brand" href="index.html" aria-label="MARF Pakistan — home"><img class="brand-img" src="marf-logo.svg?v=20261024-logo2" alt="MARF Pakistan"></a><a href="index.html">← Back to home</a></header>
 <main><h1>Shipping Policy</h1><p class="updated">Last updated: 23 October 2026</p><div class="note"><p><strong>Cash on Delivery order requests:</strong> You may submit a request for an in-stock product with a confirmed price. The request is not final until MARF contacts you and confirms availability, delivery charges and the order.</p></div><h2>Delivery charges and locations</h2><p>Enter your city and delivery address accurately when submitting a Cash on Delivery request. If the delivery charge is not shown at checkout, MARF will confirm the charge with you before dispatch. Please do not assume delivery is free.</p><h2>Order confirmation and timing</h2><p>Submitting the checkout form records a request; it does not guarantee stock or dispatch. MARF will contact you to confirm the product, total payable amount including any delivery charge, delivery availability and the expected delivery estimate before dispatch. Delivery estimates can vary by location and courier.</p><h2>Delayed or damaged parcels</h2><p>If your parcel is delayed or arrives damaged, contact MARF through WhatsApp as soon as possible and include your order details and photos where relevant.</p><h2>Questions</h2><p>For help with an order request or delivery details, contact us through <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer">WhatsApp</a>. A submitted request is not confirmation that an order has been accepted or shipped.</p></main>
 <footer><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="https://www.instagram.com/marfglobal/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><span>© 2026 MARF Pakistan</span></footer>
