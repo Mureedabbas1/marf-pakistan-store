@@ -311,3 +311,8 @@ select.status-select option{background:#11110f;color:var(--ivory);text-transform
 .shot .acts button.make-cover:hover{background:var(--gold);color:#111}
 .shot .acts .cover-selected{font-size:9px;font-weight:800;color:#f1d9a2;line-height:1.25}
 .shot .acts button.remove-photo{flex:0 0 30px}
+
+
+/* Persistent admin sidebar: do not turn navigation into a closing drawer on small screens. */
+@media(max-width:640px){.shell{grid-template-columns:220px minmax(0,1fr)}.sidebar{position:sticky;left:auto;top:0;bottom:auto;width:auto;height:100vh;transform:none;z-index:2;box-shadow:none;padding:16px 10px 14px}.side-close,.menu-btn{display:none!important}.side-scrim{display:none!important}.side-brand img{width:150px;max-width:100%}.side-link{gap:8px;padding:0 9px;font-size:11px;min-height:42px}.side-link .ic{width:17px;height:17px;flex-basis:17px}.side-label{padding-left:8px;letter-spacing:.18em}.side-user{padding:8px 6px;gap:7px}.side-user small{max-width:105px}.views{padding:14px;gap:14px}.topbar{padding:12px 14px;gap:8px}.top-title h2{font-size:25px}.top-actions{gap:6px}.top-actions .btn{width:auto;padding:0 10px}.top-actions .btn span{display:inline}}
+@media(max-width:420px){.shell{grid-template-columns:174px minmax(0,1fr)}.sidebar{padding:12px 7px}.side-brand img{width:130px}.side-link{font-size:10px;gap:6px;padding:0 6px}.side-user{display:none}.side-label{font-size:8px}.top-actions .btn span{display:none}.top-actions .btn{width:38px;padding:0}.views{padding:10px}}
