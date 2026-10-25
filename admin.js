@@ -195,7 +195,9 @@
       const stock = st <= 0 ? '<span class="out">Out of stock</span>' : st <= 5 ? '<span class="low">' + st + ' · Low</span>' : String(st);
       return '<tr><td class="t-main" data-label="Product"><div class="prod-cell"><span class="thumb">' + (img ? '<img src="' + safe(img) + '" alt="" loading="lazy">' : 'M') + '</span><span><strong>' + safe(p.name) + '</strong><small>' + safe(p.sku || p.slug) + '</small></span></div></td>' +
         '<td data-label="Category">' + safe(CATS[p.category] || p.category || '—') + '</td>' +
-        '<td data-label="Price">' + pkr(p.price_pkr) + (p.compare_at_price_pkr ? '<small>Was ' + pkr(p.compare_at_price_pkr) + '</small>' : '') + '</td>' +
+        '<td data-label="Purchase cost">' + (p.purchase_price_pkr == null ? 'Not set' : pkr(p.purchase_price_pkr)) + '</td>' +
+        '<td data-label="Selling price">' + pkr(p.price_pkr) + (p.compare_at_price_pkr ? '<small>Was ' + pkr(p.compare_at_price_pkr) + '</small>' : '') + '</td>' +
+        '<td data-label="Profit per unit">' + (p.purchase_price_pkr == null ? '—' : '<strong>' + pkr(Number(p.price_pkr) - Number(p.purchase_price_pkr)) + '</strong>') + '</td>' +
         '<td data-label="Stock">' + stock + '</td>' +
         '<td data-label="In store"><button type="button" class="switch' + (p.is_active ? ' on' : '') + '" role="switch" aria-checked="' + (p.is_active ? 'true' : 'false') + '" aria-label="Show ' + safe(p.name) + ' in store" data-toggle="' + safe(p.id) + '"></button></td>' +
         '<td class="t-actions"><button class="btn sm" type="button" data-edit="' + safe(p.id) + '">Edit</button></td></tr>';
@@ -262,7 +264,7 @@
     try { imageUrls = JSON.parse(String(fd.get('image_urls') || '[]')); } catch { imageUrls = []; }
     if (!Array.isArray(imageUrls)) imageUrls = [];
     const manualImage = String(fd.get('image') || '').trim();
-    const payload = { name, slug: slugify(name), sku, category: String(fd.get('category')), price_pkr: Number(fd.get('price')), compare_at_price_pkr: fd.get('compare') === '' ? null : Number(fd.get('compare')), stock_quantity: Number(fd.get('stock')), image_url: manualImage || imageUrls[0] || null, image_urls: imageUrls, description: String(fd.get('description') || '').trim() || null, is_active: fd.get('active') === 'true', updated_at: new Date().toISOString() };
+    const payload = { name, slug: slugify(name), sku, category: String(fd.get('category')), purchase_price_pkr: Number(fd.get('cost')), price_pkr: Number(fd.get('price')), compare_at_price_pkr: fd.get('compare') === '' ? null : Number(fd.get('compare')), stock_quantity: Number(fd.get('stock')), image_url: manualImage || imageUrls[0] || null, image_urls: imageUrls, description: String(fd.get('description') || '').trim() || null, is_active: fd.get('active') === 'true', updated_at: new Date().toISOString() };
     if (id) payload.id = id;
     try {
       if (imageFiles.length > 10) throw new Error('Choose up to 10 images at a time.');
@@ -283,7 +285,7 @@
         payload.image_urls = [...new Set(imageUrls)];
         payload.image_url = payload.image_urls[0] || payload.image_url;
       }
-      if (!payload.slug || !Number.isFinite(payload.price_pkr) || payload.price_pkr < 0 || !Number.isInteger(payload.stock_quantity) || payload.stock_quantity < 0) throw new Error('Check the product name, price and stock.');
+      if (!payload.slug || !Number.isFinite(payload.purchase_price_pkr) || payload.purchase_price_pkr < 0 || !Number.isFinite(payload.price_pkr) || payload.price_pkr < 0 || !Number.isInteger(payload.stock_quantity) || payload.stock_quantity < 0) throw new Error('Check the product name, purchase cost, selling price and stock.');
       const result = id ? await client.from('products').update(payload).eq('id', id).select().single() : await client.from('products').insert(payload).select().single();
       if (result.error) throw result.error;
       await clearProductForm(); await loadProducts();
@@ -297,7 +299,7 @@
     const f = $('product-form').elements;
     const gallery = Array.isArray(p.image_urls) && p.image_urls.length ? p.image_urls : (p.image_url ? [p.image_url] : []);
     f.id.value = p.id; f.name.value = p.name; f.sku.value = p.sku || ''; f.category.value = p.category;
-    f.price.value = p.price_pkr; f.compare.value = p.compare_at_price_pkr ?? ''; f.stock.value = p.stock_quantity;
+    f.cost.value = p.purchase_price_pkr ?? ''; f.price.value = p.price_pkr; f.compare.value = p.compare_at_price_pkr ?? ''; f.stock.value = p.stock_quantity;
     f.image.value = gallery.includes(p.image_url) ? '' : (p.image_url || '');
     f.image_files.value = ''; f.image_urls.value = JSON.stringify(gallery);
     f.description.value = p.description || ''; f.active.value = String(p.is_active);
