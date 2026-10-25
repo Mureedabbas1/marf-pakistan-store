@@ -201,7 +201,7 @@
         '<td data-label="Stock">' + stock + '</td>' +
         '<td data-label="In store"><button type="button" class="switch' + (p.is_active ? ' on' : '') + '" role="switch" aria-checked="' + (p.is_active ? 'true' : 'false') + '" aria-label="Show ' + safe(p.name) + ' in store" data-toggle="' + safe(p.id) + '"></button></td>' +
         '<td class="t-actions"><button class="btn sm" type="button" data-edit="' + safe(p.id) + '">Edit</button></td></tr>';
-    }).join('') : '<tr><td colspan="6" class="empty">' + (state.products.length ? 'No products match these filters.' : 'No products yet. Choose “Add product” to create your first one.') + '</td></tr>';
+    }).join('') : '<tr><td colspan="8" class="empty">' + (state.products.length ? 'No products match these filters.' : 'No products yet. Choose “Add product” to create your first one.') + '</td></tr>';
   }
   $('filter-products').addEventListener('input', e => { state.invQ = e.target.value; drawInventory(); });
   $('inv-category').addEventListener('change', e => { state.invCat = e.target.value; drawInventory(); });
@@ -210,7 +210,7 @@
   /* ---------------- Products ---------------- */
   async function loadProducts() {
     const { data, error } = await client.from('products').select('*').order('created_at', { ascending: false });
-    if (error) { $('products-table').innerHTML = '<tr><td colspan="6" class="empty">Could not load inventory: ' + safe(error.message) + '</td></tr>'; return; }
+    if (error) { $('products-table').innerHTML = '<tr><td colspan="8" class="empty">Could not load inventory: ' + safe(error.message) + '</td></tr>'; return; }
     state.products = data || []; renderAll();
   }
   async function toggleProduct(id, btn) {
