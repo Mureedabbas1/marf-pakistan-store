@@ -100,6 +100,7 @@
 .marf-side-brand img{width:32px;height:32px;object-fit:contain}
 .marf-side-links{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%}
 .marf-side-links a{position:relative;display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;padding:0;border:1px solid transparent;border-radius:15px;color:#d9bc80;text-decoration:none;font-size:22px;line-height:1;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.marf-side-links a svg{width:22px;height:22px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .marf-side-links a:hover,.marf-side-links a:focus-visible{background:rgba(201,169,106,.13);border-color:rgba(201,169,106,.38);color:#f6e5bd;transform:translateY(-1px);outline:none}
 .marf-side-links a::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);padding:9px 12px;border:1px solid rgba(201,169,106,.28);border-radius:9px;background:#111;color:#f0e6d2;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .15s}
 .marf-side-links a:hover::after,.marf-side-links a:focus-visible::after{opacity:1;visibility:visible}
@@ -115,24 +116,24 @@
 <aside class="marf-left-sidebar" aria-label="MARF icon navigation">
   <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
   <nav class="marf-side-links" aria-label="Shop navigation">
-    <a href="index.html#top" data-label="Home" aria-label="Home" title="Home">⌂</a>
-    <a href="products.html" data-label="Shop All Products" aria-label="Shop All Products" title="Shop All Products">◇</a>
-    <a href="index.html#collections" data-label="Collections" aria-label="Collections" title="Collections">✧</a>
-    <a href="index.html#shop-categories" data-label="20 Categories" aria-label="20 Categories" title="20 Categories">▦</a>
-    <a href="index.html#live-stock" data-label="Available Now" aria-label="Available Now" title="Available Now">◉</a>
+    <a href="index.html#top" data-label="Home" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9M9 21v-7h6v7"/></svg></a>
+    <a href="products.html" data-label="Shop All Products" aria-label="Shop All Products" title="Shop All Products"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+    <a href="index.html#collections" data-label="Collections" aria-label="Collections" title="Collections"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></a>
+    <a href="index.html#shop-categories" data-label="20 Categories" aria-label="20 Categories" title="20 Categories"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></a>
+    <a href="index.html#live-stock" data-label="Available Now" aria-label="Available Now" title="Available Now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v11H3zM14 11h4l3 3v4h-7z"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg></a>
   </nav>
   <div class="marf-side-divider" aria-hidden="true"></div>
   <nav class="marf-side-links" aria-label="Help and discovery">
-    <a href="gift-guide.html" data-label="Gift Guide" aria-label="Gift Guide" title="Gift Guide">♡</a>
-    <a href="blog.html" data-label="The Journal" aria-label="The Journal" title="The Journal">✎</a>
-    <a href="faq.html" data-label="FAQs" aria-label="FAQs" title="FAQs">?</a>
-    <a href="shipping.html" data-label="Shipping Policy" aria-label="Shipping Policy" title="Shipping Policy">↗</a>
-    <a href="returns.html" data-label="Returns & Refunds" aria-label="Returns & Refunds" title="Returns & Refunds">↺</a>
-    <a href="contact.html" data-label="Contact Us" aria-label="Contact Us" title="Contact Us">✉</a>
+    <a href="gift-guide.html" data-label="Gift Guide" aria-label="Gift Guide" title="Gift Guide"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M12 9v12M2 6h20v3H2zM12 6H8.5a2.5 2.5 0 1 1 2.5-2.5V6ZM12 6h3.5A2.5 2.5 0 1 0 13 3.5V6Z"/></svg></a>
+    <a href="blog.html" data-label="The Journal" aria-label="The Journal" title="The Journal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5z"/><path d="M16 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></a>
+    <a href="faq.html" data-label="FAQs" aria-label="FAQs" title="FAQs"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.4c-.8 1-2.2 1.2-2.2 3.1M12 17.2h.01"/></svg></a>
+    <a href="shipping.html" data-label="Shipping Policy" aria-label="Shipping Policy" title="Shipping Policy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v12H3zM14 10h4l3 3v5h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg></a>
+    <a href="returns.html" data-label="Returns & Refunds" aria-label="Returns & Refunds" title="Returns & Refunds"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 7.5"/><path d="M3 4v6h6"/></svg></a>
+    <a href="contact.html" data-label="Contact Us" aria-label="Contact Us" title="Contact Us"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
   </nav>
   <div class="marf-side-spacer"></div>
   <nav class="marf-side-links" aria-label="Direct support">
-    <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" data-label="WhatsApp MARF" aria-label="WhatsApp MARF" title="WhatsApp MARF">☏</a>
+    <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" data-label="WhatsApp MARF" aria-label="WhatsApp MARF" title="WhatsApp MARF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.2c.5 2.8 2.5 4.8 5.3 5.3l1.2-1.2 2 .9c-.2 1.5-1.4 2.4-2.8 2.2-3.7-.7-6.5-3.5-7.2-7.2-.2-1.4.7-2.6 2.2-2.8l.9 2-1.6.8Z"/></svg></a>
   </nav>
 </aside>
   <div class="announcement"><span>THE MARF EDIT</span><span>Thoughtful essentials. Elevated everyday.</span><span>PAKISTAN · EST. 2026</span></div>
