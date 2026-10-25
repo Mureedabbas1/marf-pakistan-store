@@ -116,7 +116,8 @@
     const pending = os.filter(o => o.status === 'pending').length;
     const open = os.filter(isOpen).length;
     const low = ps.filter(isLow).length;
-    const sales = os.filter(o => o.status !== 'cancelled').reduce((n, o) => n + (Number(o.total_pkr) || 0), 0);
+    // Count revenue only after delivery, when COD payment is expected to have been collected.
+    const sales = os.filter(o => String(o.status).toLowerCase() === 'delivered').reduce((n, o) => n + (Number(o.total_pkr) || 0), 0);
     $('stat-today').textContent = today.length;
     $('stat-today-sub').textContent = pending ? pending + ' pending in total' : 'Nothing pending';
     $('stat-open-orders').textContent = open;
