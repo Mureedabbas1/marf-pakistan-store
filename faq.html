@@ -25,7 +25,48 @@
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png?v=20261024-logo2">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=20261024-logo2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261024-logo2">
+<style id="marf-left-sidebar-styles">
+:root{--marf-sidebar-width:68px}
+.marf-left-sidebar{position:fixed;z-index:1000;left:0;top:0;bottom:0;width:68px;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 9px;background:rgba(9,9,9,.97);border-right:1px solid rgba(201,169,106,.24);box-shadow:8px 0 32px rgba(0,0,0,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);overflow-y:auto;scrollbar-width:none}
+.marf-left-sidebar::-webkit-scrollbar{display:none}
+.marf-side-brand{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;margin-bottom:8px;border:1px solid rgba(201,169,106,.35);border-radius:15px;background:rgba(201,169,106,.07);text-decoration:none}
+.marf-side-brand img{width:32px;height:32px;object-fit:contain}
+.marf-side-links{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%}
+.marf-side-links a{position:relative;display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;padding:0;border:1px solid transparent;border-radius:15px;color:#d9bc80;text-decoration:none;font-size:22px;line-height:1;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.marf-side-links a:hover,.marf-side-links a:focus-visible{background:rgba(201,169,106,.13);border-color:rgba(201,169,106,.38);color:#f6e5bd;transform:translateY(-1px);outline:none}
+.marf-side-links a::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);padding:9px 12px;border:1px solid rgba(201,169,106,.28);border-radius:9px;background:#111;color:#f0e6d2;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .15s}
+.marf-side-links a:hover::after,.marf-side-links a:focus-visible::after{opacity:1;visibility:visible}
+.marf-side-divider{width:34px;height:1px;flex:0 0 1px;margin:3px 0;background:rgba(201,169,106,.25)}
+.marf-side-spacer{flex:1;min-height:8px}
+.marf-side-links a[aria-label="WhatsApp MARF"]{color:#d9bc80}
+@media(min-width:768px){body{padding-left:88px!important}}
+@media(max-width:767px){.marf-left-sidebar{display:none}}
+@media(prefers-reduced-motion:reduce){.marf-side-links a,.marf-side-links a::after{transition:none}}
+</style>
 </head><body>
+<aside class="marf-left-sidebar" aria-label="MARF icon navigation">
+  <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
+  <nav class="marf-side-links" aria-label="Shop navigation">
+    <a href="index.html#top" data-label="Home" aria-label="Home" title="Home">⌂</a>
+    <a href="products.html" data-label="Shop All Products" aria-label="Shop All Products" title="Shop All Products">◇</a>
+    <a href="index.html#collections" data-label="Collections" aria-label="Collections" title="Collections">✧</a>
+    <a href="index.html#shop-categories" data-label="20 Categories" aria-label="20 Categories" title="20 Categories">▦</a>
+    <a href="index.html#live-stock" data-label="Available Now" aria-label="Available Now" title="Available Now">◉</a>
+  </nav>
+  <div class="marf-side-divider" aria-hidden="true"></div>
+  <nav class="marf-side-links" aria-label="Help and discovery">
+    <a href="gift-guide.html" data-label="Gift Guide" aria-label="Gift Guide" title="Gift Guide">♡</a>
+    <a href="blog.html" data-label="The Journal" aria-label="The Journal" title="The Journal">✎</a>
+    <a href="faq.html" data-label="FAQs" aria-label="FAQs" title="FAQs">?</a>
+    <a href="shipping.html" data-label="Shipping Policy" aria-label="Shipping Policy" title="Shipping Policy">↗</a>
+    <a href="returns.html" data-label="Returns & Refunds" aria-label="Returns & Refunds" title="Returns & Refunds">↺</a>
+    <a href="contact.html" data-label="Contact Us" aria-label="Contact Us" title="Contact Us">✉</a>
+  </nav>
+  <div class="marf-side-spacer"></div>
+  <nav class="marf-side-links" aria-label="Direct support">
+    <a href="https://wa.me/923404612368" target="_blank" rel="noopener noreferrer" data-label="WhatsApp MARF" aria-label="WhatsApp MARF" title="WhatsApp MARF">☏</a>
+  </nav>
+</aside>
 <header class="top"><a class="brand" href="index.html" aria-label="MARF Pakistan — home"><img class="brand-img" src="marf-logo.svg?v=20261024-logo2" alt="MARF Pakistan"></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="blog.html">The Journal</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></header>
 <main class="wrap article"><p class="eyebrow">HELP & INFORMATION</p><h1 class="hero-title">Frequently Asked Questions</h1><p class="intro">Quick answers about MARF Pakistan. In-stock products with confirmed prices can be submitted as Cash on Delivery order requests. MARF will contact you to confirm the order and delivery details.</p><hr class="rule"><h2>Can I place an order?</h2><p>You can submit a Cash on Delivery request for a product that appears in the live catalogue with a confirmed price and available stock. Submitting the form is a request, not final acceptance of the order. MARF will contact you to confirm availability, delivery charges and the order before dispatch.</p><h2>Which products can I order?</h2><p>Only products shown in the live catalogue with a confirmed price and available stock can be requested. Planned category cards and editorial images are for browsing and do not indicate that an item is available.</p><h2>How do I pay?</h2><p>The website currently accepts Cash on Delivery order requests only. Card payments are not enabled. Your order is not final until MARF confirms it with you.</p><h2>How much is delivery?</h2><p>Delivery charges and estimated timelines may depend on your location. If a delivery charge is not displayed at checkout, MARF will confirm it with you before dispatch. See the <a href="shipping.html">Shipping Policy</a>.</p><h2>Can I return or exchange an item?</h2><p>Please contact MARF before confirming an order to ask about the applicable return, exchange and refund terms for that item. See the <a href="returns.html">Returns & Refunds Policy</a>. Do not send an item back without contacting us first.</p><h2>How can I contact MARF Pakistan?</h2><p>Use the <a href="contact.html">Contact page</a>, or reach us through <a href="https://wa.me/923404612368">WhatsApp</a>. You can also follow <a href="https://www.instagram.com/marfglobal/">Instagram</a>, <a href="https://www.facebook.com/marfglobal">Facebook</a> and <a href="https://www.tiktok.com/@marfglobalenterprise">TikTok</a>.</p><h2>How do I care for bags and accessories?</h2><p>Care depends on the material. Follow the product label, avoid harsh cleaners unless approved by the manufacturer and store items in a cool, dry place. Read our <a href="wallet-care-guide.html">wallet care guide</a> for more general tips.</p><h2>Where can I find helpful articles?</h2><p>Visit the <a href="blog.html">MARF Journal</a> for practical guides on bags, wallets, beauty essentials and everyday organisation.</p><p class="notice">Submitting a Cash on Delivery form records an order request only. MARF will confirm product availability, delivery charges and the order with you before dispatch. Please read the Shipping Policy and Returns & Refunds Policy before proceeding.</p></main>
 <footer><span>© 2026 MARF Pakistan · Everyday, elevated.</span><span><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a></span></footer>
