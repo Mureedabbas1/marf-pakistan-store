@@ -10,7 +10,7 @@
   const fmtDate = d => { try { return new Date(d).toLocaleString('en-PK',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); } catch { return ''; } };
   const STATES = ['pending','confirmed','processing','shipped','delivered','cancelled'];
   const CATS = Object.fromEntries($$('option', $('product-form').elements.category).map(o => [o.value, o.textContent]));
-  const state = { products: [], orders: [], view: 'overview', orderStatus: 'all', orderQ: '', invQ: '', invCat: 'all', invStock: 'all' };
+  const state = { products: [], orders: [], orderItems: [], view: 'overview', orderStatus: 'all', orderQ: '', invQ: '', invCat: 'all', invStock: 'all' };
   const VIEWS = {
     overview:  ['Overview', 'Your store at a glance'],
     orders:    ['Orders', 'Cash on Delivery'],
@@ -122,6 +122,30 @@
     $('stat-today-sub').textContent = pending ? pending + ' pending in total' : 'Nothing pending';
     $('stat-open-orders').textContent = open;
     $('stat-sales').textContent = pkr(sales);
+    const delivered = os.filter(o => String(o.status).toLowerCase() === 'delivered');
+    const deliveredIds = new Set(delivered.map(o => o.id));
+    const deliveredItems = state.orderItems.filter(i => deliveredIds.has(i.order_id));
+    const productsById = new Map(ps.map(p => [p.id, p]));
+    const productSales = deliveredItems.reduce((n, i) => n + (Number(i.line_total_pkr) || 0), 0);
+    const knownCost = deliveredItems.reduce((n, i) => {
+      const p = productsById.get(i.product_id);
+      const unitCost = i.unit_cost_pkr != null ? Number(i.unit_cost_pkr) : (p && p.purchase_price_pkr != null ? Number(p.purchase_price_pkr) : null);
+      return n + (unitCost == null ? 0 : unitCost * Number(i.quantity || 0));
+    }, 0);
+    const missingCostCount = deliveredItems.filter(i => {
+      const p = productsById.get(i.product_id);
+      return i.unit_cost_pkr == null && (!p || p.purchase_price_pkr == null);
+    }).length;
+    const deliveryCollected = delivered.reduce((n, o) => n + (Number(o.shipping_pkr) || 0), 0);
+    const packagingCollected = delivered.reduce((n, o) => n + (Number(o.packaging_fee_pkr) || 0), 0);
+    const codReceived = delivered.reduce((n, o) => n + (Number(o.total_pkr) || 0), 0);
+    $('fin-sales').textContent = pkr(productSales);
+    $('fin-cost').textContent = pkr(knownCost);
+    $('fin-profit').textContent = pkr(productSales - knownCost);
+    $('fin-delivery').textContent = pkr(deliveryCollected);
+    $('fin-packaging').textContent = pkr(packagingCollected);
+    $('fin-total').textContent = pkr(codReceived);
+    $('fin-note').textContent = missingCostCount ? missingCostCount + ' delivered item(s) have no saved purchase cost; profit is currently understated. Update the product purchase price for future orders. Profit excludes actual courier and packaging-material expenses.' : 'Gross profit = product sales − purchase cost. Delivery and packaging fees are shown separately; profit excludes actual courier and packaging-material expenses.';
     $('stat-products').textContent = ps.length;
     $('stat-published').textContent = ps.filter(p => p.is_active).length + ' published in store';
     $('stat-low-stock').textContent = low;
@@ -324,9 +348,13 @@
 
   /* ---------------- Orders ---------------- */
   async function loadOrders() {
-    const { data, error } = await client.from('orders').select('id,order_number,customer_name,phone,email,shipping_address,notes,city,subtotal_pkr,shipping_pkr,total_pkr,status,created_at').order('created_at', { ascending: false }).limit(100);
+    const { data, error } = await client.from('orders').select('id,order_number,customer_name,phone,email,shipping_address,notes,city,subtotal_pkr,shipping_pkr,packaging_fee_pkr,total_pkr,status,created_at').order('created_at', { ascending: false }).limit(100);
     if (error) { const m = '<tr><td colspan="5" class="empty">Could not load orders: ' + safe(error.message) + '</td></tr>'; $('orders-table').innerHTML = m; $('recent-orders').innerHTML = m; return; }
-    state.orders = data || []; renderAll();
+    state.orders = data || [];
+    const { data: items, error: itemError } = await client.from('order_items').select('order_id,product_id,quantity,unit_price_pkr,line_total_pkr,unit_cost_pkr');
+    if (itemError) { state.orderItems = []; toast('Could not load cost breakdown: ' + itemError.message, false); }
+    else state.orderItems = items || [];
+    renderAll();
   }
   $('refresh-orders').addEventListener('click', async () => { await loadOrders(); toast('Orders refreshed.'); });
   async function setOrderStatus(id, value, sel) {
@@ -347,7 +375,7 @@
     $('drawer-title').textContent = 'Order #' + o.order_number; $('drawer-title').dataset.id = id;
     $('drawer-sub').textContent = fmtDate(o.created_at);
     if (!keepOpen) { box.innerHTML = '<p class="empty">Loading order details…</p>'; drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
-    const { data: items, error } = await client.from('order_items').select('product_name,unit_price_pkr,quantity,line_total_pkr').eq('order_id', o.id);
+    const { data: items, error } = await client.from('order_items').select('product_name,unit_price_pkr,quantity,line_total_pkr,unit_cost_pkr').eq('order_id', o.id);
     if (error) { box.innerHTML = '<p class="admin-message">Could not load items: ' + safe(error.message) + '</p>'; return; }
     const wa = waNumber(o.phone);
     const msg = encodeURIComponent('Assalam o Alaikum ' + (o.customer_name || '') + ', this is MARF Pakistan regarding your order #' + o.order_number + '.');
@@ -357,8 +385,8 @@
       '<div class="d-actions"><a class="btn sm" href="tel:' + safe(String(o.phone || '').replace(/[^\d+]/g, '')) + '"><svg class="ic"><use href="#i-phone"/></svg>Call</a>' + (wa ? '<a class="btn sm" href="https://wa.me/' + wa + '?text=' + msg + '" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>' : '') + '</div></div>' +
       '<div class="d-sec"><h4>Delivery address</h4><div class="d-box">' + safe(o.shipping_address || 'No address saved. Open the order in the database for details.') + '</div></div>' +
       (o.notes ? '<div class="d-sec"><h4>Customer note</h4><div class="d-box">' + safe(o.notes) + '</div></div>' : '') +
-      '<div class="d-sec"><h4>Items</h4><div class="d-lines">' + ((items || []).length ? items.map(i => '<div class="d-line"><span>' + safe(i.product_name) + '<small>' + pkr(i.unit_price_pkr) + ' × ' + Number(i.quantity) + '</small></span><strong>' + pkr(i.line_total_pkr) + '</strong></div>').join('') : '<p class="muted sm">No items found.</p>') + '</div></div>' +
-      '<div class="d-total"><div><span>Subtotal</span><span>' + pkr(o.subtotal_pkr) + '</span></div><div><span>Delivery</span><span>' + (o.shipping_pkr == null ? 'TBD' : pkr(o.shipping_pkr)) + '</span></div><div><span>Total</span><span>' + (o.total_pkr == null ? 'TBD' : pkr(o.total_pkr)) + '</span></div></div>';
+      '<div class="d-sec"><h4>Items</h4><div class="d-lines">' + ((items || []).length ? items.map(i => '<div class="d-line"><span>' + safe(i.product_name) + '<small>Sale ' + pkr(i.unit_price_pkr) + ' × ' + Number(i.quantity) + ' · Cost ' + (i.unit_cost_pkr == null ? 'Not saved' : pkr(i.unit_cost_pkr)) + ' each</small></span><strong>' + pkr(i.line_total_pkr) + '</strong></div>').join('') : '<p class="muted sm">No items found.</p>') + '</div></div>' +
+      '<div class="d-total"><div><span>Product subtotal</span><span>' + pkr(o.subtotal_pkr) + '</span></div><div><span>Delivery fee</span><span>' + (o.shipping_pkr == null ? 'TBD' : pkr(o.shipping_pkr)) + '</span></div><div><span>Packaging fee</span><span>' + pkr(o.packaging_fee_pkr || 0) + '</span></div><div><strong>Total COD</strong><strong>' + (o.total_pkr == null ? 'TBD' : pkr(o.total_pkr)) + '</strong></div></div>';
   }
   function closeDrawer() { const d = $('order-drawer'); d.classList.remove('open'); d.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
   $('drawer-close').addEventListener('click', closeDrawer);
