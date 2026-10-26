@@ -1,0 +1,297 @@
+/* =====================================================================
+   MARF Pakistan — My MARF (account.html) premium visual layer
+   DESIGN ONLY: no text, markup, ids or JavaScript behaviour is changed.
+   Palette follows BRAND-GUIDE.md: matte black / champagne gold / ivory.
+   ===================================================================== */
+
+body{
+  --mp-gold:#d4af67;
+  --mp-gold-light:#f0e0b4;
+  --mp-gold-deep:#9c7a35;
+  --mp-ivory:#f4f0e8;
+  --mp-muted:#a39c8c;
+  --mp-line:rgba(212,175,103,.2);
+  --mp-line-strong:rgba(212,175,103,.42);
+  --mp-foil:linear-gradient(115deg,#8f6d2f 0%,#d4af67 24%,#f6e9c1 48%,#caa152 70%,#8f6d2f 100%);
+  --mp-ease:cubic-bezier(.16,1,.3,1);
+  background:
+    radial-gradient(900px 520px at 78% -6%,rgba(212,175,103,.11),transparent 62%),
+    radial-gradient(780px 520px at 6% 42%,rgba(212,175,103,.055),transparent 62%),
+    #090909;
+}
+
+/* ---------- Slim utility strip under the main header ---------- */
+body>header.account-header:not(.site-header){
+  padding:13px clamp(18px,5vw,70px);
+  gap:16px;
+  background:rgba(255,255,255,.012);
+  border-bottom:1px solid var(--mp-line);
+}
+body>header.account-header:not(.site-header)::after{display:none}
+body>header.account-header .account-brand{
+  font:500 14px/1 "Cormorant Garamond",Georgia,serif;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--mp-ivory);
+}
+body>header.account-header .account-brand span{color:var(--mp-gold)!important}
+body>header.account-header nav{
+  gap:clamp(16px,2.4vw,30px);flex-wrap:nowrap;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#cdc6b4;
+}
+body>header.account-header nav a{position:relative;padding:4px 0;transition:color .3s}
+body>header.account-header nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--mp-foil);transition:right .5s var(--mp-ease);
+}
+body>header.account-header nav a:hover{color:var(--mp-gold-light)}
+body>header.account-header nav a:hover::after{right:0}
+
+/* ---------- Hero ---------- */
+body>header.account-header:not(.site-header)+main.account-wrap{
+  padding-top:0;
+  margin-top:clamp(40px,6vw,78px);
+  margin-bottom:clamp(60px,8vw,110px);
+}
+main.account-wrap>.eyebrow{
+  gap:11px;padding:9px 16px;
+  font-size:10px;letter-spacing:.26em;font-weight:600;color:var(--mp-gold-light);
+  border:1px solid var(--mp-line-strong);
+  background:linear-gradient(180deg,rgba(212,175,103,.12),rgba(212,175,103,.03));
+  box-shadow:0 8px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);
+}
+main.account-wrap>.eyebrow::before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--mp-gold);box-shadow:0 0 10px 2px rgba(212,175,103,.65);
+}
+main.account-wrap h1{
+  margin:26px 0 18px;
+  font-weight:300;letter-spacing:-.025em;line-height:1.02;
+  font-size:clamp(46px,6.6vw,82px);color:var(--mp-ivory);
+}
+main.account-wrap h1 em{
+  font-style:italic;font-weight:400;padding:0 .08em .1em 0;
+  background:var(--mp-foil);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+main.account-wrap .intro{
+  max-width:640px;color:#bdb6a6;font-weight:300;font-size:14px;line-height:1.95;
+}
+main.account-wrap .intro::after{
+  content:"";display:block;width:64px;height:1px;margin:30px auto 0;background:var(--mp-foil);
+}
+
+/* ---------- Sign in / Create account card ---------- */
+main.account-wrap .auth-card{
+  position:relative;overflow:hidden;isolation:isolate;
+  margin-top:34px;
+  border-radius:26px;
+  border:1px solid rgba(212,175,103,.36);
+  background:
+    radial-gradient(ellipse 70% 60% at 0% 0%,rgba(212,175,103,.14),transparent 62%),
+    radial-gradient(ellipse 50% 40% at 100% 100%,rgba(212,175,103,.06),transparent 70%),
+    linear-gradient(150deg,rgba(26,23,17,.98),rgba(9,9,9,.97));
+  box-shadow:
+    0 40px 110px rgba(0,0,0,.6),
+    0 0 0 1px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(240,224,180,.14);
+}
+main.account-wrap .auth-card::after{
+  content:"";position:absolute;z-index:-1;left:-34px;bottom:-40px;
+  width:270px;height:270px;opacity:.05;pointer-events:none;
+  background:url("marf-monogram.png") center/contain no-repeat;
+}
+main.account-wrap .auth-card:before{
+  color:var(--mp-gold);font-size:9px;letter-spacing:.3em;font-weight:600;
+}
+main.account-wrap .auth-card #auth-title{
+  font-weight:400;color:#f7f0e3;letter-spacing:-.01em;
+}
+main.account-wrap .auth-card #auth-help{color:#aaa393;font-size:12px;font-weight:300;line-height:1.8}
+
+/* tabs */
+main.account-wrap .tabs{
+  padding:5px;gap:6px;border-radius:13px;
+  border:1px solid var(--mp-line);
+  background:rgba(0,0,0,.38);
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.35);
+}
+main.account-wrap .tabs button{
+  border-radius:9px;min-height:44px;
+  font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  white-space:nowrap;color:#bdb5a4;border-color:transparent;
+  transition:color .3s,background .3s,box-shadow .3s,border-color .3s;
+}
+main.account-wrap .tabs button:hover{color:var(--mp-gold-light);border-color:var(--mp-line)}
+main.account-wrap .tabs button.active{
+  color:#15110a;border-color:transparent;
+  background:var(--mp-foil);
+  box-shadow:0 8px 22px rgba(212,175,103,.22),inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* ---------- Form fields (login + profile) ---------- */
+main.account-wrap label{
+  gap:9px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#bdb5a4;
+}
+main.account-wrap input{
+  min-height:50px;padding:14px 16px;border-radius:11px;
+  border:1px solid rgba(212,175,103,.24);
+  background:rgba(4,4,4,.7);
+  color:var(--mp-ivory);font-size:14px;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.4);
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+main.account-wrap input::placeholder{color:#6e685b}
+main.account-wrap input:hover{border-color:rgba(212,175,103,.4)}
+main.account-wrap input:focus{
+  outline:none;border-color:var(--mp-gold);background:rgba(8,8,8,.92);
+  box-shadow:0 0 0 4px rgba(212,175,103,.13),inset 0 2px 8px rgba(0,0,0,.35);
+}
+main.account-wrap input:-webkit-autofill{
+  -webkit-text-fill-color:var(--mp-ivory);
+  box-shadow:0 0 0 100px #0c0c0c inset;
+  caret-color:var(--mp-ivory);
+}
+
+/* ---------- Buttons ---------- */
+main.account-wrap .button{
+  min-height:50px;border-radius:11px;
+  font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .35s var(--mp-ease),box-shadow .35s,background-position .7s var(--mp-ease),border-color .3s,color .3s,background .3s;
+}
+main.account-wrap .button.gold{
+  color:#15110a;font-weight:800;border:0;
+  background:var(--mp-foil);background-size:220% 100%;background-position:0 0;
+  box-shadow:0 14px 34px rgba(212,175,103,.2),inset 0 1px 0 rgba(255,255,255,.4);
+}
+main.account-wrap .button.gold:hover{
+  background-position:100% 0;transform:translateY(-2px);
+  box-shadow:0 20px 44px rgba(212,175,103,.3),inset 0 1px 0 rgba(255,255,255,.45);
+}
+main.account-wrap .button.gold:active{transform:translateY(0)}
+main.account-wrap .button:not(.gold){
+  align-self:start;justify-self:start;padding:0 26px;
+  color:var(--mp-gold-light);border:1px solid var(--mp-line-strong);background:transparent;
+}
+main.account-wrap .button:not(.gold):hover{
+  background:rgba(212,175,103,.1);border-color:var(--mp-gold);transform:translateY(-1px);
+}
+main.account-wrap .button:focus-visible,
+main.account-wrap .tabs button:focus-visible{
+  outline:2px solid var(--mp-gold);outline-offset:3px;
+}
+main.account-wrap .button:disabled{opacity:.6;cursor:wait;transform:none}
+
+/* notes under the form */
+main.account-wrap .auth-card .small{color:#9d9686}
+main.account-wrap .auth-card>p:last-child{
+  border-top:1px solid var(--mp-line);color:#a39c8c;letter-spacing:.02em;
+}
+
+/* ---------- Dashboard ---------- */
+main.account-wrap .dashboard{gap:22px;margin-top:34px}
+main.account-wrap .dash-top{gap:22px;align-items:stretch}
+main.account-wrap .glass.panel{
+  position:relative;padding:clamp(24px,3vw,36px);
+  border-radius:22px;
+  border:1px solid var(--mp-line);
+  background:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.012) 55%,rgba(0,0,0,.2));
+  box-shadow:0 26px 70px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:border-color .4s,box-shadow .4s;
+}
+main.account-wrap .glass.panel:hover{
+  border-color:rgba(212,175,103,.34);
+  box-shadow:0 30px 80px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.07);
+}
+main.account-wrap .panel h2{
+  font-size:clamp(26px,3vw,32px);font-weight:400;letter-spacing:-.005em;color:#f5ecd9;
+}
+main.account-wrap .panel .eyebrow{font-size:10px;letter-spacing:.26em;font-weight:600;color:var(--mp-gold)}
+
+/* rewards balance hero card */
+main.account-wrap .dash-top>.panel:first-child{
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;isolation:isolate;
+  border-color:rgba(212,175,103,.4);
+  background:
+    radial-gradient(ellipse 80% 70% at 15% 0%,rgba(212,175,103,.2),transparent 62%),
+    linear-gradient(150deg,rgba(28,24,17,.98),rgba(9,9,9,.97));
+}
+main.account-wrap .dash-top>.panel:first-child::after{
+  content:"";position:absolute;z-index:-1;right:-30px;bottom:-34px;
+  width:230px;height:230px;opacity:.07;pointer-events:none;
+  background:url("marf-monogram.png") center/contain no-repeat;
+}
+main.account-wrap .points{
+  margin:16px 0 8px;
+  font-size:clamp(76px,9vw,112px);font-weight:300;line-height:.95;letter-spacing:-.02em;
+  background:var(--mp-foil);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+main.account-wrap #points-value{
+  font-size:13px;font-weight:500;letter-spacing:.05em;color:var(--mp-gold-light);margin:0 0 16px;
+}
+main.account-wrap .dash-top>.panel:first-child .small:last-child{
+  padding-top:16px;border-top:1px solid var(--mp-line);color:#9d9686;font-weight:300;
+}
+
+/* member profile card */
+main.account-wrap #member-name{margin-bottom:6px}
+main.account-wrap #member-email{margin:0 0 6px;color:var(--mp-gold-light);letter-spacing:.03em;overflow-wrap:anywhere}
+main.account-wrap #profile-form{margin-top:18px}
+main.account-wrap #profile-message{margin:12px 0 4px}
+
+/* ---------- Tables ---------- */
+main.account-wrap .table-wrap{margin-top:6px;border-radius:12px}
+main.account-wrap table{font-size:13px;border-collapse:separate;border-spacing:0}
+main.account-wrap th{
+  padding:14px 14px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mp-gold);border-bottom:1px solid var(--mp-line-strong);
+}
+main.account-wrap td{
+  padding:17px 14px;color:#e8e1d2;font-weight:400;
+  border-bottom:1px solid rgba(212,175,103,.1);
+  transition:background .25s;
+}
+main.account-wrap tbody tr:last-child td{border-bottom:0}
+main.account-wrap tbody tr:hover td{background:rgba(212,175,103,.05)}
+main.account-wrap .panel table th:last-child,
+main.account-wrap .panel table td:last-child:not([colspan]){text-align:right}
+main.account-wrap #ledger-body td:last-child:not([colspan]){color:var(--mp-gold-light);font-weight:600}
+main.account-wrap td[colspan]{
+  padding:38px 14px;text-align:center;white-space:normal;
+  color:var(--mp-muted);font-weight:300;letter-spacing:.03em;
+}
+main.account-wrap .panel>.small:last-child{margin:20px 0 0;color:#8f8878;font-weight:300}
+
+/* ---------- Footer ---------- */
+body>footer.footer{
+  padding:32px 24px;border-top:1px solid var(--mp-line);
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8f8878;
+}
+
+/* ---------- Tablet / mobile ---------- */
+@media(max-width:900px){
+  main.account-wrap .dash-top{grid-template-columns:1fr}
+}
+@media(max-width:767px){
+  body>header.account-header:not(.site-header){
+    flex-direction:row;align-items:center;justify-content:space-between;padding:12px 14px;gap:10px;
+  }
+  body>header.account-header .account-brand{font-size:12px;letter-spacing:.26em}
+  body>header.account-header nav{gap:14px;font-size:9px;letter-spacing:.16em}
+  main.account-wrap>.eyebrow{padding:8px 13px;font-size:9px;letter-spacing:.16em;white-space:nowrap}
+  main.account-wrap h1{font-size:clamp(42px,12.5vw,56px)}
+  main.account-wrap .intro{font-size:13px;line-height:1.85}
+  main.account-wrap .auth-card{border-radius:22px;padding:24px 20px}
+  main.account-wrap .auth-card::after{width:190px;height:190px;left:-30px;bottom:-30px}
+  main.account-wrap .tabs button{padding:12px 6px;font-size:10px;letter-spacing:.06em}
+  main.account-wrap .glass.panel{border-radius:18px;padding:22px 18px}
+  main.account-wrap .points{font-size:78px}
+  main.account-wrap th,main.account-wrap td{padding-left:10px;padding-right:10px}
+  body>footer.footer{font-size:9px;letter-spacing:.18em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  main.account-wrap *,
+  body>header.account-header nav a::after{transition:none!important}
+}
