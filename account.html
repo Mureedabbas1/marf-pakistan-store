@@ -34,6 +34,25 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
 <link rel="stylesheet" href="account-premium.css?v=20261026-premium1">
 <link rel="stylesheet" href="account-lamp.css?v=20261026-lamp1">
 <style id="my-marf-login-cta-style">.site-header .header-actions a.my-marf-login-cta{display:inline-flex!important;align-items:center;justify-content:center;padding:11px 15px!important;border:1px solid #c9a96a!important;border-radius:8px!important;background:linear-gradient(115deg,#c9a96a,#f0d99f,#c9a96a)!important;color:#100e09!important;font-family:Manrope,Arial,sans-serif!important;font-size:11px!important;font-weight:900!important;letter-spacing:.07em!important;line-height:1.2!important;text-decoration:none!important;text-transform:uppercase!important;white-space:nowrap!important;box-shadow:0 6px 22px rgba(201,169,106,.22)!important}.site-header .header-actions a.my-marf-login-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}@media(max-width:767px){.site-header .header-actions a.my-marf-login-cta{font-size:9px!important;padding:9px 8px!important;letter-spacing:.02em!important}.site-header .header-actions{gap:7px}}</style>
+
+<style id="marf-membership-tiers-style">
+.marf-membership-tiers{width:min(1100px,100%);margin:28px auto 34px;padding:0 18px;box-sizing:border-box}
+.marf-membership-tiers .tiers-heading{text-align:center;margin:0 0 7px;font-size:clamp(23px,3vw,32px);letter-spacing:.02em}
+.marf-membership-tiers .tiers-subtitle{text-align:center;color:var(--muted,#aaa);font-size:13px;margin:0 0 22px}
+.marf-tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.marf-tier-card{position:relative;overflow:hidden;border:1px solid rgba(201,169,106,.28);border-radius:16px;padding:22px 20px;background:rgba(255,255,255,.035);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.marf-tier-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--tier-accent,#b9bbc2)}
+.marf-tier-card.gold{--tier-accent:#c9a96a;border-color:rgba(201,169,106,.62);background:linear-gradient(145deg,rgba(201,169,106,.12),rgba(255,255,255,.025))}
+.marf-tier-card.prive{--tier-accent:#e5e2da;border-color:rgba(229,226,218,.42);background:linear-gradient(145deg,rgba(229,226,218,.09),rgba(255,255,255,.025))}
+.marf-tier-kicker{font-size:10px;letter-spacing:.18em;color:var(--tier-accent);font-weight:800;margin:0 0 12px}
+.marf-tier-name{font-size:23px;letter-spacing:.06em;margin:0 0 7px;font-weight:700}
+.marf-tier-desc{font-size:12px;line-height:1.65;color:var(--muted,#aaa);min-height:40px;margin:0 0 15px}
+.marf-tier-card ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.marf-tier-card li{font-size:12px;line-height:1.5;display:flex;gap:8px}
+.marf-tier-card li:before{content:"✦";color:var(--tier-accent);flex:0 0 auto}
+.marf-tier-note{text-align:center;color:var(--muted,#aaa);font-size:11px;line-height:1.6;margin:16px 0 0}
+@media(max-width:760px){.marf-tier-grid{grid-template-columns:1fr}.marf-tier-card{padding:20px}.marf-tier-desc{min-height:0}}
+</style>
 </head><body>
 <aside class="marf-left-sidebar" aria-label="MARF icon navigation">
   <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
@@ -68,6 +87,32 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
 <main class="account-wrap"><div class="account-pitch"><span class="eyebrow">MARF Rewards Club · Pakistan</span><h1>GET YOUR FREE<br><em>MARF CLUB CARD</em></h1>
 <p class="intro">Create your MARF account to keep your order history together and collect rewards. Earn 5 points for every PKR 100 of eligible product subtotal after your order is marked delivered. Every 100 points are worth PKR 10 in rewards.</p>
 </div>
+
+<section class="marf-membership-tiers" aria-labelledby="marf-tiers-title">
+  <h2 class="tiers-heading" id="marf-tiers-title">CHOOSE YOUR MARF LEVEL</h2>
+  <p class="tiers-subtitle">Three levels. One more rewarding MARF experience.</p>
+  <div class="marf-tier-grid">
+    <article class="marf-tier-card silver">
+      <p class="marf-tier-kicker">LEVEL 01 · START HERE</p>
+      <h3 class="marf-tier-name">MARF SILVER</h3>
+      <p class="marf-tier-desc">Your complimentary starting membership.</p>
+      <ul><li>Free to join with a MARF account</li><li>Earn 5 points per eligible PKR 100</li><li>Member offers and collection updates</li></ul>
+    </article>
+    <article class="marf-tier-card gold">
+      <p class="marf-tier-kicker">LEVEL 02 · LOYAL MEMBER</p>
+      <h3 class="marf-tier-name">MARF GOLD</h3>
+      <p class="marf-tier-desc">For customers who make MARF part of their everyday.</p>
+      <ul><li>All Silver membership benefits</li><li>Access to selected member-only offers</li><li>Early access to selected sales</li></ul>
+    </article>
+    <article class="marf-tier-card prive">
+      <p class="marf-tier-kicker">LEVEL 03 · VIP</p>
+      <h3 class="marf-tier-name">MARF PRIVÉ</h3>
+      <p class="marf-tier-desc">A more exclusive experience for valued MARF customers.</p>
+      <ul><li>All Gold membership benefits</li><li>Priority access to selected new collections</li><li>Exclusive offers for Privé members</li></ul>
+    </article>
+  </div>
+  <p class="marf-tier-note">Membership benefits and upgrade eligibility will be confirmed in the MARF Club terms. Points are credited after eligible orders are marked delivered.</p>
+</section>
 <div class="marf-lamp" id="marf-lamp"><div class="lamp-wire"></div><svg class="lamp-svg" viewBox="0 0 160 94" aria-hidden="true" focusable="false"><defs><linearGradient id="lamp-foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f6d2f"/><stop offset=".3" stop-color="#d4af67"/><stop offset=".5" stop-color="#f6e9c1"/><stop offset=".75" stop-color="#caa152"/><stop offset="1" stop-color="#8f6d2f"/></linearGradient></defs><rect x="68" y="0" width="24" height="9" rx="3" fill="url(#lamp-foil)"/><path d="M52 8H108L152 66H8Z" fill="url(#lamp-foil)"/><ellipse class="lamp-rim" cx="80" cy="66" rx="72" ry="8"/><circle class="lamp-bulb" cx="80" cy="72" r="10"/></svg><button type="button" class="lamp-pull" aria-pressed="false" aria-label="Pull cord to turn the lamp on" title="Pull the cord"></button><div class="lamp-cone" aria-hidden="true"></div></div>
 <section class="glass auth-card" id="auth-panel" aria-labelledby="auth-title"><div class="tabs"><button type="button" class="active" id="tab-login">Sign in</button><button type="button" id="tab-signup">Create account</button></div><h2 id="auth-title" style="font-size:34px;margin:0 0 8px">Welcome back.</h2><p class="small" id="auth-help">Sign in to check your MARF Rewards balance and orders.</p>
 <form id="auth-form"><label class="full hidden" id="name-field">Full name<input name="full_name" autocomplete="name" minlength="2" maxlength="120" placeholder="Your full name"></label><label class="full">Email address<input name="identifier" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required></label><p class="small full" id="login-method-help">Enter the email address linked to your MARF account.</p><label class="full">Password<input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="72" placeholder="At least 8 characters"></label><button class="button gold full" id="auth-submit" type="submit">Sign in securely</button></form>
