@@ -2,7 +2,8 @@
 'use strict';
 const client=window.supabase.createClient('https://bufgifgroghgjmbarnwn.supabase.co','sb_publishable_2ERT7quoEZKc1KkP-BeUGg_OBdWwhL2');
 const $=id=>document.getElementById(id),authPanel=$('auth-panel'),dashboard=$('dashboard'),form=$('auth-form');let mode='login',currentUser=null;
-function normalisePhone(value){let p=String(value||'').replace(/[\\s()-]/g,'');if(p.startsWith('03')&&p.length===11)p='+92'+p.slice(1);else if(p.startsWith('92')&&p.length===12)p='+'+p;return p;}).format(Number(n||0));
+function normalisePhone(value){let p=String(value||'').replace(/[\s()-]/g,'');if(p.startsWith('03')&&p.length===11)p='+92'+p.slice(1);else if(p.startsWith('92')&&p.length===12)p='+'+p;return p;}
+const money=n=>new Intl.NumberFormat('en-PK',{style:'currency',currency:'PKR',maximumFractionDigits:0}).format(Number(n||0));
 const date=s=>s?new Date(s).toLocaleDateString('en-PK',{day:'2-digit',month:'short',year:'numeric'}):'—';
 const safeText=(v,f='—')=>v==null||v===''?f:String(v);
 function message(id,text,isError=false){const el=$(id);if(el){el.textContent=text;el.style.color=isError?'#f0a39a':'var(--gold)';}}
