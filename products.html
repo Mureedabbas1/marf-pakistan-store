@@ -57,6 +57,11 @@
     .checkout-totals{display:grid;gap:10px;margin:18px 0}
     .checkout-total-row{display:flex;justify-content:space-between;gap:15px;font-size:13px;color:var(--muted)}
     .checkout-total-row strong{color:var(--ivory,#f5f0e7)}
+    .loyalty-checkout{margin:18px 0;padding:18px;border:1px solid rgba(201,169,106,.32);border-radius:12px;background:linear-gradient(135deg,rgba(201,169,106,.09),rgba(255,255,255,.015))}
+    .loyalty-checkout label{display:flex;align-items:flex-start;gap:11px;color:#f5f0e7;font-size:13px;line-height:1.65;cursor:pointer}
+    .loyalty-checkout input[type=checkbox]{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;accent-color:#c9a96a}
+    .loyalty-checkout input:disabled{opacity:.45;cursor:not-allowed}
+    .loyalty-checkout-note{display:block;margin:8px 0 0 29px;color:var(--muted);font-size:11px;line-height:1.7}
     .cod-checkout-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
     .cod-checkout-form label{display:grid;gap:7px;color:var(--muted);font-size:11px}
     .cod-checkout-form input,.cod-checkout-form textarea,.cod-checkout-form select{width:100%;box-sizing:border-box;border:1px solid var(--line);background:#101010;color:#f5f0e7;border-radius:6px;padding:12px;font:inherit;font-size:13px}
@@ -184,7 +189,12 @@
         <div class="checkout-total-row"><span>Items subtotal</span><strong id="checkout-subtotal">PKR 0</strong></div>
         <div class="checkout-total-row"><span>Packaging</span><strong id="checkout-packaging-fee">PKR 0</strong></div>
         <div class="checkout-total-row"><span>Delivery</span><strong id="checkout-delivery">To be confirmed</strong></div>
+        <div class="checkout-total-row" id="loyalty-discount-row" hidden><span>MARF points discount</span><strong id="checkout-loyalty-discount">− PKR 0</strong></div>
       </div>
+      <section class="loyalty-checkout" aria-label="Use MARF loyalty points">
+        <label><input type="checkbox" id="use-points-toggle" disabled><span><strong>Use my MARF points</strong><br><span id="loyalty-checkout-status">Checking your MARF Rewards balance…</span></span></label>
+        <small class="loyalty-checkout-note">Optional. At least 100 points are required. If you leave this unchecked, your points stay saved for Gold (1,200 points) or Privé (2,500 points). Points can discount merchandise only; delivery and packaging are not discounted.</small>
+      </section>
       <form id="cod-checkout-form" class="cod-checkout-form">
         <label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="120" placeholder="Your full name"></label>
         <label>Mobile number<input name="phone" type="tel" autocomplete="tel" required minlength="7" maxlength="30" placeholder="03xx xxxxxxx"></label>
@@ -255,7 +265,7 @@
   </main>
   <footer class="site-footer"><div><a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="shipping.html">Shipping</a> · <a href="returns.html">Returns</a> · <a href="contact.html">Contact</a></div><p>© 2026 MARF Pakistan. Everyday, elevated.</p></footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
-  <script src="storefront.js?v=20261024-multiphotos1" defer></script>
+  <script src="storefront.js?v=20261026-loyalty-redemption1" defer></script>
   <script>
     (() => {
       const form = document.getElementById('cod-checkout-form');
