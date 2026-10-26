@@ -50,8 +50,26 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
 .marf-tier-card ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
 .marf-tier-card li{font-size:12px;line-height:1.5;display:flex;gap:8px}
 .marf-tier-card li:before{content:"✦";color:var(--tier-accent);flex:0 0 auto}
+
+/* Physical-style membership card samples paired with each tier's details */
+.membership-login-layout .marf-tier-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.82fr);align-items:center;gap:18px}
+.marf-tier-copy{min-width:0}
+.marf-member-card-preview{position:relative;isolation:isolate;aspect-ratio:1.586/1;width:100%;max-width:290px;justify-self:end;overflow:hidden;padding:15px 16px;border-radius:13px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 14px 28px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.24);transform:perspective(700px) rotateY(-5deg) rotateX(2deg)}
+.marf-member-card-preview:before{content:"";position:absolute;z-index:-1;width:180px;height:180px;right:-48px;top:-72px;border:1px solid currentColor;border-radius:50%;opacity:.22;box-shadow:0 0 0 14px rgba(255,255,255,.025),0 0 0 30px rgba(255,255,255,.02)}
+.marf-member-card-preview:after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(125deg,transparent 15%,rgba(255,255,255,.11) 45%,transparent 62%);pointer-events:none}
+.silver-preview{color:#f0f0ed;background:radial-gradient(ellipse at 80% 10%,rgba(255,255,255,.22),transparent 45%),linear-gradient(135deg,#55585a,#202326 55%,#73777a);border:1px solid rgba(230,230,230,.6)}
+.gold-preview{color:#f8e4b1;background:radial-gradient(ellipse at 80% 10%,rgba(255,224,151,.24),transparent 45%),linear-gradient(135deg,#574326,#17130d 58%,#9d773b);border:1px solid rgba(220,184,109,.7)}
+.prive-preview{color:#f0eadc;background:radial-gradient(ellipse at 80% 10%,rgba(255,255,255,.2),transparent 45%),linear-gradient(135deg,#33312d,#090909 58%,#6d675d);border:1px solid rgba(231,224,208,.68)}
+.member-card-top,.member-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.member-card-top>span:first-child{font:600 19px/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.19em}
+.member-card-level{font-size:7px;letter-spacing:.16em;opacity:.82}
+.member-card-chip{width:29px;height:22px;border:1px solid currentColor;border-radius:5px;opacity:.8;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden}
+.member-card-chip i{border:1px solid currentColor;opacity:.8}
+.member-card-name{font:500 clamp(16px,1.7vw,22px)/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.12em;white-space:nowrap}
+.member-card-bottom{font-size:6px;letter-spacing:.12em;opacity:.85}
 .marf-tier-note{text-align:center;color:var(--muted,#aaa);font-size:11px;line-height:1.6;margin:16px 0 0}
 @media(max-width:760px){.marf-tier-grid{grid-template-columns:1fr}.marf-tier-card{padding:20px}.marf-tier-desc{min-height:0}}
+@media(max-width:560px){.membership-login-layout .marf-tier-card{grid-template-columns:1fr;gap:16px}.marf-member-card-preview{justify-self:start;width:min(100%,290px);transform:none}.member-card-name{font-size:21px}}
 </style>
 
 <style id="marf-membership-login-layout-style">
@@ -135,22 +153,46 @@ main.account-wrap.membership-login-layout{
   <p class="tiers-subtitle">Three levels. One more rewarding MARF experience.</p>
   <div class="marf-tier-grid">
     <article class="marf-tier-card silver">
-      <p class="marf-tier-kicker">LEVEL 01 · START HERE</p>
-      <h3 class="marf-tier-name">MARF SILVER</h3>
-      <p class="marf-tier-desc">Your complimentary starting membership.</p>
-      <ul><li>Free to join with a MARF account</li><li>Earn 5 points per eligible PKR 100</li><li>Member offers and collection updates</li></ul>
+      <div class="marf-tier-copy">
+        <p class="marf-tier-kicker">LEVEL 01 · START HERE</p>
+        <h3 class="marf-tier-name">MARF SILVER</h3>
+        <p class="marf-tier-desc">Your complimentary starting membership.</p>
+        <ul><li>Free to join with a MARF account</li><li>Earn 5 points per eligible PKR 100</li><li>Member offers and collection updates</li></ul>
+      </div>
+      <div class="marf-member-card-preview silver-preview" role="img" aria-label="Sample MARF Silver membership card design">
+        <div class="member-card-top"><span>MARF</span><span class="member-card-level">MEMBER CARD</span></div>
+        <div class="member-card-chip" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="member-card-name">MARF SILVER</div>
+        <div class="member-card-bottom"><span>EVERYDAY, ELEVATED.</span><span>01 / SILVER</span></div>
+      </div>
     </article>
     <article class="marf-tier-card gold">
-      <p class="marf-tier-kicker">LEVEL 02 · LOYAL MEMBER</p>
-      <h3 class="marf-tier-name">MARF GOLD</h3>
-      <p class="marf-tier-desc">For customers who make MARF part of their everyday.</p>
-      <ul><li>All Silver membership benefits</li><li>Access to selected member-only offers</li><li>Early access to selected sales</li></ul>
+      <div class="marf-tier-copy">
+        <p class="marf-tier-kicker">LEVEL 02 · LOYAL MEMBER</p>
+        <h3 class="marf-tier-name">MARF GOLD</h3>
+        <p class="marf-tier-desc">For customers who make MARF part of their everyday.</p>
+        <ul><li>All Silver membership benefits</li><li>Access to selected member-only offers</li><li>Early access to selected sales</li></ul>
+      </div>
+      <div class="marf-member-card-preview gold-preview" role="img" aria-label="Sample MARF Gold membership card design">
+        <div class="member-card-top"><span>MARF</span><span class="member-card-level">MEMBER CARD</span></div>
+        <div class="member-card-chip" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="member-card-name">MARF GOLD</div>
+        <div class="member-card-bottom"><span>EVERYDAY, ELEVATED.</span><span>02 / GOLD</span></div>
+      </div>
     </article>
     <article class="marf-tier-card prive">
-      <p class="marf-tier-kicker">LEVEL 03 · VIP</p>
-      <h3 class="marf-tier-name">MARF PRIVÉ</h3>
-      <p class="marf-tier-desc">A more exclusive experience for valued MARF customers.</p>
-      <ul><li>All Gold membership benefits</li><li>Priority access to selected new collections</li><li>Exclusive offers for Privé members</li></ul>
+      <div class="marf-tier-copy">
+        <p class="marf-tier-kicker">LEVEL 03 · VIP</p>
+        <h3 class="marf-tier-name">MARF PRIVÉ</h3>
+        <p class="marf-tier-desc">A more exclusive experience for valued MARF customers.</p>
+        <ul><li>All Gold membership benefits</li><li>Priority access to selected new collections</li><li>Exclusive offers for Privé members</li></ul>
+      </div>
+      <div class="marf-member-card-preview prive-preview" role="img" aria-label="Sample MARF Privé membership card design">
+        <div class="member-card-top"><span>MARF</span><span class="member-card-level">PRIVATE CLUB</span></div>
+        <div class="member-card-chip" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="member-card-name">MARF PRIVÉ</div>
+        <div class="member-card-bottom"><span>EXCLUSIVE MEMBERSHIP</span><span>03 / PRIVÉ</span></div>
+      </div>
     </article>
   </div>
   <p class="marf-tier-note">Membership benefits and upgrade eligibility will be confirmed in the MARF Club terms. Points are credited after eligible orders are marked delivered.</p>
