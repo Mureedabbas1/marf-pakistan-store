@@ -190,7 +190,7 @@
   client.auth.onAuthStateChange((event,session)=>{
     if(event==='SIGNED_IN' || event==='SIGNED_OUT' || event==='TOKEN_REFRESHED') {
       currentUser=session?.user||null;
-      loadMemberPoints().then(renderCart);
+      Promise.resolve().then(()=>loadMemberPoints()).then(renderCart);
     }
   });
   document.getElementById('cod-checkout-form')?.addEventListener('submit',async event=>{
