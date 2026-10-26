@@ -19,6 +19,7 @@
   const pointsStatus = document.getElementById('loyalty-checkout-status');
   const discountRow = document.getElementById('loyalty-discount-row');
   const discountBox = document.getElementById('checkout-loyalty-discount');
+  const estimatedTotalBox = document.getElementById('checkout-estimated-total');
   const pointValue = () => memberTier === 'prive' ? 2 : memberTier === 'gold' ? 1.5 : 1;
   const eligiblePoints = subtotal => Math.min(memberPoints, Math.floor(Math.max(0, Number(subtotal)||0) / pointValue()));
   async function loadMemberPoints() {
@@ -88,6 +89,7 @@
     if(discountBox) discountBox.textContent='− '+money(discount)+' ('+redeemCount.toLocaleString('en-PK')+' points)';
     const packagingType = packagingSelect?.value || 'simple';
     const packagingFee = packagingType === 'premium' ? 200 : packagingType === 'standard' ? 100 : 0;
+    if(estimatedTotalBox) estimatedTotalBox.textContent = shippingFee === null ? 'To be confirmed' : money(Math.max(0,subtotal+packagingFee+shippingFee-discount));
     if(packagingFeeBox) packagingFeeBox.textContent=packagingFee === 0 ? 'Free' : money(packagingFee);
     if(feeBox) feeBox.textContent=shippingFee === null ? 'To be confirmed' : (shippingFee === 0 ? 'Free' : money(shippingFee));
   }
