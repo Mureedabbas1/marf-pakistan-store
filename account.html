@@ -53,6 +53,51 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
 .marf-tier-note{text-align:center;color:var(--muted,#aaa);font-size:11px;line-height:1.6;margin:16px 0 0}
 @media(max-width:760px){.marf-tier-grid{grid-template-columns:1fr}.marf-tier-card{padding:20px}.marf-tier-desc{min-height:0}}
 </style>
+
+<style id="marf-membership-login-layout-style">
+main.account-wrap.membership-login-layout{
+  width:min(1240px,calc(100% - 112px));
+  max-width:1240px;
+  margin:clamp(32px,5vw,62px) auto 80px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);
+  align-items:center;
+  gap:clamp(24px,4vw,54px);
+}
+.membership-tiers-column{min-width:0}
+.membership-login-column{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.membership-login-layout .marf-membership-tiers{width:100%;margin:0;padding:0}
+.membership-login-layout .marf-membership-tiers .tiers-heading{text-align:left;font-size:clamp(22px,2.5vw,30px);line-height:1.2;margin-bottom:6px}
+.membership-login-layout .marf-membership-tiers .tiers-subtitle{text-align:left;margin-bottom:18px}
+.membership-login-layout .marf-tier-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+.membership-login-layout .marf-tier-card{padding:18px 20px;border-radius:14px}
+.membership-login-layout .marf-tier-name{font-size:22px;margin-bottom:4px}
+.membership-login-layout .marf-tier-desc{min-height:0;margin-bottom:10px}
+.membership-login-layout .marf-tier-card ul{grid-template-columns:1fr;gap:6px}
+.membership-login-layout .marf-tier-card li{font-size:11px}
+.membership-login-layout .marf-tier-note{text-align:left;font-size:10px;margin-top:12px}
+.membership-login-layout .marf-lamp{align-self:center;margin:0 auto -4px}
+.membership-login-layout .auth-card{width:100%;max-width:none;margin:0}
+.membership-login-layout .dashboard{grid-column:1/-1;width:100%}
+@media(max-width:900px){
+  main.account-wrap.membership-login-layout{width:min(100% - 32px,680px);grid-template-columns:1fr;gap:26px;margin-top:32px}
+  .membership-login-layout .marf-membership-tiers .tiers-heading,
+  .membership-login-layout .marf-membership-tiers .tiers-subtitle{text-align:center}
+  .membership-login-layout .marf-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  .membership-login-layout .marf-tier-card{padding:15px 12px}
+  .membership-login-layout .marf-tier-name{font-size:17px;overflow-wrap:anywhere}
+  .membership-login-layout .marf-tier-card li{font-size:10px}
+  .membership-login-layout .marf-tier-desc{font-size:11px}
+  .membership-login-layout .marf-tier-note{text-align:center}
+  .membership-login-layout .membership-login-column{width:100%;max-width:560px;margin:0 auto}
+}
+@media(max-width:560px){
+  .membership-login-layout .marf-tier-grid{grid-template-columns:1fr}
+  .membership-login-layout .marf-tier-card{padding:18px}
+  .membership-login-layout .marf-tier-name{font-size:22px}
+  .membership-login-layout .marf-tier-card li{font-size:11px}
+}
+</style>
 </head><body>
 <aside class="marf-left-sidebar" aria-label="MARF icon navigation">
   <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
@@ -84,10 +129,7 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
     <div class="header-actions"><a class="text-link" href="index.html">Home ↗</a><a class="my-marf-login-cta" href="account.html" aria-current="page">MY MARF LOGIN</a><button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button></div>
   </header>
 <header class="account-header"><a class="account-brand" href="index.html">MARF <span style="color:var(--gold)">PAKISTAN</span></a><nav aria-label="Account navigation"><a href="index.html">Home</a><a href="products.html">Shop All</a><a href="faq.html">Help</a></nav></header>
-<main class="account-wrap"><div class="account-pitch"><span class="eyebrow">MARF Rewards Club · Pakistan</span><h1>GET YOUR FREE<br><em>MARF CLUB CARD</em></h1>
-<p class="intro">Create your MARF account to keep your order history together and collect rewards. Earn 5 points for every PKR 100 of eligible product subtotal after your order is marked delivered. Every 100 points are worth PKR 10 in rewards.</p>
-</div>
-
+<main class="account-wrap membership-login-layout"><div class="membership-tiers-column">
 <section class="marf-membership-tiers" aria-labelledby="marf-tiers-title">
   <h2 class="tiers-heading" id="marf-tiers-title">CHOOSE YOUR MARF LEVEL</h2>
   <p class="tiers-subtitle">Three levels. One more rewarding MARF experience.</p>
@@ -113,10 +155,13 @@ body{padding-left:88px!important}.announcement{display:flex;justify-content:spac
   </div>
   <p class="marf-tier-note">Membership benefits and upgrade eligibility will be confirmed in the MARF Club terms. Points are credited after eligible orders are marked delivered.</p>
 </section>
+</div>
+<div class="membership-login-column">
 <div class="marf-lamp" id="marf-lamp"><div class="lamp-wire"></div><svg class="lamp-svg" viewBox="0 0 160 94" aria-hidden="true" focusable="false"><defs><linearGradient id="lamp-foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f6d2f"/><stop offset=".3" stop-color="#d4af67"/><stop offset=".5" stop-color="#f6e9c1"/><stop offset=".75" stop-color="#caa152"/><stop offset="1" stop-color="#8f6d2f"/></linearGradient></defs><rect x="68" y="0" width="24" height="9" rx="3" fill="url(#lamp-foil)"/><path d="M52 8H108L152 66H8Z" fill="url(#lamp-foil)"/><ellipse class="lamp-rim" cx="80" cy="66" rx="72" ry="8"/><circle class="lamp-bulb" cx="80" cy="72" r="10"/></svg><button type="button" class="lamp-pull" aria-pressed="false" aria-label="Pull cord to turn the lamp on" title="Pull the cord"></button><div class="lamp-cone" aria-hidden="true"></div></div>
 <section class="glass auth-card" id="auth-panel" aria-labelledby="auth-title"><div class="tabs"><button type="button" class="active" id="tab-login">Sign in</button><button type="button" id="tab-signup">Create account</button></div><h2 id="auth-title" style="font-size:34px;margin:0 0 8px">Welcome back.</h2><p class="small" id="auth-help">Sign in to check your MARF Rewards balance and orders.</p>
 <form id="auth-form"><label class="full hidden" id="name-field">Full name<input name="full_name" autocomplete="name" minlength="2" maxlength="120" placeholder="Your full name"></label><label class="full">Email address<input name="identifier" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required></label><p class="small full" id="login-method-help">Enter the email address linked to your MARF account.</p><label class="full">Password<input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="72" placeholder="At least 8 characters"></label><button class="button gold full" id="auth-submit" type="submit">Sign in securely</button></form>
 <p class="message" id="auth-message" role="status" aria-live="polite"></p><p class="small">🔒 Your account is protected with secure authentication.</p></section>
+</div>
 <section id="dashboard" class="dashboard hidden" aria-live="polite"><div class="dash-top"><article class="glass panel"><span class="eyebrow">Your rewards balance</span><div class="points" id="points-balance">0</div><p class="small" id="points-value">Worth PKR 0 in rewards</p><p class="small">Points are awarded only when a linked order is marked Delivered.</p></article>
 <article class="glass panel"><span class="eyebrow">Member profile</span><h2 id="member-name">MARF Member</h2><p class="small" id="member-email"></p><form id="profile-form"><label class="full">Full name<input name="full_name" required minlength="2" maxlength="120"></label><label class="full">Mobile number<input name="phone" type="tel" maxlength="30" placeholder="03xx xxxxxxx"></label><button class="button gold full" type="submit">Save profile</button></form><p class="message" id="profile-message" role="status"></p><button class="button" id="sign-out" type="button">Sign out</button></article></div>
 <article class="glass panel"><h2>Order history</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th></tr></thead><tbody id="orders-body"><tr><td colspan="4">Loading your orders…</td></tr></tbody></table></div></article>
