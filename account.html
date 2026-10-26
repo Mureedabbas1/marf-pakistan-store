@@ -123,7 +123,7 @@ main.account-wrap.membership-login-layout{
 .account-wrap.membership-login-layout.is-authenticated{display:block;width:min(1240px,calc(100% - 112px));max-width:1240px;margin:clamp(32px,5vw,62px) auto 80px}
 .account-wrap.membership-login-layout.is-authenticated>.membership-tiers-column,
 .account-wrap.membership-login-layout.is-authenticated>.membership-login-column{display:none!important}
-.account-wrap.membership-login-layout.is-authenticated>#dashboard{display:block!important;width:100%;grid-column:auto}
+.account-wrap.membership-login-layout.is-authenticated>#dashboard{display:grid!important;width:100%;grid-column:1/-1}
 .account-wrap.membership-login-layout.is-authenticated #dashboard .dash-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-bottom:22px}
 .account-wrap.membership-login-layout.is-authenticated #dashboard>.panel{margin-bottom:22px}
 @media(max-width:900px){.account-wrap.membership-login-layout.is-authenticated{width:min(100% - 32px,680px);margin-top:32px}.account-wrap.membership-login-layout.is-authenticated #dashboard .dash-top{grid-template-columns:1fr}}
