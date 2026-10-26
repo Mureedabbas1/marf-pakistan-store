@@ -12,6 +12,42 @@
   const msg = document.getElementById('checkout-message');
   const cart = new Map();
   let shippingFee = null;
+  let currentUser = null;
+  let memberPoints = 0;
+  let memberTier = 'silver';
+  const pointsToggle = document.getElementById('use-points-toggle');
+  const pointsStatus = document.getElementById('loyalty-checkout-status');
+  const discountRow = document.getElementById('loyalty-discount-row');
+  const discountBox = document.getElementById('checkout-loyalty-discount');
+  const pointValue = () => memberTier === 'prive' ? 2 : memberTier === 'gold' ? 1.5 : 1;
+  const eligiblePoints = subtotal => Math.min(memberPoints, Math.floor(Math.max(0, Number(subtotal)||0) / pointValue()));
+  async function loadMemberPoints() {
+    const {data:{session}} = await client.auth.getSession();
+    currentUser = session?.user || null;
+    memberPoints = 0; memberTier = 'silver';
+    if (currentUser) {
+      const [profileRes, ledgerRes] = await Promise.all([
+        client.from('customer_profiles').select('membership_tier').eq('user_id',currentUser.id).maybeSingle(),
+        client.from('loyalty_ledger').select('points_change').eq('customer_id',currentUser.id)
+      ]);
+      if (!profileRes.error && profileRes.data?.membership_tier) memberTier = profileRes.data.membership_tier;
+      if (!ledgerRes.error) memberPoints = (ledgerRes.data||[]).reduce((sum,row)=>sum+Number(row.points_change||0),0);
+    }
+    updatePointsUI();
+  }
+  function updatePointsUI(subtotal=0) {
+    if (!pointsToggle || !pointsStatus) return;
+    const available = Math.max(0,memberPoints);
+    const usable = eligiblePoints(subtotal);
+    const hasMinimum = available >= 100;
+    const orderCanUse = usable >= 100;
+    pointsToggle.disabled = !currentUser || !hasMinimum || (cart.size>0 && !orderCanUse);
+    if (!currentUser) pointsStatus.innerHTML = 'Sign in to <a href="account.html" style="color:#e2c58e;text-decoration:underline">My MARF</a> to use points. You can still place an order without using points.';
+    else if (!hasMinimum) pointsStatus.textContent = 'Your current balance is '+available.toLocaleString('en-PK')+' points. You need at least 100 points to use this option.';
+    else if (cart.size>0 && !orderCanUse) pointsStatus.textContent = 'You have '+available.toLocaleString('en-PK')+' points, but this merchandise subtotal is too low to redeem at least 100. Your points will remain saved.';
+    else pointsStatus.textContent = 'Available: '+available.toLocaleString('en-PK')+' points · '+(memberTier==='prive'?'PKR 2':memberTier==='gold'?'PKR 1.50':'PKR 1')+' per point. Select to use all eligible points for this order.';
+    if (pointsToggle.checked && (pointsToggle.disabled || !orderCanUse)) pointsToggle.checked = false;
+  }
   const money = n => new Intl.NumberFormat('en-PK',{style:'currency',currency:'PKR',maximumFractionDigits:0}).format(Number(n||0));
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function message(text, ok=false) {
@@ -44,6 +80,12 @@
     if (!count) { const p=document.createElement('p'); p.textContent='Your bag is empty. Add an available product above.'; p.className='empty-cart'; cartBox.append(p); }
     if(cartCount) cartCount.textContent=String(count);
     if(totalBox) totalBox.textContent=money(subtotal);
+    updatePointsUI(subtotal);
+    const usePoints = Boolean(pointsToggle?.checked && currentUser && eligiblePoints(subtotal)>=100);
+    const redeemCount = usePoints ? eligiblePoints(subtotal) : 0;
+    const discount = redeemCount * pointValue();
+    if(discountRow) discountRow.hidden = discount<=0;
+    if(discountBox) discountBox.textContent='− '+money(discount)+' ('+redeemCount.toLocaleString('en-PK')+' points)';
     const packagingType = packagingSelect?.value || 'simple';
     const packagingFee = packagingType === 'premium' ? 200 : packagingType === 'standard' ? 100 : 0;
     if(packagingFeeBox) packagingFeeBox.textContent=packagingFee === 0 ? 'Free' : money(packagingFee);
@@ -142,6 +184,13 @@
     }
   }
   packagingSelect?.addEventListener('change',renderCart);
+  pointsToggle?.addEventListener('change',renderCart);
+  client.auth.onAuthStateChange((event,session)=>{
+    if(event==='SIGNED_IN' || event==='SIGNED_OUT' || event==='TOKEN_REFRESHED') {
+      currentUser=session?.user||null;
+      loadMemberPoints().then(renderCart);
+    }
+  });
   document.getElementById('cod-checkout-form')?.addEventListener('submit',async event=>{
     event.preventDefault();
     if(document.getElementById('return-policy-modal') && event.currentTarget.dataset.returnPolicyAccepted !== 'true') return;
@@ -153,7 +202,8 @@
     const submit=form.querySelector('button[type="submit"]'); submit.disabled=true; submit.textContent='Placing request…';
     message('Submitting your order securely…');
     try{
-      const {data,error}=await client.rpc('place_order',{
+      const usePoints = Boolean(pointsToggle?.checked);
+      const orderArgs = {
         p_customer_name:String(fd.get('name')||'').trim(),
         p_phone:String(fd.get('phone')||'').trim(),
         p_email:String(fd.get('email')||'').trim()||null,
@@ -162,17 +212,21 @@
         p_notes:String(fd.get('notes')||'').trim()||null,
         p_packaging_type:String(fd.get('packaging_type')||'simple'),
         p_items:items
-      });
+      };
+      if(usePoints) orderArgs.p_use_points = true;
+      const {data,error}=await client.rpc('place_order',orderArgs);
       if(error) throw error;
       if(!data?.success) throw new Error('Order could not be confirmed.');
       const total=data.total_pkr==null?'Delivery charge to be confirmed':money(data.total_pkr);
-      message('Your order has been placed successfully! Order #'+data.order_number+'. Items subtotal: '+money(data.subtotal_pkr)+'. Packaging: '+(data.packaging_fee_pkr ? money(data.packaging_fee_pkr) : 'Free')+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
-      cart.clear(); form.reset(); form.dataset.returnPolicyAccepted='false'; renderCart();
+      const discountText = Number(data.loyalty_discount_pkr||0)>0 ? '. MARF points discount: '+money(data.loyalty_discount_pkr)+' ('+Number(data.points_redeemed||0)+' points)' : '';
+      message('Your order has been placed successfully! Order #'+data.order_number+'. Items subtotal: '+money(data.subtotal_pkr)+discountText+'. Packaging: '+(data.packaging_fee_pkr ? money(data.packaging_fee_pkr) : 'Free')+'. Total: '+total+'. MARF will contact you to confirm delivery.',true);
+      cart.clear(); form.reset(); form.dataset.returnPolicyAccepted='false'; if(pointsToggle)pointsToggle.checked=false; await loadMemberPoints(); renderCart();
       const waText='MARF Pakistan order request #'+data.order_number+'\nCustomer: '+customerName+'\nPlease contact me to confirm delivery details.';
       const wa=document.getElementById('order-whatsapp-followup');
       if(wa){wa.href='https://wa.me/923404612368?text='+encodeURIComponent(waText);wa.hidden=false;}
     }catch(e){message(e.message||'Could not submit your order. Please check your details and try again.');}
     finally{submit.disabled=false;submit.textContent='Place COD order';}
   });
+  loadMemberPoints().then(()=>renderCart());
   init();
 })();
