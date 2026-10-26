@@ -1,0 +1,80 @@
+/* =====================================================================
+   MARF Pakistan — hanging lamp for the My MARF sign-in card
+   Decoration only. Pull the cord (or tap it) to switch the light on/off.
+   The sign-in form works the same whether the lamp is on or off.
+   To remove the lamp: delete the <div class="marf-lamp"> block, this file's
+   <link> and the account-lamp.js <script> from account.html.
+   ===================================================================== */
+
+.marf-lamp{
+  position:relative;z-index:3;
+  width:200px;height:124px;margin:0 auto;
+  pointer-events:none;
+}
+.marf-lamp[hidden]{display:none}
+
+/* wire from the page divider down to the lamp */
+.marf-lamp .lamp-wire{
+  position:absolute;left:50%;top:0;width:1px;height:30px;
+  background:linear-gradient(#d4af67,#8f6d2f);transform:translateX(-50%);
+}
+.marf-lamp .lamp-svg{
+  position:absolute;left:50%;top:28px;width:160px;height:94px;transform:translateX(-50%);
+  overflow:visible;
+}
+.marf-lamp .lamp-rim{fill:#0b0a07;transition:fill .6s}
+.marf-lamp .lamp-bulb{fill:#3a3223;transition:fill .5s,filter .5s}
+.marf-lamp.is-on .lamp-rim{fill:#f6e3a8}
+.marf-lamp.is-on .lamp-bulb{
+  fill:#fff4cf;
+  filter:drop-shadow(0 0 8px #ffe3a0) drop-shadow(0 0 22px rgba(255,214,130,.9));
+}
+
+/* light cone falling on the card */
+.marf-lamp .lamp-cone{
+  position:absolute;left:50%;top:92px;width:560px;height:340px;
+  transform:translateX(-50%);
+  clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);
+  background:linear-gradient(180deg,rgba(255,226,150,.34) 0%,rgba(255,214,130,.12) 55%,transparent 100%);
+  mix-blend-mode:screen;opacity:0;transition:opacity .7s ease;
+}
+.marf-lamp.is-on .lamp-cone{opacity:1}
+
+/* the pull cord */
+.marf-lamp .lamp-pull{
+  position:absolute;left:calc(50% + 62px);top:84px;
+  width:30px;height:56px;margin-left:-15px;padding:0;
+  border:0;background:transparent;cursor:pointer;
+  pointer-events:auto;transform-origin:50% 0;
+  -webkit-tap-highlight-color:transparent;
+}
+.marf-lamp .lamp-pull::before{
+  content:"";position:absolute;left:50%;top:0;width:1px;height:42px;
+  background:linear-gradient(#d4af67,#8f6d2f);transform:translateX(-50%);
+}
+.marf-lamp .lamp-pull::after{
+  content:"";position:absolute;left:50%;top:40px;width:11px;height:11px;border-radius:50%;
+  transform:translateX(-50%);
+  background:radial-gradient(circle at 35% 30%,#f6e9c1,#d4af67 55%,#8f6d2f);
+  box-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.marf-lamp .lamp-pull:hover::after{box-shadow:0 0 12px rgba(212,175,103,.8)}
+.marf-lamp .lamp-pull:focus-visible{outline:2px solid #d4af67;outline-offset:2px;border-radius:6px}
+.marf-lamp .lamp-pull.pulled{animation:marf-lamp-pull .38s ease}
+@keyframes marf-lamp-pull{0%{transform:translateY(0)}40%{transform:translateY(12px)}100%{transform:translateY(0)}}
+
+/* card sits right under the lamp */
+main.account-wrap .marf-lamp+.auth-card{margin-top:0;transition:filter .8s ease,box-shadow .8s ease,border-color .8s ease}
+body.lamp-is-off main.account-wrap .marf-lamp+.auth-card{filter:brightness(.45) saturate(.7)}
+main.account-wrap .marf-lamp.is-on+.auth-card{
+  border-color:rgba(240,224,180,.55);
+  box-shadow:0 40px 110px rgba(0,0,0,.6),0 0 90px rgba(255,214,130,.12),inset 0 1px 0 rgba(240,224,180,.3);
+}
+
+@media(max-width:767px){
+  .marf-lamp{transform:scale(.86);transform-origin:50% 0;height:112px}
+  .marf-lamp .lamp-cone{width:420px}
+}
+@media(prefers-reduced-motion:reduce){
+  .marf-lamp *,main.account-wrap .marf-lamp+.auth-card{transition:none!important;animation:none!important}
+}
