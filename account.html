@@ -116,6 +116,17 @@ main.account-wrap.membership-login-layout{
   .membership-login-layout .marf-tier-card li{font-size:11px}
 }
 </style>
+
+<style id="marf-authenticated-dashboard-layout">
+/* Once signed in, replace the login/tier layout with a full-width member dashboard. */
+.account-wrap.membership-login-layout.is-authenticated{display:block;width:min(1240px,calc(100% - 112px));max-width:1240px;margin:clamp(32px,5vw,62px) auto 80px}
+.account-wrap.membership-login-layout.is-authenticated>.membership-tiers-column,
+.account-wrap.membership-login-layout.is-authenticated>.membership-login-column{display:none!important}
+.account-wrap.membership-login-layout.is-authenticated>#dashboard{display:block!important;width:100%;grid-column:auto}
+.account-wrap.membership-login-layout.is-authenticated #dashboard .dash-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-bottom:22px}
+.account-wrap.membership-login-layout.is-authenticated #dashboard>.panel{margin-bottom:22px}
+@media(max-width:900px){.account-wrap.membership-login-layout.is-authenticated{width:min(100% - 32px,680px);margin-top:32px}.account-wrap.membership-login-layout.is-authenticated #dashboard .dash-top{grid-template-columns:1fr}}
+</style>
 </head><body>
 <aside class="marf-left-sidebar" aria-label="MARF icon navigation">
   <a class="marf-side-brand" href="index.html#top" aria-label="MARF Pakistan home" title="MARF Pakistan home"><img src="marf-monogram.png?v=20261024-logo2" alt=""></a>
