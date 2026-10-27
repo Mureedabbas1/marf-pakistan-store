@@ -2,10 +2,10 @@
   if (window.__marfRewardsPopupLoaded) return;
   window.__marfRewardsPopupLoaded = true;
 
-  try {
-    if (sessionStorage.getItem("marfRewardsPopupSeen") === "1") return;
-    sessionStorage.setItem("marfRewardsPopupSeen", "1");
-  } catch (e) {}
+  // Show the full rewards introduction whenever the homepage is opened.
+  // Do not interrupt customers on every internal page they browse.
+  const currentPath = window.location.pathname.replace(/\\/+$/, "") || "/";
+  if (currentPath !== "/" && currentPath !== "/index.html") return;
 
   const styles = `
     #marf-rewards-overlay{position:fixed;inset:0;z-index:1000000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.78);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);animation:marfRewardFade .22s ease}
