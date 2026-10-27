@@ -37,7 +37,7 @@ begin
           new.id,
           'earned',
           v_points,
-          'MARF Rewards points for delivered order #' || new.order_number::text
+          'MARF Rewards: points for delivered order #' || new.order_number::text || ' using PKR 500 / 1,000 earning schedule'
         );
       end if;
     end if;
