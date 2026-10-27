@@ -92,6 +92,92 @@
     <span class="marf-live-date" id="marf-live-date">Loading date…</span>
     <span class="marf-timezone">PKT · UTC+5</span>
   </section>
+
+  <!-- MARF category dropdown bar, placed directly below the live clock -->
+  <section id="marf-category-dropdown-bar" aria-label="Browse MARF categories">
+    <div class="marf-category-dropdown-inner">
+      <span class="marf-category-bar-label">DISCOVER MARF</span>
+      <button class="marf-category-dropdown-toggle" type="button" aria-expanded="false" aria-controls="marf-category-dropdown-menu">
+        <span class="marf-category-toggle-icon" aria-hidden="true">▦</span>
+        <span class="marf-category-toggle-copy"><strong>Browse Categories</strong><small>Explore all 20 collections</small></span>
+        <svg class="marf-category-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="marf-category-dropdown-menu" id="marf-category-dropdown-menu" hidden>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Electronics"><span>01</span><strong>Electronics</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Clothing &amp; Fashion"><span>02</span><strong>Clothing &amp; Fashion</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Shoes &amp; Handbags"><span>03</span><strong>Shoes &amp; Handbags</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Beauty &amp; Personal Care"><span>04</span><strong>Beauty &amp; Personal Care</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Home &amp; Kitchen"><span>05</span><strong>Home &amp; Kitchen</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Computers &amp; Accessories"><span>06</span><strong>Computers &amp; Accessories</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Cell Phones &amp; Accessories"><span>07</span><strong>Cell Phones &amp; Accessories</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Watches &amp; Jewelry"><span>08</span><strong>Watches &amp; Jewelry</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Sports &amp; Outdoors"><span>09</span><strong>Sports &amp; Outdoors</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Toys &amp; Games"><span>10</span><strong>Toys &amp; Games</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Baby Products"><span>11</span><strong>Baby Products</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Health &amp; Household"><span>12</span><strong>Health &amp; Household</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Automotive"><span>13</span><strong>Automotive</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Books"><span>14</span><strong>Books</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Office Products"><span>15</span><strong>Office Products</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Pet Supplies"><span>16</span><strong>Pet Supplies</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Grocery &amp; Gourmet Food"><span>17</span><strong>Grocery &amp; Gourmet Food</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Tools &amp; Home Improvement"><span>18</span><strong>Tools &amp; Home Improvement</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Arts, Crafts &amp; Sewing"><span>19</span><strong>Arts, Crafts &amp; Sewing</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      <a class="marf-category-option" href="#shop-categories" data-category-choice="Musical Instruments"><span>20</span><strong>Musical Instruments</strong><span class="marf-category-option-arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+  <style id="marf-category-dropdown-style">
+    #marf-category-dropdown-bar{position:relative;z-index:30;width:100%;padding:10px clamp(14px,3vw,38px);background:linear-gradient(90deg,#11110f,#1b1914 48%,#11110f);border-bottom:1px solid rgba(201,169,106,.26);border-top:1px solid rgba(255,255,255,.035);font-family:Manrope,Arial,sans-serif}
+    .marf-category-dropdown-inner{position:relative;display:flex;align-items:center;gap:16px;max-width:1500px;margin:0 auto}
+    .marf-category-bar-label{flex:0 0 auto;color:#c9a96a;font-size:9px;font-weight:800;letter-spacing:.2em}
+    .marf-category-dropdown-toggle{display:flex;align-items:center;gap:12px;width:min(100%,410px);min-height:48px;padding:8px 14px;border:1px solid rgba(201,169,106,.42);border-radius:10px;background:linear-gradient(135deg,rgba(201,169,106,.12),rgba(255,255,255,.025));color:#f5f0e7;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
+    .marf-category-dropdown-toggle:hover,.marf-category-dropdown-toggle:focus-visible{border-color:#d8bd83;background:rgba(201,169,106,.13);box-shadow:0 5px 18px rgba(0,0,0,.18);outline:none}
+    .marf-category-toggle-icon{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:8px;background:rgba(201,169,106,.13);color:#e4cc98;font-size:19px}
+    .marf-category-toggle-copy{display:flex;flex:1;flex-direction:column;gap:3px}
+    .marf-category-toggle-copy strong{font-size:11px;letter-spacing:.04em;font-weight:800}
+    .marf-category-toggle-copy small{color:#aaa294;font-size:9px;letter-spacing:.04em}
+    .marf-category-chevron{width:17px;height:17px;fill:none;stroke:#d8bd83;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .22s}
+    .marf-category-dropdown-toggle[aria-expanded="true"] .marf-category-chevron{transform:rotate(180deg)}
+    .marf-category-dropdown-menu{position:absolute;top:calc(100% + 8px);left:calc(clamp(0px,0vw,0px) + 116px);width:min(720px,calc(100vw - 130px));max-height:min(65vh,440px);overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:12px;border:1px solid rgba(201,169,106,.42);border-radius:14px;background:rgba(17,17,15,.98);box-shadow:0 20px 55px rgba(0,0,0,.5);backdrop-filter:blur(16px)}
+    .marf-category-dropdown-menu[hidden]{display:none}
+    .marf-category-option{display:flex;align-items:center;gap:10px;min-width:0;padding:11px 10px;border:1px solid rgba(255,255,255,.055);border-radius:8px;color:#eee8dc;text-decoration:none;background:rgba(255,255,255,.018);transition:background .2s,border-color .2s}
+    .marf-category-option>span:first-child{flex:0 0 23px;color:#c9a96a;font-size:9px;font-weight:800;letter-spacing:.08em}
+    .marf-category-option strong{flex:1;min-width:0;font-size:10px;font-weight:600;line-height:1.45}
+    .marf-category-option-arrow{color:#c9a96a;font-size:13px;opacity:.7}
+    .marf-category-option:hover,.marf-category-option:focus-visible{outline:none;border-color:rgba(201,169,106,.5);background:rgba(201,169,106,.1)}
+    @media(max-width:600px){#marf-category-dropdown-bar{padding:8px 10px}.marf-category-dropdown-inner{gap:9px}.marf-category-bar-label{max-width:55px;font-size:7px;line-height:1.5;letter-spacing:.12em}.marf-category-dropdown-toggle{min-height:44px;width:100%;gap:8px;padding:6px 10px}.marf-category-toggle-icon{flex-basis:27px;width:27px;height:27px}.marf-category-toggle-copy strong{font-size:10px}.marf-category-toggle-copy small{font-size:8px}.marf-category-dropdown-menu{left:0;width:100%;grid-template-columns:1fr;max-height:60vh;padding:8px}.marf-category-option{padding:10px}}
+    @media(prefers-reduced-motion:reduce){.marf-category-dropdown-toggle,.marf-category-chevron,.marf-category-option{transition:none}}
+  </style>
+  <script>
+    (function(){
+      var bar=document.getElementById('marf-category-dropdown-bar');
+      if(!bar||bar.dataset.ready==='1')return;
+      bar.dataset.ready='1';
+      var toggle=bar.querySelector('.marf-category-dropdown-toggle');
+      var menu=bar.querySelector('.marf-category-dropdown-menu');
+      function closeMenu(){menu.hidden=true;toggle.setAttribute('aria-expanded','false');}
+      toggle.addEventListener('click',function(){
+        var opening=menu.hidden;
+        menu.hidden=!opening;
+        toggle.setAttribute('aria-expanded',String(opening));
+      });
+      menu.addEventListener('click',function(event){
+        var link=event.target.closest('a[data-category-choice]');
+        if(!link)return;
+        var name=link.getAttribute('data-category-choice');
+        closeMenu();
+        var section=document.getElementById('shop-categories');
+        if(section){
+          section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+          var card=section.querySelector('[data-shop-category="'+name.replace(/"/g,'\\"')+'"]');
+          if(card){card.setAttribute('tabindex','-1');window.setTimeout(function(){card.focus({preventScroll:true});},250);}
+        }
+      });
+      document.addEventListener('click',function(event){if(!bar.contains(event.target))closeMenu();});
+      document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeMenu();toggle.focus();}});
+    })();
+  </script>
+
   <main>
     <section class="hero" id="top">
       <div class="hero-glow"></div><div class="hero-grid"></div>
