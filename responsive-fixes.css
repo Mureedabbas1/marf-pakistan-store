@@ -1,0 +1,74 @@
+/* MARF Pakistan responsive layout consistency fixes — 2026-10-27 */
+html{max-width:100%;overflow-x:clip}
+body{max-width:100%;overflow-x:clip}
+img,video,iframe,svg{max-width:100%}
+button,input,select,textarea{max-width:100%}
+main,.site-header,.site-footer,.marf-timebar{min-width:0}
+.product-grid,.catalogue-grid,.live-product-grid{min-width:0}
+.product-card,.catalogue-card,.live-product-card{min-width:0}
+.product-image img,.live-product-image img{max-width:100%}
+@media (min-width:901px) and (max-width:1199px){
+  .product-grid,.live-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:5%;padding-right:5%}
+  .hero{padding-left:5%;padding-right:5%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .main-nav{gap:clamp(12px,1.6vw,24px)}
+  .header-actions{gap:clamp(8px,1.4vw,18px)}
+}
+@media (min-width:768px) and (max-width:900px){
+  .site-header,.marf-timebar,main,.site-footer{margin-left:66px!important;width:calc(100% - 82px)!important}
+  body{padding-left:0!important}
+  .marf-left-sidebar{width:56px;padding:12px 4px}
+  .marf-side-links a,.marf-side-brand{width:42px;height:42px;flex-basis:42px}
+  .main-nav{gap:12px}
+  .main-nav a{font-size:10px}
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:560px;padding-left:5%;padding-right:5%}
+  .hero-art{min-width:0}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:5%;padding-right:5%}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-grid,.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:767px){
+  body{padding-left:56px!important}
+  .marf-left-sidebar{width:48px;padding:10px 3px;gap:7px}
+  .marf-side-brand{width:38px;height:38px;flex-basis:38px;border-radius:11px}
+  .marf-side-brand img{width:27px;height:27px}
+  .marf-side-links{gap:5px}
+  .marf-side-links a{width:38px;height:38px;flex-basis:38px;border-radius:11px;font-size:19px}
+  .marf-side-links a svg{width:19px;height:19px}
+  .marf-side-links a::after{left:43px;z-index:1200}
+  .site-header{padding-left:12px!important;padding-right:10px!important;gap:8px}
+  .header-actions{min-width:0}
+  .wordmark{flex-shrink:0}
+  .main-nav{max-width:calc(100vw - 60px)}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:18px;padding-right:18px}
+  .hero{padding-left:18px;padding-right:18px}
+  .section-heading{min-width:0}
+  .section-intro,.hero-description{overflow-wrap:anywhere}
+  .product-grid,.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 9px}
+  .product-image,.live-product-image{min-width:0}
+  .product-info{min-width:0}
+  .product-info h3,.live-product-info h3{overflow-wrap:anywhere}
+  .site-footer{padding-left:18px;padding-right:18px}
+  .marf-category-dropdown-menu{max-width:calc(100vw - 64px)}
+  .cod-checkout-form{grid-template-columns:minmax(0,1fr)}
+  .cod-checkout-form .full-width{grid-column:auto}
+}
+@media (max-width:390px){
+  .site-header{height:auto;min-height:68px}
+  .wordmark{font-size:25px}
+  .site-header .header-actions a.my-marf-login-cta{font-size:8px;padding:8px 6px}
+  .header-actions{gap:5px!important}
+  .icon-button{font-size:21px}
+  .cart-button{font-size:9px}
+  .hero h1{font-size:clamp(46px,13vw,62px)}
+  .product-grid,.live-product-grid{gap:16px 7px}
+  .product-info h3,.live-product-info h3{font-size:18px}
+  .product-tag{max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+}
+@media (max-width:340px){
+  .product-grid,.live-product-grid{grid-template-columns:minmax(0,1fr)}
+  .product-image,.live-product-image{height:280px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
