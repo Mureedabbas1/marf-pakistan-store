@@ -4,7 +4,7 @@
 
   // Show the full rewards introduction whenever the homepage is opened.
   // Do not interrupt customers on every internal page they browse.
-  const currentPath = window.location.pathname.replace(/\\/+$/, "") || "/";
+  const currentPath = window.location.pathname;
   if (currentPath !== "/" && currentPath !== "/index.html") return;
 
   const styles = `
