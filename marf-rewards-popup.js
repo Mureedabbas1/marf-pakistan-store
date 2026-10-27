@@ -61,7 +61,7 @@
             <article class="marf-rp-tier"><h3>Privé</h3><div class="marf-rp-rate">1 point = PKR 2</div><p>Unlock at 2,500 points<br>Our highest points value</p></article>
           </div>
           <div class="marf-rp-section"><h4>How you earn points</h4><ul class="marf-rp-list">
-            <li>Earn 30 points for every complete PKR 1,000 of eligible merchandise in an order.</li>
+            <li>Earn 10 points per complete PKR 500 of eligible merchandise, plus 10 bonus points per complete PKR 1,000. Examples: PKR 500 = 10 points; PKR 1,000 = 30; PKR 1,500 = 40; PKR 2,000 = 60; PKR 2,500 = 70; PKR 3,000 = 90.</li>
             <li>Points are added after the order is marked <strong>Delivered</strong>.</li>
             <li>Tier upgrades happen automatically at 1,200 points for Gold and 2,500 for Privé.</li>
             <li>Your membership tier does not automatically downgrade.</li>
