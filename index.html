@@ -99,7 +99,7 @@
     <div class="marf-category-dropdown-inner">
       <span class="marf-category-bar-label">DISCOVER MARF</span>
       <button class="marf-category-dropdown-toggle" type="button" aria-expanded="false" aria-controls="marf-category-dropdown-menu">
-        <span class="marf-category-toggle-icon" aria-hidden="true">▦</span>
+        <span class="marf-category-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg></span>
         <span class="marf-category-toggle-copy"><strong>Browse Categories</strong><small>Explore all 20 collections</small></span>
         <svg class="marf-category-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
@@ -128,29 +128,42 @@
     </div>
   </section>
   <style id="marf-category-dropdown-style">
-#marf-category-dropdown-bar{position:relative;z-index:30;width:100%;padding:7px clamp(14px,3vw,38px);background:linear-gradient(90deg,#0b0b0a,#17150f 50%,#0b0b0a);border-top:1px solid rgba(255,255,255,.035);border-bottom:1px solid rgba(201,169,106,.2);font-family:Manrope,Arial,sans-serif}
-.marf-category-dropdown-inner{position:relative;display:flex;align-items:center;gap:14px;max-width:1450px;margin:0 auto;min-height:43px}
-.marf-category-bar-label{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;color:#c9a96a;font-size:8px;font-weight:800;letter-spacing:.17em;white-space:nowrap}
-.marf-category-bar-label:before{content:"";display:block;width:18px;height:1px;background:#c9a96a}
-.marf-category-dropdown-toggle{display:flex;align-items:center;gap:10px;width:min(100%,350px);min-height:42px;padding:5px 12px;border:1px solid rgba(201,169,106,.38);border-radius:12px;background:linear-gradient(110deg,rgba(201,169,106,.12),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.05);color:#f5f0e7;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
-.marf-category-dropdown-toggle:hover,.marf-category-dropdown-toggle:focus-visible{border-color:#d9bd82;background:rgba(201,169,106,.11);box-shadow:0 5px 16px rgba(0,0,0,.18);outline:none}
-.marf-category-toggle-icon{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border:1px solid rgba(201,169,106,.25);border-radius:9px;background:rgba(201,169,106,.09);color:#e6ce9a;font-size:17px}
-.marf-category-toggle-copy{display:flex;flex:1;flex-direction:column;gap:2px;min-width:0}
-.marf-category-toggle-copy strong{font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;line-height:1.05;font-weight:600;letter-spacing:.01em;color:#fff8e9}
-.marf-category-toggle-copy small{color:#a99f8d;font-size:8px;letter-spacing:.09em;text-transform:uppercase}
-.marf-category-chevron{flex:0 0 15px;width:15px;height:15px;fill:none;stroke:#d9bd82;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .22s}
-.marf-category-dropdown-toggle[aria-expanded="true"] .marf-category-chevron{transform:rotate(180deg)}
-.marf-category-dropdown-menu{position:absolute;top:calc(100% + 8px);left:clamp(90px,10vw,150px);width:min(780px,calc(100vw - 150px));max-height:min(65vh,450px);overflow:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:11px;border:1px solid rgba(201,169,106,.36);border-radius:16px;background:rgba(16,16,14,.985);box-shadow:0 20px 50px rgba(0,0,0,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+#marf-category-dropdown-bar{position:relative;z-index:30;width:100%;padding:10px clamp(14px,3vw,38px);background:linear-gradient(90deg,#0b0b0a,#19160f 50%,#0b0b0a);border-top:1px solid rgba(255,255,255,.035);border-bottom:1px solid rgba(201,169,106,.22);font-family:Manrope,Arial,sans-serif}
+.marf-category-dropdown-inner{position:relative;display:flex;align-items:center;gap:20px;max-width:1450px;margin:0 auto;min-height:54px}
+.marf-category-bar-label{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto;color:#c9a96a;font-size:10px;font-weight:700;letter-spacing:.22em;white-space:nowrap}
+.marf-category-bar-label:before{content:"";display:block;width:28px;height:1px;background:linear-gradient(90deg,rgba(201,169,106,0),#c9a96a)}
+.marf-category-dropdown-toggle{display:flex;align-items:center;gap:14px;width:min(100%,380px);min-height:54px;padding:7px 14px 7px 8px;border:1px solid rgba(201,169,106,.5);border-radius:999px;background:linear-gradient(110deg,rgba(201,169,106,.18),rgba(201,169,106,.05) 60%,rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 8px 22px rgba(0,0,0,.28);color:#f5f0e7;text-align:left;cursor:pointer;transition:border-color .25s,background .25s,box-shadow .25s,transform .25s}
+.marf-category-dropdown-toggle:hover,.marf-category-dropdown-toggle:focus-visible{border-color:#e6d3a2;background:linear-gradient(110deg,rgba(201,169,106,.26),rgba(201,169,106,.08) 60%,rgba(255,255,255,.03));box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 3px rgba(201,169,106,.12);outline:none;transform:translateY(-1px)}
+.marf-category-dropdown-toggle[aria-expanded="true"]{border-color:#e6d3a2;box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 3px rgba(201,169,106,.16)}
+.marf-category-toggle-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,#ecdbaa,#b8944f);color:#17140d;box-shadow:0 3px 10px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+.marf-category-toggle-icon svg{width:18px;height:18px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.marf-category-toggle-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.marf-category-toggle-copy strong{font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;line-height:1;font-weight:600;letter-spacing:.01em;color:#fff8e9}
+.marf-category-toggle-copy small{color:#b3a88f;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.marf-category-chevron{flex:0 0 28px;width:28px;height:28px;padding:7px;border:1px solid rgba(201,169,106,.38);border-radius:50%;box-sizing:border-box;fill:none;stroke:#e6d3a2;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s,background .25s}
+.marf-category-dropdown-toggle:hover .marf-category-chevron{background:rgba(201,169,106,.15)}
+.marf-category-dropdown-toggle[aria-expanded="true"] .marf-category-chevron{transform:rotate(180deg);background:rgba(201,169,106,.18)}
+.marf-category-dropdown-menu{position:absolute;top:calc(100% + 14px);left:0;width:min(980px,100%);max-height:min(72vh,580px);overflow:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:20px;border:1px solid rgba(201,169,106,.42);border-radius:24px;background:radial-gradient(ellipse at 0 0,rgba(201,169,106,.14),transparent 46%),rgba(14,14,12,.985);box-shadow:0 34px 80px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.45);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transform-origin:top left;scrollbar-width:thin;scrollbar-color:rgba(201,169,106,.55) transparent}
+.marf-category-dropdown-menu::-webkit-scrollbar{width:7px}
+.marf-category-dropdown-menu::-webkit-scrollbar-thumb{background:rgba(201,169,106,.5);border-radius:99px}
+.marf-category-dropdown-menu::-webkit-scrollbar-track{background:transparent}
 .marf-category-dropdown-menu[hidden]{display:none}
-.marf-category-option{display:flex;align-items:center;gap:9px;min-width:0;min-height:40px;padding:7px 9px;border:1px solid rgba(255,255,255,.055);border-radius:10px;color:#eee8dc;text-decoration:none;background:rgba(255,255,255,.018);transition:background .18s,border-color .18s}
-.marf-category-option>span:first-child{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:7px;background:rgba(201,169,106,.08);color:#c9a96a;font-size:8px;font-weight:800}
-.marf-category-option strong{flex:1;min-width:0;font-size:10px;font-weight:600;line-height:1.4}
-.marf-category-option-arrow{color:#c9a96a;font-size:13px;opacity:.7;transition:transform .18s}
-.marf-category-option:hover,.marf-category-option:focus-visible{outline:none;border-color:rgba(201,169,106,.45);background:rgba(201,169,106,.09)}
-.marf-category-option:hover .marf-category-option-arrow{opacity:1;transform:translate(2px,-2px)}
-@media(max-width:767px){#marf-category-dropdown-bar{padding:6px 10px}.marf-category-dropdown-inner{gap:9px;min-height:42px}.marf-category-bar-label{max-width:58px;white-space:normal;font-size:7px;line-height:1.45;letter-spacing:.1em}.marf-category-bar-label:before{display:none}.marf-category-dropdown-toggle{min-height:40px;width:100%;gap:8px;padding:4px 9px;border-radius:11px}.marf-category-toggle-icon{flex-basis:28px;width:28px;height:28px;font-size:16px}.marf-category-toggle-copy strong{font-size:17px}.marf-category-toggle-copy small{font-size:7px;letter-spacing:.06em}.marf-category-dropdown-menu{left:0;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));max-height:60vh;padding:8px;gap:5px;border-radius:13px}.marf-category-option{gap:6px;min-height:38px;padding:6px;border-radius:8px}.marf-category-option>span:first-child{flex-basis:21px;width:21px;height:21px;font-size:7px}.marf-category-option strong{font-size:9px}.marf-category-option-arrow{font-size:11px}}
-@media(max-width:380px){.marf-category-bar-label{display:none}.marf-category-dropdown-menu{grid-template-columns:1fr}.marf-category-toggle-copy strong{font-size:16px}}
-@media(prefers-reduced-motion:reduce){.marf-category-dropdown-toggle,.marf-category-chevron,.marf-category-option,.marf-category-option-arrow{transition:none}}
+.marf-category-dropdown-menu:not([hidden]){animation:marfCatIn .24s cubic-bezier(.2,.75,.25,1)}
+@keyframes marfCatIn{from{opacity:0;transform:translateY(-8px) scale(.985)}to{opacity:1;transform:none}}
+.marf-category-dropdown-menu::before{content:"ALL 20 COLLECTIONS";grid-column:1/-1;margin:0 2px 6px;padding:0 0 12px;border-bottom:1px solid rgba(201,169,106,.2);color:#c9a96a;font-size:10px;font-weight:700;letter-spacing:.22em}
+.marf-category-option{position:relative;display:flex;align-items:center;gap:12px;min-width:0;min-height:56px;padding:10px 14px;border:1px solid rgba(255,255,255,.06);border-radius:16px;color:#efe9dc;text-decoration:none;background:rgba(255,255,255,.025);overflow:hidden;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.marf-category-option:before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:3px;border-radius:0 3px 3px 0;background:#c9a96a;transform:scaleY(0);transition:transform .22s}
+.marf-category-option>span:first-child{flex:0 0 auto;min-width:24px;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:19px;font-weight:500;line-height:1;color:#c9a96a;text-align:center}
+.marf-category-option strong{flex:1;min-width:0;font-size:13px;font-weight:600;line-height:1.35;letter-spacing:.01em}
+.marf-category-option-arrow{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;border:1px solid rgba(201,169,106,.28);border-radius:50%;color:#c9a96a;font-size:12px;opacity:.75;transition:transform .2s,background .2s,color .2s,opacity .2s}
+.marf-category-option:hover,.marf-category-option:focus-visible{outline:none;border-color:rgba(201,169,106,.55);background:linear-gradient(110deg,rgba(201,169,106,.16),rgba(201,169,106,.04));transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.28)}
+.marf-category-option:hover:before,.marf-category-option:focus-visible:before{transform:scaleY(1)}
+.marf-category-option:hover .marf-category-option-arrow,.marf-category-option:focus-visible .marf-category-option-arrow{opacity:1;transform:translate(1px,-1px);background:#c9a96a;color:#14120c;border-color:#c9a96a}
+@media(min-width:768px){#marf-category-dropdown-bar{padding-left:calc(var(--marf-sidebar-width,68px) + clamp(14px,3vw,38px))}}
+@media(max-width:1100px){.marf-category-dropdown-menu{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767px){#marf-category-dropdown-bar{padding:8px 10px}.marf-category-dropdown-inner{gap:10px;min-height:52px}.marf-category-bar-label{display:none}.marf-category-dropdown-toggle{width:100%;min-height:52px}.marf-category-toggle-copy strong{font-size:21px}.marf-category-dropdown-menu{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));max-height:68vh;padding:14px;gap:8px;border-radius:20px}.marf-category-option{min-height:54px;padding:9px 12px}.marf-category-option strong{font-size:13px}}
+@media(max-width:560px){.marf-category-dropdown-menu{grid-template-columns:1fr}.marf-category-toggle-copy small{font-size:9px;letter-spacing:.09em}.marf-category-option{min-height:52px}}
+@media(prefers-reduced-motion:reduce){.marf-category-dropdown-toggle,.marf-category-chevron,.marf-category-option,.marf-category-option:before,.marf-category-option-arrow{transition:none}.marf-category-dropdown-menu:not([hidden]){animation:none}}
 </style>
   <script>
     (function(){
