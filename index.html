@@ -333,23 +333,23 @@
     </section>
     <section class="section dropdash-floating-edit" id="dropdash-floating-edit" aria-labelledby="dropdash-floating-title">
       <style>
-        .dropdash-floating-edit{position:relative;isolation:isolate;overflow:hidden;margin-top:clamp(42px,7vw,90px);margin-bottom:clamp(42px,7vw,90px);padding:clamp(28px,5vw,62px) clamp(14px,3vw,36px);border:1px solid rgba(201,169,106,.25);border-radius:22px;background:radial-gradient(ellipse at 50% 45%,rgba(201,169,106,.13),transparent 62%),linear-gradient(135deg,#11110f,#090909 70%);box-shadow:0 24px 70px rgba(0,0,0,.22)}
+        .dropdash-floating-edit{position:relative;isolation:isolate;overflow:hidden;margin-top:clamp(24px,4vw,52px);margin-bottom:clamp(24px,4vw,52px);padding:clamp(18px,3vw,38px) clamp(12px,2.5vw,26px);border:1px solid rgba(201,169,106,.25);border-radius:22px;background:radial-gradient(ellipse at 50% 45%,rgba(201,169,106,.13),transparent 62%),linear-gradient(135deg,#11110f,#090909 70%);box-shadow:0 24px 70px rgba(0,0,0,.22)}
         .dropdash-floating-edit:before,.dropdash-floating-edit:after{content:"";position:absolute;z-index:-1;width:260px;height:260px;border:1px solid rgba(201,169,106,.12);border-radius:50%;pointer-events:none}
         .dropdash-floating-edit:before{top:-145px;left:-110px}.dropdash-floating-edit:after{right:-130px;bottom:-175px;width:340px;height:340px}
-        .dropdash-floating-head{position:relative;z-index:2;max-width:720px;margin:0 auto 26px;text-align:center}
-        .dropdash-floating-head .eyebrow{color:#d5b77b}.dropdash-floating-head h2{margin:8px 0 12px;color:#f5f0e6;font:400 clamp(34px,5vw,58px)/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.025em}.dropdash-floating-head h2 em{color:#d7ba7d;font-weight:400}.dropdash-floating-head p:not(.eyebrow){max-width:520px;margin:0 auto;color:#b9b2a5;font:400 12px/1.8 Manrope,Arial,sans-serif}
-        .dropdash-floating-stage{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:18px;max-width:940px;margin:0 auto;padding:10px 0 22px}
-        .dropdash-float-card{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;padding:13px 13px 16px;overflow:hidden;border:1px solid rgba(201,169,106,.26);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));box-shadow:0 15px 35px rgba(0,0,0,.28);text-decoration:none;color:#f4eee2;transition:border-color .25s,box-shadow .25s}
+        .dropdash-floating-head{position:relative;z-index:2;max-width:620px;margin:0 auto 18px;text-align:center}
+        .dropdash-floating-head .eyebrow{color:#d5b77b}.dropdash-floating-head h2{margin:8px 0 12px;color:#f5f0e6;font:400 clamp(28px,4vw,44px)/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.025em}.dropdash-floating-head h2 em{color:#d7ba7d;font-weight:400}.dropdash-floating-head p:not(.eyebrow){max-width:520px;margin:0 auto;color:#b9b2a5;font:400 12px/1.8 Manrope,Arial,sans-serif}
+        .dropdash-floating-stage{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:13px;max-width:790px;margin:0 auto;padding:6px 0 14px}
+        .dropdash-float-card{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;padding:9px 9px 11px;overflow:hidden;border:1px solid rgba(201,169,106,.26);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));box-shadow:0 15px 35px rgba(0,0,0,.28);text-decoration:none;color:#f4eee2;transition:border-color .25s,box-shadow .25s}
         .dropdash-float-card:nth-child(odd){animation:dropdashFloat 5.2s ease-in-out infinite}.dropdash-float-card:nth-child(even){animation:dropdashFloat 6.1s ease-in-out -2s infinite}.dropdash-float-card:nth-child(3n){animation-delay:-3.3s}
         .dropdash-float-card:hover,.dropdash-float-card:focus-visible{border-color:#d9bb7b;box-shadow:0 18px 42px rgba(201,169,106,.17);outline:none}
-        .dropdash-float-image{display:grid;place-items:center;width:100%;height:clamp(110px,17vw,190px);overflow:hidden;border-radius:11px;background:linear-gradient(135deg,#24221c,#111)}
+        .dropdash-float-image{display:grid;place-items:center;width:100%;height:clamp(88px,13vw,145px);overflow:hidden;border-radius:11px;background:linear-gradient(135deg,#24221c,#111)}
         .dropdash-float-image img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.dropdash-float-card:hover .dropdash-float-image img{transform:scale(1.06)}
-        .dropdash-float-label{margin-top:13px;color:#e9d5a8;font:700 9px/1.4 Manrope,Arial,sans-serif;letter-spacing:.15em;text-align:center;text-transform:uppercase}
-        .dropdash-float-cta{margin-top:8px;color:#aaa295;font:500 10px/1.4 Manrope,Arial,sans-serif;text-align:center}
+        .dropdash-float-label{margin-top:9px;color:#e9d5a8;font:700 9px/1.4 Manrope,Arial,sans-serif;letter-spacing:.15em;text-align:center;text-transform:uppercase}
+        .dropdash-float-cta{margin-top:5px;color:#aaa295;font:500 10px/1.4 Manrope,Arial,sans-serif;text-align:center}
         .dropdash-floating-bottom{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
-        .dropdash-floating-bottom .button{min-width:210px}.dropdash-affiliate-note{max-width:620px;margin:0;color:#898276;font:400 9px/1.7 Manrope,Arial,sans-serif;text-align:center}
+        .dropdash-floating-bottom .button{min-width:180px}.dropdash-affiliate-note{max-width:620px;margin:0;color:#898276;font:400 9px/1.7 Manrope,Arial,sans-serif;text-align:center}
         @keyframes dropdashFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        @media(max-width:600px){.dropdash-floating-stage{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.dropdash-float-card{padding:9px 9px 12px;border-radius:14px}.dropdash-float-image{height:clamp(115px,34vw,165px)}.dropdash-float-card:nth-child(3n){display:flex}.dropdash-floating-edit{border-radius:16px}}
+        @media(max-width:600px){.dropdash-floating-stage{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.dropdash-float-card{padding:9px 9px 12px;border-radius:14px}.dropdash-float-image{height:clamp(95px,27vw,130px)}.dropdash-float-card:nth-child(3n){display:flex}.dropdash-floating-edit{border-radius:16px}}
         @media(prefers-reduced-motion:reduce){.dropdash-float-card{animation:none!important;transition:none}.dropdash-float-image img{transition:none}}
       </style>
       <div class="dropdash-floating-head">
