@@ -72,3 +72,135 @@ main,.site-header,.site-footer,.marf-timebar{min-width:0}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* MARF mobile-first refinement — compact, balanced and touch-friendly */
+@media(max-width:767px){
+  html{scroll-padding-top:18px}
+  body{padding-left:49px!important;padding-right:0!important;font-size:14px}
+  .marf-left-sidebar{width:43px!important;padding:9px 2px!important;gap:6px!important}
+  .marf-side-brand{width:35px!important;height:35px!important;flex-basis:35px!important;margin-bottom:3px!important;border-radius:10px!important}
+  .marf-side-brand img{width:25px!important;height:25px!important}
+  .marf-side-links{gap:4px!important}
+  .marf-side-links a{width:35px!important;height:35px!important;flex-basis:35px!important;border-radius:10px!important}
+  .marf-side-links a svg{width:18px!important;height:18px!important}
+  .marf-side-divider{width:26px!important;margin:2px 0!important}
+  .announcement{height:27px;padding:0 12px;font-size:7px;letter-spacing:.08em}
+  .site-header{height:auto;min-height:66px;padding:10px 10px!important;gap:7px!important;flex-wrap:nowrap}
+  .brand-logo-link{display:flex;align-items:center;flex:0 1 86px;min-width:0}
+  .brand-logo-link img{display:block;width:100%;max-width:86px;height:auto;max-height:42px;object-fit:contain}
+  .main-nav{max-width:calc(100vw - 52px)}
+  .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:5px!important;flex:1;min-width:0}
+  .site-header .header-actions a.my-marf-login-cta{padding:8px 7px!important;font-size:8px!important;letter-spacing:0!important;border-radius:7px;max-width:94px;white-space:normal;text-align:center}
+  .icon-button,.cart-button,.menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:27px;height:34px;min-width:27px;padding:0;font-size:19px}
+  .cart-button svg{width:20px;height:20px}
+  .marf-timebar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 8px;padding:10px 12px!important;min-height:0}
+  .marf-timebar-label{grid-column:1/-1;width:auto!important;margin:0!important;font-size:7px;letter-spacing:.1em}
+  .marf-time-display{display:flex;align-items:center;gap:5px}
+  .marf-live-clock{font-size:17px}
+  .marf-live-date{font-size:9px;white-space:normal;text-align:right}
+  .marf-timezone{grid-column:1/-1;border:0;padding:0;font-size:7px}
+  #marf-category-dropdown-bar{padding:8px 10px}
+  .marf-category-dropdown-inner{display:flex;flex-direction:column;align-items:stretch;gap:7px;min-height:0}
+  .marf-category-bar-label{font-size:8px;letter-spacing:.17em}
+  .marf-category-dropdown-toggle{width:100%;min-height:48px;padding:8px 11px;gap:9px;border-radius:12px}
+  .marf-category-toggle-copy strong{font-size:11px}
+  .marf-category-toggle-copy small{font-size:9px}
+  .marf-category-dropdown-menu{width:100%;max-width:100%;max-height:55vh;overflow-y:auto;grid-template-columns:1fr!important}
+  .marf-category-option{min-height:42px;padding:9px 11px}
+  .hero{padding:42px 16px 52px!important;gap:0;min-height:0}
+  .hero-copy{width:100%;min-width:0}
+  .hero .eyebrow{font-size:8px;letter-spacing:.14em;margin-bottom:17px}
+  .hero h1{font-size:clamp(43px,11.8vw,68px)!important;line-height:.94;overflow-wrap:normal;margin-bottom:18px}
+  .hero-description{font-size:11px;line-height:1.85;max-width:100%;margin-bottom:22px}
+  .hero-actions{gap:12px;align-items:flex-start}
+  .hero-actions .button{min-height:44px;padding:0 14px;font-size:9px;gap:12px}
+  .hero-note{margin-top:25px;line-height:1.6;flex-wrap:wrap}
+  .hero-art{min-height:310px;margin-top:18px;min-width:0;width:100%}
+  .hero-image-wrap{width:min(70%,260px);height:300px;max-height:none}
+  .orbit{width:min(84vw,300px);height:min(84vw,300px)}
+  .orbit-two{width:min(94vw,330px);height:min(94vw,330px)}
+  .floating-label{font-size:7px;max-width:88px}
+  .label-top{right:0;top:6%}.label-bottom{left:0;bottom:5%}
+  .vertical-type{font-size:7px;right:0}
+  .hero-bottom{left:16px;right:16px;bottom:15px;gap:7px;font-size:7px;letter-spacing:.1em;flex-wrap:wrap}
+  .ticker-track{height:46px;gap:20px}.ticker-track span{font-size:15px}
+  .section,.featured-section,.manifesto,.newsletter{padding:48px 14px!important}
+  .section-heading{gap:12px;margin-bottom:22px}
+  .section-heading h2,.manifesto-copy h2{font-size:clamp(35px,9.5vw,48px)!important;line-height:1}
+  .section-intro{font-size:10px;line-height:1.8}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .collection-card,.collection-large{height:245px;min-width:0}
+  .collection-large{grid-column:1/-1;height:300px}
+  .collection-title{left:12px;right:10px;bottom:14px}
+  .collection-title h3{font-size:clamp(25px,7vw,33px);line-height:.98;overflow-wrap:anywhere}
+  .collection-title>span,.collection-meta{font-size:6px;letter-spacing:.08em}
+  .collection-meta{left:10px;right:10px;top:10px}
+  .round-arrow{width:25px;height:25px;flex:0 0 25px}
+  .featured-section{padding-top:48px!important;padding-bottom:48px!important}
+  .filter-row{gap:16px;margin-bottom:20px;padding-bottom:0}
+  .filter{font-size:9px;padding-bottom:10px}
+  .product-grid,.live-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:19px 8px!important}
+  .product-image,.live-product-image{height:auto!important;aspect-ratio: .78;min-height:0}
+  .product-image img,.live-product-image img{width:100%;height:100%;object-fit:cover}
+  .product-info,.live-product-info{padding:9px 1px!important;gap:5px!important;min-width:0}
+  .product-info h3,.live-product-info h3{font-size:clamp(16px,4.7vw,20px)!important;line-height:1.08;overflow-wrap:anywhere}
+  .product-info p,.live-product-info p{font-size:8px;line-height:1.5;overflow-wrap:anywhere}
+  .price{font-size:9px;white-space:normal;text-align:left}
+  .product-tag{top:7px;left:7px;padding:5px 6px;font-size:6px;max-width:calc(100% - 14px)}
+  .quick-add{left:6px;right:6px;bottom:6px;height:34px;font-size:8px;opacity:1;transform:none}
+  .shop-categories-section{padding:45px 12px!important}
+  .shop-categories-section .section-heading{padding:0 2px}
+  .shop-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .shop-category-card{min-height:136px!important;padding:13px 10px 14px!important;border-radius:15px!important}
+  .shop-category-name{font-size:clamp(15px,4.1vw,19px)!important;line-height:1.02;max-width:100%;overflow-wrap:anywhere}
+  .shop-category-urdu{font-size:8px!important;max-width:100%;line-height:1.35}
+  .shop-category-icon{width:29px!important;height:29px!important;top:8px!important;right:8px!important;font-size:16px!important}
+  .shop-category-number{font-size:6px!important}
+  .shop-category-arrow{width:21px!important;height:21px!important;right:8px!important;bottom:8px!important}
+  .manifesto{grid-template-columns:minmax(0,1fr)!important;gap:25px!important}
+  .manifesto-image{height:auto!important;aspect-ratio: .92;max-height:390px}
+  .manifesto-copy{padding:0!important}
+  .manifesto-copy>p:not(.eyebrow){font-size:11px;line-height:1.9}
+  .manifesto-stamp{font-size:64px;bottom:-42px;right:3%}
+  .newsletter{gap:18px!important}
+  .newsletter h2{font-size:clamp(32px,8.7vw,43px)!important;line-height:1}
+  .newsletter-copy>p:last-child{font-size:10px;line-height:1.8}
+  .newsletter .button{max-width:100%;white-space:normal}
+  .site-footer{padding:30px 14px!important;grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+  .footer-links{grid-column:auto;gap:14px 18px;justify-content:flex-start;flex-wrap:wrap}
+  .copyright{font-size:7px;line-height:1.8;padding-top:15px}
+  .drawer-panel{width:min(100%,420px);padding:18px}
+  .search-panel{padding:18px 12px}
+  .search-panel form{gap:8px}
+  .search-panel input{font-size:18px;width:100%;min-width:0}
+  .search-panel form>button[type=submit]{padding:11px 10px;font-size:9px}
+  .toast{width:calc(100vw - 68px);left:calc(50% + 24px);text-align:center;line-height:1.5}
+  .reveal{transform:translateY(10px)}
+}
+@media(max-width:390px){
+  body{padding-left:47px!important}
+  .site-header{padding:8px 7px!important;gap:4px!important}
+  .brand-logo-link{flex-basis:70px}
+  .brand-logo-link img{max-width:70px}
+  .site-header .header-actions a.my-marf-login-cta{max-width:78px;padding:7px 5px!important;font-size:7px!important}
+  .icon-button,.cart-button,.menu-toggle{width:24px;min-width:24px;font-size:17px}
+  .hero{padding:34px 12px 46px!important}
+  .hero h1{font-size:clamp(40px,11vw,53px)!important}
+  .hero-art{min-height:275px}
+  .hero-image-wrap{height:260px}
+  .section,.featured-section,.manifesto,.newsletter{padding-left:11px!important;padding-right:11px!important}
+  .collection-card,.collection-large{height:220px}
+  .collection-large{height:270px}
+  .shop-category-card{min-height:128px!important;padding:12px 8px!important}
+  .shop-category-name{font-size:15px!important}
+}
+@media(max-width:340px){
+  body{padding-left:45px!important}
+  .marf-left-sidebar{width:41px!important}
+  .marf-side-links a{width:33px!important;height:33px!important;flex-basis:33px!important}
+  .brand-logo-link{flex-basis:60px}
+  .brand-logo-link img{max-width:60px}
+  .site-header .header-actions a.my-marf-login-cta{max-width:70px;font-size:6px!important}
+  .product-grid,.live-product-grid{grid-template-columns:minmax(0,1fr)!important}
+  .product-image,.live-product-image{aspect-ratio:1.05}
+}
