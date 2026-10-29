@@ -331,6 +331,58 @@
       <div class="product-grid live-home-grid" id="homepage-live-products" aria-live="polite"><p class="section-intro">Browse the live catalogue for currently available products, confirmed prices and Cash on Delivery ordering. <a href="products.html">Open Shop All ↗</a></p></div>
       <div style="text-align:center;margin-top:28px"><a class="button button-gold" href="products.html">Shop all & order ↗</a></div>
     </section>
+    <section class="section dropdash-floating-edit" id="dropdash-floating-edit" aria-labelledby="dropdash-floating-title">
+      <style>
+        .dropdash-floating-edit{position:relative;isolation:isolate;overflow:hidden;margin-top:clamp(42px,7vw,90px);margin-bottom:clamp(42px,7vw,90px);padding:clamp(28px,5vw,62px) clamp(14px,3vw,36px);border:1px solid rgba(201,169,106,.25);border-radius:22px;background:radial-gradient(ellipse at 50% 45%,rgba(201,169,106,.13),transparent 62%),linear-gradient(135deg,#11110f,#090909 70%);box-shadow:0 24px 70px rgba(0,0,0,.22)}
+        .dropdash-floating-edit:before,.dropdash-floating-edit:after{content:"";position:absolute;z-index:-1;width:260px;height:260px;border:1px solid rgba(201,169,106,.12);border-radius:50%;pointer-events:none}
+        .dropdash-floating-edit:before{top:-145px;left:-110px}.dropdash-floating-edit:after{right:-130px;bottom:-175px;width:340px;height:340px}
+        .dropdash-floating-head{position:relative;z-index:2;max-width:720px;margin:0 auto 26px;text-align:center}
+        .dropdash-floating-head .eyebrow{color:#d5b77b}.dropdash-floating-head h2{margin:8px 0 12px;color:#f5f0e6;font:400 clamp(34px,5vw,58px)/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.025em}.dropdash-floating-head h2 em{color:#d7ba7d;font-weight:400}.dropdash-floating-head p:not(.eyebrow){max-width:520px;margin:0 auto;color:#b9b2a5;font:400 12px/1.8 Manrope,Arial,sans-serif}
+        .dropdash-floating-stage{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:18px;max-width:940px;margin:0 auto;padding:10px 0 22px}
+        .dropdash-float-card{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;padding:13px 13px 16px;overflow:hidden;border:1px solid rgba(201,169,106,.26);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));box-shadow:0 15px 35px rgba(0,0,0,.28);text-decoration:none;color:#f4eee2;transition:border-color .25s,box-shadow .25s}
+        .dropdash-float-card:nth-child(odd){animation:dropdashFloat 5.2s ease-in-out infinite}.dropdash-float-card:nth-child(even){animation:dropdashFloat 6.1s ease-in-out -2s infinite}.dropdash-float-card:nth-child(3n){animation-delay:-3.3s}
+        .dropdash-float-card:hover,.dropdash-float-card:focus-visible{border-color:#d9bb7b;box-shadow:0 18px 42px rgba(201,169,106,.17);outline:none}
+        .dropdash-float-image{display:grid;place-items:center;width:100%;height:clamp(110px,17vw,190px);overflow:hidden;border-radius:11px;background:linear-gradient(135deg,#24221c,#111)}
+        .dropdash-float-image img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.dropdash-float-card:hover .dropdash-float-image img{transform:scale(1.06)}
+        .dropdash-float-label{margin-top:13px;color:#e9d5a8;font:700 9px/1.4 Manrope,Arial,sans-serif;letter-spacing:.15em;text-align:center;text-transform:uppercase}
+        .dropdash-float-cta{margin-top:8px;color:#aaa295;font:500 10px/1.4 Manrope,Arial,sans-serif;text-align:center}
+        .dropdash-floating-bottom{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+        .dropdash-floating-bottom .button{min-width:210px}.dropdash-affiliate-note{max-width:620px;margin:0;color:#898276;font:400 9px/1.7 Manrope,Arial,sans-serif;text-align:center}
+        @keyframes dropdashFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @media(max-width:600px){.dropdash-floating-stage{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.dropdash-float-card{padding:9px 9px 12px;border-radius:14px}.dropdash-float-image{height:clamp(115px,34vw,165px)}.dropdash-float-card:nth-child(3n){display:flex}.dropdash-floating-edit{border-radius:16px}}
+        @media(prefers-reduced-motion:reduce){.dropdash-float-card{animation:none!important;transition:none}.dropdash-float-image img{transition:none}}
+      </style>
+      <div class="dropdash-floating-head">
+        <p class="eyebrow">THE DISCOVERY EDIT · PARTNER PICKS</p>
+        <h2 id="dropdash-floating-title">Find something <em>different.</em></h2>
+        <p>Explore fresh finds across everyday tech, accessories, beauty and home. Tap any floating pick to discover more on DropDash.</p>
+      </div>
+      <div class="dropdash-floating-stage" aria-label="Featured DropDash product categories">
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore smart watches on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85" alt="Minimal wristwatch" loading="lazy"></span><span class="dropdash-float-label">Smart watches</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore headphones and tech on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85" alt="Wireless headphones" loading="lazy"></span><span class="dropdash-float-label">Audio & tech</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore bags and accessories on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=85" alt="Everyday backpack" loading="lazy"></span><span class="dropdash-float-label">Bags & carry</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore beauty and skincare on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=85" alt="Beauty and skincare products" loading="lazy"></span><span class="dropdash-float-label">Beauty & care</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore sunglasses and accessories on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=85" alt="Sunglasses and fashion accessories" loading="lazy"></span><span class="dropdash-float-label">Style essentials</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+        <a class="dropdash-float-card" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label="Explore home and lifestyle products on DropDash">
+          <span class="dropdash-float-image"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=85" alt="Calm home and lifestyle decor" loading="lazy"></span><span class="dropdash-float-label">Home & lifestyle</span><span class="dropdash-float-cta">Explore on DropDash ↗</span>
+        </a>
+      </div>
+      <div class="dropdash-floating-bottom">
+        <a class="button button-gold" href="https://dropdash.pk/?ref=759V327" target="_blank" rel="sponsored nofollow noopener noreferrer">Explore all DropDash finds ↗</a>
+        <p class="dropdash-affiliate-note">Partner link disclosure: MARF may receive a referral benefit if you visit or shop through these links. Product availability and prices are shown by DropDash.</p>
+      </div>
+    </section>
+
     <section class="section shop-categories-section" id="shop-categories">
       <div class="section-heading reveal"><div><p class="eyebrow">SHOP MARF / 20 CATEGORIES</p><h2>Find your <em>category.</em></h2></div><p class="section-intro">Explore the full range of categories planned for MARF Pakistan. Product availability will be added as each collection is prepared.</p></div>
       <div class="shop-category-grid">
