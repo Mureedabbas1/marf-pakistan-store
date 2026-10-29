@@ -204,3 +204,24 @@ main,.site-header,.site-footer,.marf-timebar{min-width:0}
   .product-grid,.live-product-grid{grid-template-columns:minmax(0,1fr)!important}
   .product-image,.live-product-image{aspect-ratio:1.05}
 }
+
+
+/* Slightly shorter mobile hero banner */
+@media(max-width:767px){
+  .hero{padding-top:30px!important;padding-bottom:38px!important}
+  .hero .eyebrow{margin-bottom:12px!important}
+  .hero h1{font-size:clamp(39px,10.6vw,61px)!important;margin-bottom:14px!important}
+  .hero-description{line-height:1.7!important;margin-bottom:17px!important}
+  .hero-note{margin-top:18px!important}
+  .hero-art{min-height:260px!important;margin-top:10px!important}
+  .hero-image-wrap{height:250px!important;width:min(66%,245px)!important}
+  .orbit{width:min(76vw,275px)!important;height:min(76vw,275px)!important}
+  .orbit-two{width:min(86vw,305px)!important;height:min(86vw,305px)!important}
+  .hero-bottom{bottom:10px!important}
+}
+@media(max-width:390px){
+  .hero{padding-top:25px!important;padding-bottom:32px!important}
+  .hero h1{font-size:clamp(37px,10.3vw,49px)!important}
+  .hero-art{min-height:230px!important}
+  .hero-image-wrap{height:220px!important;width:min(64%,220px)!important}
+}
