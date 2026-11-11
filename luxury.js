@@ -4,7 +4,7 @@
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   // Keep the welcome logo visible for five seconds on every homepage visit.
   const splash = document.getElementById('marf-splash');
-  if (splash) setTimeout(() => splash.classList.add('is-done'), 10000);
+  if (splash) setTimeout(() => splash.classList.add('is-done'), 7000);
   const header = document.querySelector('.site-header');
   const hero = document.querySelector('.hero');
 
