@@ -355,12 +355,17 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 
 /* Intro splash: visible for five seconds on every homepage visit. */
 .marf-splash{
-  position:fixed;inset:0;z-index:99999;display:grid;place-items:center;
-  background:radial-gradient(ellipse at 50% 45%,#15130d,#070706 70%);
+  position:fixed;inset:0;z-index:99999;display:grid;place-items:center;overflow:hidden;
+  background:#070706;
   animation:splash-out .9s var(--ease-lux) 6.1s forwards;
 }
+.marf-splash::before{
+  content:"";position:absolute;inset:-5px;
+  background:linear-gradient(rgba(7,7,6,.48),rgba(7,7,6,.48)),url("MARF_Pakistan_background_photograph_1559b5e9.jpg") center/cover no-repeat;
+  filter:blur(2px);transform:scale(1.02);
+}
 .marf-splash.is-done{display:none}
-.marf-splash-mark{display:grid;justify-items:center;gap:22px}
+.marf-splash-mark{position:relative;z-index:1;display:grid;justify-items:center;gap:22px}
 .marf-splash img{width:min(30vw,128px);height:auto;opacity:0;filter:drop-shadow(0 0 28px rgba(212,175,103,.35));animation:splash-mark 1.3s var(--ease-lux) .15s forwards}
 .marf-splash span{font:500 11px var(--sans);letter-spacing:.5em;text-indent:.5em;color:var(--gold);opacity:0;animation:splash-mark 1.1s var(--ease-lux) .55s forwards}
 .marf-splash i{display:block;width:0;height:1px;background:var(--foil);animation:splash-line 1.3s var(--ease-lux) .45s forwards}
