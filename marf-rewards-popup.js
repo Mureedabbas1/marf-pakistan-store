@@ -89,8 +89,8 @@
     });
   }
 
-  // Wait 30 seconds after the page has finished loading before showing the rewards popup.
+  // Wait 30 seconds after the full page load (including dependent resources).
   const schedulePopup = () => window.setTimeout(openPopup, 30000);
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", schedulePopup, {once:true});
-  else schedulePopup();
+  if (document.readyState === "complete") schedulePopup();
+  else window.addEventListener("load", schedulePopup, {once:true});
 })();
