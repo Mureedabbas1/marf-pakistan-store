@@ -357,7 +357,7 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 .marf-splash{
   position:fixed;inset:0;z-index:99999;display:grid;place-items:center;
   background:radial-gradient(ellipse at 50% 45%,#15130d,#070706 70%);
-  animation:splash-out .9s var(--ease-lux) 4.1s forwards;
+  animation:splash-out .9s var(--ease-lux) 9.1s forwards;
 }
 .marf-splash.is-done{display:none}
 .marf-splash-mark{display:grid;justify-items:center;gap:22px}
