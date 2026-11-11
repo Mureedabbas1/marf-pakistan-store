@@ -2,12 +2,9 @@
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  // Intro splash: remember it was shown, then remove from the DOM
+  // Keep the welcome logo visible for five seconds on every homepage visit.
   const splash = document.getElementById('marf-splash');
-  if (splash) {
-    try { sessionStorage.setItem('marfSplash', '1'); } catch (e) {}
-    setTimeout(() => splash.classList.add('is-done'), 2800);
-  }
+  if (splash) setTimeout(() => splash.classList.add('is-done'), 5000);
   const header = document.querySelector('.site-header');
   const hero = document.querySelector('.hero');
 
