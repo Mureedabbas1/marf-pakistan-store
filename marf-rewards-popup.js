@@ -89,6 +89,8 @@
     });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", openPopup, {once:true});
-  else openPopup();
+  // Wait 30 seconds after the page has finished loading before showing the rewards popup.
+  const schedulePopup = () => window.setTimeout(openPopup, 30000);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", schedulePopup, {once:true});
+  else schedulePopup();
 })();
