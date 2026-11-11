@@ -353,12 +353,11 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 .brand-logo-svg{max-height:64px}
 @media(max-width:760px){.brand-logo-link{width:176px}.brand-logo-svg{max-height:50px}}
 
-/* Intro splash: monogram fades in once per visit.
-   Pure CSS self-dismiss (3s) so it can never get stuck if JS fails. */
+/* Intro splash: visible for five seconds on every homepage visit. */
 .marf-splash{
   position:fixed;inset:0;z-index:99999;display:grid;place-items:center;
   background:radial-gradient(ellipse at 50% 45%,#15130d,#070706 70%);
-  animation:splash-out .9s var(--ease-lux) 1.7s forwards;
+  animation:splash-out .9s var(--ease-lux) 4.1s forwards;
 }
 .marf-splash.is-done{display:none}
 .marf-splash-mark{display:grid;justify-items:center;gap:22px}
@@ -368,4 +367,3 @@ body>header:not(.site-header) .brand:hover .brand-img{filter:drop-shadow(0 0 16p
 @keyframes splash-mark{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes splash-line{to{width:120px}}
 @keyframes splash-out{to{opacity:0;visibility:hidden;pointer-events:none}}
-@media(prefers-reduced-motion:reduce){.marf-splash{display:none}}
