@@ -225,3 +225,16 @@ main,.site-header,.site-footer,.marf-timebar{min-width:0}
   .hero-art{min-height:230px!important}
   .hero-image-wrap{height:220px!important;width:min(64%,220px)!important}
 }
+
+/* Mobile readability: raise the smallest text sizes so labels, prices and buttons can be read on phones */
+@media(max-width:700px){
+  .marf-live-date,.marf-timezone{font-size:11px!important}
+  .my-marf-login-cta{font-size:9px!important}
+  .hero-note,.prototype-note,.copyright,.search-results-heading,.dropdash-affiliate-note,.image-caption,figcaption{font-size:11px!important}
+  .eyebrow,.section-intro,.text-link,.shop-category-urdu,.filter,.filter span{font-size:11px!important}
+  .product-tag{font-size:10px!important;padding:6px 8px!important}
+  .quick-add{font-size:11px!important}
+  .price{font-size:13px!important}
+  .button{font-size:11px!important}
+  .dropdash-float-label,.dropdash-float-cta{font-size:10px!important}
+}
