@@ -238,3 +238,35 @@ main,.site-header,.site-footer,.marf-timebar{min-width:0}
   .button{font-size:11px!important}
   .dropdash-float-label,.dropdash-float-cta{font-size:10px!important}
 }
+
+
+/* ---------- MARF mobile app navigation + touch layout (2026-11-19) ---------- */
+@media(max-width:767px){
+  html{scroll-padding-top:76px}
+  body{padding-left:0!important;padding-bottom:calc(82px + env(safe-area-inset-bottom))!important;overflow-x:hidden}
+  .marf-left-sidebar{position:fixed;left:9px;right:9px;top:auto;bottom:calc(8px + env(safe-area-inset-bottom));width:auto;height:62px;min-height:62px;z-index:1200;display:flex;flex-direction:row;justify-content:space-around;align-items:center;gap:4px;padding:6px 8px;border:1px solid rgba(201,169,106,.42);border-radius:20px;background:rgba(9,9,9,.94);box-shadow:0 12px 38px rgba(0,0,0,.38);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow-x:auto;overflow-y:hidden}
+  .marf-side-brand,.marf-side-spacer,.marf-side-divider{display:none!important}
+  .marf-side-links{display:flex;flex:1 0 auto;flex-direction:row;justify-content:space-around;align-items:center;gap:4px;width:auto}
+  .marf-side-links a{width:44px;height:44px;flex:0 0 44px;border-radius:14px;font-size:20px}
+  .marf-side-links a::after{display:none!important}
+  .site-header{height:auto;min-height:62px;padding:8px 10px!important;gap:8px}
+  .site-header .header-actions{gap:6px;min-width:0}
+  .site-header .header-actions a.my-marf-login-cta{white-space:normal;text-align:center;max-width:108px}
+  .marf-timebar,main,.site-footer{margin-left:0!important;width:100%!important}
+  .hero{padding-left:14px!important;padding-right:14px!important}
+  .product-grid,.live-product-grid,.catalogue-grid,.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .product-card,.live-product-card,.catalogue-card{min-width:0}
+  .product-card img,.live-product-card img{max-width:100%;height:auto}
+  .site-footer{grid-template-columns:1fr!important;padding-bottom:20px!important}
+  input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]),select,textarea{font-size:16px!important;max-width:100%}
+  button,.button,.quick-add,[role=button]{min-height:44px}
+}
+@media(max-width:390px){
+  .product-grid,.live-product-grid,.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .site-header .header-actions a.my-marf-login-cta{max-width:82px;font-size:8px!important}
+  .marf-side-links a{width:40px;height:40px;flex-basis:40px}
+}
+@media(display-mode:standalone){
+  body{padding-top:env(safe-area-inset-top)}
+  .marf-left-sidebar{bottom:calc(8px + env(safe-area-inset-bottom))}
+}
