@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "MARF Pakistan",
+  "short_name": "MARF",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#090909",
+  "description": "MARF Pakistan web app",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
