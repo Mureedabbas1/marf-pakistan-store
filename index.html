@@ -113,6 +113,20 @@
 <meta name="twitter:image" content="https://marfpakistan.site/og-image.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "MARF Pakistan", "url": "https://marfpakistan.site/", "inLanguage": "en-PK"}</script>
 <style id="mobile-fixes">@media (max-width:640px){html{overflow-x:clip;-webkit-text-size-adjust:100%}body{overflow-wrap:anywhere}input,select,textarea{font-size:16px;max-width:100%}input[type=file]{width:100%;box-sizing:border-box}img,video,canvas{max-width:100%}img{height:auto}footer a,nav a,header a,.footer a{padding-block:10px}button,.btn,.cta,[role=button]{min-height:40px}}</style>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MARF">
+<meta name="theme-color" content="#090909">
+<style id="pwa-install-ui">
+#pwa-install-cta{position:fixed;z-index:2147483000;left:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid #D4AF67;border-radius:999px;background:#090909;color:#f7f0e3;box-shadow:0 8px 28px rgba(0,0,0,.22);font:700 13px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.01em;cursor:pointer;transition:transform .2s,box-shadow .2s}
+#pwa-install-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+#pwa-install-cta .pwa-install-mark{width:9px;height:9px;border-radius:50%;background:#D4AF67;box-shadow:0 0 12px #D4AF67}
+#pwa-install-cta[hidden]{display:none!important}
+@media(max-width:640px){#pwa-install-cta{left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);white-space:nowrap}#pwa-install-cta:hover{transform:translateX(-50%) translateY(-2px)}}
+@media(display-mode:standalone){#pwa-install-cta{display:none!important}}
+</style>
 </head>
 <body>
   <div class="marf-splash" id="marf-splash" aria-hidden="true"><div class="marf-splash-mark"><img decoding="async" src="marf-monogram.png?v=20261024-logo2" width="817" height="893" alt="MARF Pakistan monogram logo"><i></i><span>WELCOME TO MARF PAKISTAN</span></div></div>
@@ -578,5 +592,23 @@
   <script src="app.js?v=20261024-livehome5" defer></script>
   <script src="luxury.js?v=20261024-lux2" defer></script>
   <script src="marf-rewards-popup.js?v=20261027-homevisit3" defer></script>
+<button id="pwa-install-cta" type="button" aria-label="Install MARF as an app"><span class="pwa-install-mark" aria-hidden="true"></span><span id="pwa-install-label">Install App</span></button>
+<script id="pwa-install-controller">
+(function(){
+ var button=document.getElementById("pwa-install-cta"),label=document.getElementById("pwa-install-label"),promptEvent=null;
+ if(!button)return;
+ var standalone=window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true;
+ if(standalone){button.hidden=true;return;}
+ window.addEventListener("beforeinstallprompt",function(event){event.preventDefault();promptEvent=event;});
+ window.addEventListener("appinstalled",function(){button.hidden=true;promptEvent=null;});
+ button.addEventListener("click",async function(){
+  if(promptEvent){promptEvent.prompt();try{await promptEvent.userChoice;}catch(e){}promptEvent=null;return;}
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(label)label.textContent=ios?"Share → Add to Home Screen":"Browser menu → Install App";
+  window.setTimeout(function(){if(label)label.textContent="Install App";},3200);
+ });
+ if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}
+})();
+</script>
 </body>
 </html>
